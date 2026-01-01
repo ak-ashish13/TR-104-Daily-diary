@@ -1,0 +1,76 @@
+MongoDB is a flexible, scalable, and powerful NoSQL database, and one of its notable features is JSON Schema Validation. This feature allows developers to enforce data integrity within MongoDB collections, ensuring that documents inserted into a collection adhere to a specific structure. By specifying a set of validation rules, we can prevent erroneous data and maintain consistency across documents.
+
+In this article, we will explain how to specify JSON Schema Validation in MongoDB and explore its practical implementation, ensuring that our MongoDB collections maintain the required structure and integrity.
+
+What is JSON Schema Validation in MongoDB?
+JSON Schema Validation in MongoDB allows us to enforce constraints on documents inserted into collections. These constraints ensure that documents conform to a defined structure, improving data consistency, and preventing invalid entries from being added to our database.
+
+By using $jsonSchema in MongoDB, we can define validation rules for fields in a document. These rules can specify data types, required fields, patterns (like regex for emails), and other conditions that documents must meet.
+
+Step 1: Creating a JSON Schema
+In this step, We will Create a JSON object that will specify the validation rules that need to be set on the MongoDB collection. It will specify the validation rules on all the properties of the collection.
+
+First, let's create a JSON schema that we will use as a validation while creating new entities inside the collection. Let's create a Schema that takes in first name, last name, and email, and the email should be valid, and all of them will be required.
+
+The JSON that we will use for the Schema Validation:
+
+{
+  $jsonSchema: {
+      bsonType: "object",
+      properties: {
+        first_name: {
+          bsonType: "string",
+          description: "must be a string",
+        },
+        last_name: {
+          bsonType: "string",
+          description: "must be a string",
+        },
+        age: {
+          bsonType: "int",
+          description: "must be an integer",
+        },
+        email: {
+          bsonType: "string",
+          pattern: "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$",
+          description: "must be a valid email address",
+        },
+      },
+    }
+}
+Step 2: Adding the JSON Schema Validation to the Collection
+In this Step, We will pass the above created JSON as an argument to the db.createCollection() command, so as to add the JSON Schema validation to the created collection.
+
+Now, let's create a collection with the name, Users, and add the validation to the collection. The collection will contain first_name, last_name, age, and email as fields.
+
+AddSchema
+
+Explanation: In this step, the schema validation is applied to the users collection. The validator key ensures that any document inserted into this collection will be validated against the defined schema.
+
+Step 3: Adding Documents to the Collection
+Once the schema is in place, we can begin adding documents to the collection. Let’s explore how MongoDB handles documents that pass or fail schema validation.
+
+Part A: Adding a Document with Invalid Data
+In this step, we will try to add a document that does not create any cause against to the JSON validation rules.
+
+Now, if we try to add a document that doesn't meet the validation criteria, then we will get a MongoDB validation error. In the image below, we try to add a user with an invalid email, and so we get a validation error.
+
+InvalidData
+
+Explanation: In the above image, we can see that the document does not get added to the collection. The document fails validation because the email format doesn’t match the specified pattern (it should be a valid email address). MongoDB prevents this invalid data from being inserted into the collection.
+
+Part B: Adding a Document with Valid Data
+In this step, we will try to add a document that does follows to the JSON validation rules.
+
+If we try to add a document that follows the required validation criteria, then we are able to add the document successfully to the Collection. In this image below, we insert a new user with the correct email this time, and the user gets successfully added to the users collection.
+
+ValidData
+
+
+Explanation: In the above image, we can see that the document gets added successfully to the collection. This document passes the validation rules, as the email is valid, and all required fields are provided.
+
+Benefits of JSON Schema Validation in MongoDB
+Data Integrity: Schema validation helps ensure that only valid data is inserted into your collections. By defining clear rules for document structure, you can avoid issues with malformed data, reducing errors in your application.
+Consistency: By enforcing data types and validation rules, MongoDB helps maintain consistency across documents. This is especially important in applications that rely on specific data formats.
+Prevents Invalid Data: JSON Schema Validation prevents invalid or incomplete data from being inserted into the collection, which is critical for applications that require strict data accuracy.
+Conclusion
