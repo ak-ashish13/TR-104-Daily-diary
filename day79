@@ -1,0 +1,206 @@
+Express.js – Complete Function Reference
+1. express() Function
+What it is
+
+The main function of Express.
+
+Creates an Express application instance.
+
+Syntax
+const express = require('express');
+const app = express();
+
+Purpose
+
+Initializes the Express server
+
+Used to define routes, middleware, and server settings
+
+Example
+const express = require('express');
+const app = express();
+
+app.get('/', (req, res) => {
+  res.send('Hello Express');
+});
+
+app.listen(3000, () => {
+  console.log('Server running on port 3000');
+});
+
+Key Points
+
+Returns an app object
+
+Without express(), no server can be created
+
+2. express.raw() Function
+What it is
+
+Built-in middleware
+
+Parses incoming requests with raw binary data
+
+Syntax
+express.raw(options)
+
+Use Case
+
+When handling binary data
+
+Used in Stripe webhooks, file buffers, custom APIs
+
+Example
+app.use(express.raw({ type: 'application/octet-stream' }));
+
+Output
+
+Data available as:
+
+req.body  // Buffer
+
+3. express.Router() Function
+What it is
+
+Creates a mini Express app
+
+Used for route modularization
+
+Syntax
+const router = express.Router();
+
+Why use it?
+
+Clean code
+
+Large projects
+
+Separate routes into files
+
+Example
+const express = require('express');
+const router = express.Router();
+
+router.get('/users', (req, res) => {
+  res.send('User List');
+});
+
+module.exports = router;
+
+// app.js
+const userRoutes = require('./routes/userRoutes');
+app.use('/api', userRoutes);
+
+Output URL
+/api/users
+
+4. express.static() Function
+What it is
+
+Middleware to serve static files
+
+Syntax
+express.static(root, options)
+
+Used For
+
+Serving:
+
+HTML
+
+CSS
+
+JS
+
+Images
+
+Fonts
+
+Example
+app.use(express.static('public'));
+
+Folder Structure
+public/
+ ├── index.html
+ ├── style.css
+ └── script.js
+
+Access in Browser
+http://localhost:3000/index.html
+
+5. express.text() Function
+What it is
+
+Middleware to parse plain text request bodies
+
+Syntax
+express.text(options)
+
+Example
+app.use(express.text());
+
+app.post('/text', (req, res) => {
+  res.send(req.body);
+});
+
+Content-Type
+text/plain
+
+Output
+req.body  // string
+
+6. express.urlencoded() Function
+What it is
+
+Middleware to parse HTML form data
+
+Syntax
+express.urlencoded({ extended: true });
+
+Used For
+
+Form submissions
+
+application/x-www-form-urlencoded
+
+Example
+app.use(express.urlencoded({ extended: true }));
+
+app.post('/login', (req, res) => {
+  console.log(req.body);
+  res.send('Form Submitted');
+});
+
+HTML Form Example
+<form method="POST" action="/login">
+  <input name="email" />
+  <input name="password" />
+  <button type="submit">Login</button>
+</form>
+
+Quick Comparison Table
+Function	Purpose
+express()	Creates Express app
+express.raw()	Parses binary data
+express.Router()	Modular routing
+express.static()	Serves static files
+express.text()	Parses plain text
+express.urlencoded()	Parses form data
+Common Middleware Setup (Real Project)
+const express = require('express');
+const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.text());
+app.use(express.static('public'));
+
+Viva Tip (Very Important ⭐)
+
+If asked:
+
+Why Express is used?
+
+Answer:
+
+Express is a lightweight Node.js framework used to build fast, scalable backend applications by providing routing, middleware, and HTTP utilities.
