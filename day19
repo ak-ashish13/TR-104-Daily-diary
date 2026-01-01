@@ -1,0 +1,80 @@
+CSS (Cascading Style Sheets) is a language designed to simplify the process of making web pages presentable.
+
+It allows you to apply styles to HTML documents by prescribing colors, fonts, spacing, and positioning.
+The main advantages are the separation of content (in HTML) and styling (in CSS) and the same CSS rules can be used across all pages and not have to be rewritten.
+HTML uses tags, and CSS uses rule sets.
+CSS styles are applied to the HTML element using selectors.
+Webpage-With---without-CSS
+Understanding Cascading
+Cascading in CSS refers to the way styles are applied to elements when there are multiple rules targeting the same element.
+It determines which CSS rule takes priority based on a set of principles like importance, specificity, and source order.
+
+CSS follows a hierarchy-Inline, Internal, External styles.
+Specificity decides which selector has more weight.
+Later rules override earlier ones if they have equal priority.
+CSS Selector
+A CSS selector is a pattern used to target HTML elements so that specific styles can be applied to them. Selectors allow developers to select elements by tag name, class, ID, attributes, state, or position, making it possible to control the look and behaviour of web pages efficiently.
+
+Selectors can target elements by tag, class, or ID.
+Combinators allow selecting elements based on hierarchy or sibling relationships.
+Attribute selectors target elements with specific attributes or values.
+Pseudo-classes style elements in a particular state (e.g., :hover, :first-child).
+Pseudo-elements style specific parts of an element (e.g., ::first-letter, ::after).
+Advanced selectors like :not() or :nth-child() allow precise and complex selection.
+Efficient use of selectors leads to clean, maintainable, and scalable CSS.
+Working of CSS
+CSS works by applying styles to HTML elements, transforming a plain web page into a visually appealing layout. It works with the browser to match styles to elements, calculate their positions, and display them on the screen.
+
+The below diagram explains the working of CSS in a more simplified manner.
+
+css-parse
+1. Load HTML
+
+Browser requests the HTML file from the server.
+Receives the HTML document as text.
+2. Parse HTML
+
+Browser reads and tokenizes HTML.
+Converts tags into nodes for the DOM tree.
+3. Build DOM (Document Object Model)
+
+The parsed HTML elements form the DOM structure.
+Represents all page elements and hierarchy.
+4. Load CSS
+
+When browser finds a <link> or <style>, it loads CSS files.
+External CSS is render-blocking (page waits until loaded).
+5. Parse CSS
+
+CSS text is parsed into the CSSOM (CSS Object Model).
+Browser understands all CSS rules and selectors.
+6. Compute Styles (Match + Cascade)
+
+Browser matches CSS rules to DOM elements.
+Applies cascading rules and calculates final computed styles.
+7. Build Render Tree
+
+Combines DOM + CSSOM to create the Render Tree.
+Includes only visible elements (e.g., skips display: none).
+8. Layout (Reflow)
+
+Calculates exact position and size of each element.
+Determines where elements appear on the page.
+9. Paint
+
+Converts render tree elements into actual pixels.
+Draws colors, borders, text, images, etc.
+10. Display (Compositing)
+
+Browser combines painted layers into the final image.
+Final visual output is displayed on the screen.
+Advantages of CSS
+Simplifies web design and maintenance.
+Enhances website performance and user experience.
+Supports responsive and adaptive designs for all devices.
+Why CSS?
+Saves Time: Write CSS once and reuse it across multiple HTML pages.
+Easy Maintenance: Change the style globally with a single modification.
+Search Engine Friendly: Clean coding technique that improves readability for search engines.
+Superior Styles: Offers a wider array of attributes compared to HTML.
+Offline Browsing: CS
