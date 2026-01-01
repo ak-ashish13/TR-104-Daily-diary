@@ -1,0 +1,127 @@
+Tracking changes in MongoDB is essential for applications requiring real-time updates or synchronization with the database. Traditionally, this was achieved through polling, which could be inefficient. MongoDB offers more effective methods to track changes including Change Streams, the watch() method and Oplog Tailing.
+
+In this article, We will learn about How to Track Changes in MongoDB by understanding various methods along with the practical implementation and so on.
+
+How to Track Changes in MongoDB?
+In many applications, it's crucial to provide users with real-time updates based on changes in the database. Traditionally, this was done by regularly checking (polling) the database for changes which could be inefficient and put unnecessary strain on the database server.
+
+MongoDB offers some methods that help us to listen for changes to a MongoDB collection as follows:
+
+Using Change Streams
+Using watch() Method
+Using Oplog Tailing
+1. Change Streams
+Change Streams were introduced in MongoDB 3.6 to provide a streamlined way to track changes in a MongoDB collection. They allow applications to subscribe to a continuous stream of data change events, providing a real-time data feed of changes happening in the database.
+
+How to Use Change Streams:
+Create a Change Stream: Use the watch() method to create a change stream on a collection.
+Subscribe to Events: Listen for events such as 'insert', 'update', 'replace', 'delete', and 'invalidate'.
+React to Changes: Handle change events and update the application state or trigger appropriate actions.
+Example:
+
+// Get a reference to the 'myCollection' collection
+const collection = db.collection('myCollection');
+
+// Create a change stream on the collection
+const changeStream = collection.watch();
+
+// Set up an event listener for the 'change' event
+changeStream.on('change', (change) => {
+    // Log the change event to the console
+    console.log('Change event:', change);
+
+    // React to the change event here
+    // This is where you would update your application state
+    // or trigger other actions based on the database change
+});
+Explanation:
+
+The code snippet sets up a real-time listener on a MongoDB collection named 'myCollection'. It uses the watch() method to create a change stream, allowing the application to be notified of any changes (like inserts, updates, or deletes) happening in this collection. When a change occurs, it triggers the 'change' event, executing a callback function that logs the details of the change event. This mechanism is used to perform real-time reactions to database changes within an application.
+
+2. The 'watch()' Method
+The 'watch()' method in MongoDB allows applications to open a change stream against a collection, providing real-time notifications of data changes.
+
+This method is particularly useful for applications that need to trigger actions or notifications in response to database updates.
+
+Syntax:
+
+const changeStream = collection.watch([pipeline], [options]);
+Explanation:
+
+collection: The MongoDB collection to watch.
+pipeline: An optional array of aggregation pipeline stages to filter or transform the change events.
+options: Optional settings for the change stream.
+Example:
+
+Consider a messages collection in a chat application. To listen for new messages, you can use the watch() method as follows:
+
+// Import the MongoClient class from the MongoDB driver
+const MongoClient = require('mongodb').MongoClient;
+
+// Specify the MongoDB connection URI (replace 'your_mongodb_uri' with your actual URI)
+const uri = "your_mongodb_uri";
+
+// Create a new MongoClient instance with connection options
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
+// Connect to the MongoDB server
+client.connect(err => {
+  // Access the 'messages' collection in the 'chat' database
+  const collection = client.db("chat").collection("messages");
+
+  // Open a change stream on the 'messages' collection
+  const changeStream = collection.watch();
+
+  // Listen for 'change' events from the change stream
+  changeStream.on("change", next => {
+    // Log the details of the change event
+    console.log("New change:", next);
+  });
+});
+Output:
+
+When a new message is added to the 'messages' collection, the change stream triggers the "change" event, logging something like:
+
+New change: {
+  "_id": "...",
+  "operationType": "insert",
+  "fullDocument": {
+    "_id": "...",
+    "text": "Hello, World!",
+    "sender": "John Doe",
+    "timestamp": "2021-01-01T00:00:00Z"
+  },
+  "ns": {
+    "db": "chat",
+    "coll": "messages"
+  },
+  "documentKey": {
+    "_id": "..."
+  }
+}
+Explanation: This output shows the details of the change, including the operation type '(insert)' and the new message data under 'fullDocument'.
+
+3. Oplog Tailing
+MongoDB's oplog (operations log) is a capped collection that records all write operations that modify data in a MongoDB database.
+
+Oplog tailing involves continuously querying the oplog to identify changes and react accordingly.
+
+How to Use Oplog Tailing:
+Connect to the Oplog: Access the oplog collection from the local database.
+Query for Changes: Continuously monitor the oplog for new entries and process them.
+React to Changes: Handle oplog entries and apply appropriate actions based on the type of operation.
+Example:
+
+// Get a reference to the oplog collection in the local database
+const oplog = db.collection('oplog.rs').find({}).sort({ $natural: -1 }).limit(1);
+
+// Set up a change event listener on the oplog collection
+oplog.on('change', (change) => {
+    // Log the oplog entry to the console
+    console.log('Oplog entry:', change);
+    // React to oplog changes here
+});
+Explanation: In this code, we first obtain a reference to the oplog collection (oplog.rs) in the local database. We then use the find() method to retrieve the most recent entry in the oplog, sorting in reverse natural order ($natural: -1) and limiting the result to 1 entry. Finally, we set up a change event listener on the oplog collection, which will log the change to the console and allow for further reactions to oplog changes.
+
+Conclusion
+Overall, MongoDB provides several methods for tracking changes in a collection, each with its own advantages and use cases. Whether you choose to use Change Streams, the 'watch()' method, or oplog tailing depends on the specific requirements of our application. By utilizing these methods, you can create more responsive and efficient applications that can react in real-time to changes happening in the database.
