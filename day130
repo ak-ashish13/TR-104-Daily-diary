@@ -1,0 +1,113 @@
+What is Indexing in MongoDB?
+
+Indexing is a technique used to improve query performance.
+
+👉 Indexes help MongoDB find data faster without scanning the entire collection.
+
+📌 Without index → Full Collection Scan
+📌 With index → Fast Search using index
+
+🔷 Why Indexing is Needed?
+
+Faster find() queries
+
+Improves sorting performance
+
+Efficient filtering on large data
+
+Essential for production applications
+
+🔷 How Index Works (Easy Example)
+
+Without Index:
+
+MongoDB checks every document
+
+
+With Index:
+
+MongoDB directly jumps to matching data
+
+🔷 Create Index
+Create Single Field Index
+db.students.createIndex({ name: 1 })
+
+
+1 → Ascending
+
+-1 → Descending
+
+Create Multiple Field (Compound) Index
+db.students.createIndex({ course: 1, age: -1 })
+
+
+📌 Order of fields matters.
+
+🔷 Types of Indexes (Very Important)
+1️⃣ Single Field Index
+db.students.createIndex({ email: 1 })
+
+2️⃣ Compound Index
+db.students.createIndex({ course: 1, year: 1 })
+
+3️⃣ Unique Index
+
+Prevents duplicate values.
+
+db.users.createIndex({ email: 1 }, { unique: true })
+
+4️⃣ Text Index
+
+Used for text search.
+
+db.articles.createIndex({ title: "text", description: "text" })
+
+
+Search:
+
+db.articles.find({ $text: { $search: "mongodb" } })
+
+5️⃣ Hashed Index
+
+Used for sharding.
+
+db.users.createIndex({ userId: "hashed" })
+
+6️⃣ TTL (Time To Live) Index
+
+Automatically deletes documents after time.
+
+db.sessions.createIndex(
+  { createdAt: 1 },
+  { expireAfterSeconds: 3600 }
+)
+
+🔷 View Indexes
+db.students.getIndexes()
+
+🔷 Drop Index
+db.students.dropIndex({ name: 1 })
+
+🔷 Explain() – Check Index Usage
+db.students.find({ name: "Amit" }).explain("executionStats")
+
+
+📌 Shows whether index is used or not.
+
+🔷 Indexing Rules (Important for Viva)
+
+Index improves read, slows write
+
+Too many indexes reduce performance
+
+Use index on frequently queried fields
+
+MongoDB automatically creates index on _id
+
+🔷 Indexing in MERN (Mongoose Example)
+const userSchema = new mongoose.Schema({
+  email: { type: String, unique: true },
+  name: String
+})
+
+userSchema.index({ name: 1 })
