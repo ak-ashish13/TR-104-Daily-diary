@@ -1,0 +1,217 @@
+The MERN stack is a widely adopted full-stack development framework that simplifies the creation of modern web applications. Using JavaScript for both the frontend and backend enables developers to efficiently build robust, scalable, and dynamic applications.
+
+MongoDB: Non-Relational Database
+Express: NodeJS web server
+React: JavaScript Frontend Library
+Node: JavaScript Web Server
+How MERN Stack Works?
+The MERN stack is a popular JavaScript-based web development framework for building modern web applications. It consists of four key technologies working together:
+
+MongoDB (Database): MongoDB is a NoSQL document database used to store the application's data. It's flexible and scalable, ideal for handling large amounts of information.
+ExpressJS (Backend Framework): ExpressJS is a NodeJS web application framework that provides tools for creating APIs and handling HTTP requests. It acts as the server-side logic of the application.
+React (Frontend Library): React is a JavaScript library for building user interfaces (UIs). It's used to create dynamic and interactive front-end components of the website that users interact with.
+NodeJS (Runtime Environment): NodeJS is a JavaScript runtime environment that allows you to run JavaScript code on the server. It's what powers the backend (ExpressJS) of the application.
+How-MERN-Stack-Works-copy
+How does MERN stack work?
+Roadmap to become a MERN Stack Developer
+Step 1: Learn basics of HTML, CSS and JavaScript
+
+Step 2: Learn React which is a frontend library for building User Interfaces
+
+Step 3: Learn NodeJS which is JavaScript runtime environment
+
+Step 4: Learn ExpressJS, a framework built upon NodeJS to simplify the process of creating web application and API building
+
+Step 5: Learn MongoDB, a NoSQL database to store and retrieve data from database.
+Roadmap-to-Mern-stack-developer-copy-(3)
+
+Getting Started with MERN Stack
+There are two requirements to start a MERN stack project:
+
+Step 1: Install node on your system depending on your Operating System:
+
+Installation of NodeJS on Windows
+Installation of NodeJS on Linux
+Step 2: You need a code editor to work with so install a code editor, preferably we will use VS Code
+
+Setting Up a MERN Stack Project
+To setup MERN stack we need to create a folder structure for both frontend and backend. Then we have to define database schema to store and retrieve data from the database.
+
+Follow the below steps to create a basic structure
+
+Step 1: After the code editor is installed, create a new project folder. Then go to the project folder in command prompt/terminal and type below commands to create folder for frontend and backend 
+
+mkdir frontend
+mkdir backend
+Step 2: Navigate to the frontend folder using the command
+
+cd frontend
+Step 3: Initialize a React Project using the command
+
+npx create-react-app
+Step 4: Now navigate to the backend folder using the command
+
+cd..
+cd backend
+Step 5: Initialize the project backend using the command
+
+npm init -y
+Step 6: Install Express and other backend dependencies using the command
+
+npm i mongodb express cors dotenv 
+After following all the above steps a basic structure for MERN Stack application is created.
+
+Getting to know MERN Stack Components
+1. MongoDB: Cross-platform Document-Oriented Database 
+MongoDB is a NoSQL database where each record is a document comprising of key-value pairs that are similar to JSON (JavaScript Object Notation) objects. MongoDB is flexible and allows its users to create schema, databases, tables, etc. Documents that are identifiable by a primary key make up the basic unit of MongoDB. Once MongoDB is installed, users can make use of Mongo shell as well. Mongo shell provides a JavaScript interface through which the users can interact and carry out operations (eg: querying, updating records, deleting records).
+
+Why use MongoDB? 
+Fast - Being a document-oriented database, easy to index documents. Therefore a faster response.
+Scalability - Large data can be handled by dividing it into several machines.
+Use of JavaScript - MongoDB uses JavaScript which is the biggest advantage.
+Schema Less - Any type of data in a separate document.
+Data stored in the form of JSON -
+Objects, Object Members, Arrays, Values, and Strings
+JSON syntax is very easy to use.
+JSON has a wide range of browser compatibility.
+Sharing Data: Data of any size and type(video, audio) can be shared easily.
+Simple Environment Setup - Its really simple to set up MongoDB.
+Flexible Document Model - MongoDB supports document-model(tables, schemas, columns & SQL) which is faster and easier.
+Creating a database: Simply done using a "use" command:
+use database_name;
+Creating a table: If the collection/table doesn't exist then a new collection/table will be created:
+db.createCollection("collection_name");
+Inserting records into the collection:
+db.collection_name.insert
+(
+    {
+        "id" : 1,
+        "Name" : "Klaus",
+                "Department": "Technical",
+                "Organization": "Geeks For Geeks"
+    }
+);
+Querying a document:
+db.collection_name.find({Name : "Klaus"}).forEach(printjson);
+
+2. Express: Back-End Framework
+Express is a NodeJS framework. Rather than writing the code using NodeJS and creating loads of Node modules, Express makes it simpler and easier to write the back-end code. Express helps in designing great web applications and APIs. Express supports many middlewares which makes the code shorter and easier to write.
+
+Why use Express? 
+Asynchronous and Single-threaded.
+Efficient, fast & scalable
+Has the biggest community for NodeJS
+Express promotes code reusability with its built-in router.
+Robust API
+Create a new folder to start your express project and type below command in the command prompt to initialize a package.json file. Accept the default settings and continue.
+npm init
+Then install express by typing the below command and hit enter. Now finally create a file inside the directory named index.js.
+npm install express --save
+
+Now type in the following in index.js to create a sample server.
+
+const express=require('express'),
+http=require('http');
+const hostname='localhost';
+const port=8080;
+const app=express();
+
+app.use((req, res)=> {
+        console.log(req.headers); 
+        res.statusCode=200; 
+        res.setHeader('Content-Type', 'text/html'); 
+        res.end('<html><body><h1>This is a test server</h1></body></html>');
+});
+const sample_server=http.createServer(app);
+
+sample_server.listen(port, hostname, ()=> {
+        console.log(`Server running at http: //${hostname}:${port}/`);});
+Update the "scripts" section in package.json file
+
+Then to start the server by running the below command
+npm start
+
+Now you can open the browser and get the output of the running server.
+
+3. React: Front-End Library
+React is a JavaScript library that is used for building user interfaces. React is used for the development of single-page applications and mobile applications because of its ability to handle rapidly changing data. React allows users to code in JavaScript and create UI components. 
+
+Why use React? 
+Virtual DOM - A virtual DOM object is a representation of a DOM object. Virtual DOM is actually a copy of the original DOM. Any modification in the web application causes the entire UI to re-render the virtual DOM. Then the difference between the original DOM and this virtual DOM is compared and the changes are made accordingly to the original DOM.
+JSX - Stands for JavaScript XML. It is an HTML/XML JavaScript Extension which is used in React. Makes it easier and simpler to write React components.
+Components - ReactJS supports Components. Components are the building blocks of UI wherein each component has a logic and contributes to the overall UI. These components also promote code reusability and make the overall web application easier to understand.
+High Performance - Features like Virtual DOM, JSX and Components makes it much faster than the rest of the frameworks out there.
+Developing Android/Ios Apps - With React Native you can easily code Android-based or IOS-Based apps with just the knowledge of JavaScript and ReactJS.
+You can start your react application by first installing "create-react-app" using npm or yarn.
+npm install create-react-app --global
+OR 
+
+yarn global add create-react-app
+After that you can create a new react app by using.
+create-react-app app_name
+Then navigate into the "app_name" folder and type yarn start or npm start to start your application.
+
+A typical React application looks like this:
+
+Update index.js file
+
+ReactDOM.render(
+    <h1>Hello DEVELOPERS!!</h1>,
+    document.getElementById('root')
+);
+
+Use the below commands to run your application.
+npm start
+or 
+
+yarn start
+
+4. NodeJS: JS Runtime Environment 
+NodeJS provides a JavaScript Environment which allows the user to run their code on the server (outside the browser). Node pack manager i.e. npm allows the user to choose from thousands of free packages (node modules) to download. 
+
+Why use NodeJS? 
+Open-source JavaScript Runtime Environment
+Single threading - Follows a single-threaded model.
+Data Streaming
+Fast - Built on Google Chrome's JavaScript Engine, NodeJS has a fast code execution.
+Highly Scalable
+Initialize a NodeJS application by typing running the below command in the command window. Accept the standard settings.
+npm init
+Create a file named index.js. 
+Example: A basic NodeJS example to compute the perimeter & area of a rectangle.
+
+
+let rectangle= {
+    perimeter: (x, y)=> (2*(x+y)), area: (x, y)=> (x*y)
+};
+
+function Rectangle(l, b) {
+    console.log("A rectangle with l = " + 
+        l + " and b = " + b);
+
+    if (l <=0 || b <=0) {
+        console.log("Error! Rectangle's length & "
+        + "breadth should be greater than 0: l = " 
+        + l + ", and b = " + b);
+    }
+
+    else {
+        console.log("Area of the rectangle: " 
+            + rectangle.area(l, b));
+        console.log("Perimeter of the rectangle: " 
+            + rectangle.perimeter(l, b));
+    }
+}
+
+Rectangle(1, 8);
+Rectangle(3, 12);
+Rectangle(-6, 3);
+Run the node application by running the below command in the command window.
+npm start
+
+Benefits of Using the MERN Stack
+Full-Stack JavaScript: With the MERN stack, you only need to know JavaScript to work on both the frontend and backend. This makes development faster and more efficient.
+High Scalability: MongoDB’s flexible schema allows easy scalability, while NodeJS handles a large number of concurrent connections, making MERN an excellent choice for scalable applications.
+Performance: NodeJS and Express provide non-blocking, event-driven I/O, ensuring the application performs well even under high loads.
+Developer-Friendly: React’s component-based architecture helps developers build reusable, modular code, while Express simplifies routing and middleware management.
+Large Ecosystem: NodeJS has a rich ecosystem with npm and a vast number of packages that can be easily integrated into your MERN application.
