@@ -1,0 +1,170 @@
+CSS combinators define the relationship between two selectors. CSS selectors are patterns used to select elements for styling.
+
+A CSS selector can be simple or complex, consisting of more than one selector connected using combinators.
+Understanding these combinators is essential for precise and efficient styling in CSS.
+Types of CSS Combinators
+1. General Sibling selector(~)
+The general sibling selector selects elements that follow a specified element and share the same parent. This can be useful for selecting groups of elements with the same parent.
+
+
+
+
+<!DOCTYPE html>
+<html>
+  
+<head>
+    <title>Combinator Property</title>
+    <style>
+        div ~ p{
+            color: #009900;
+            font-size:32px;
+            font-weight:bold;
+            margin:0px;
+            text-align:center;
+        }
+        div {
+            text-align:center;
+        }
+    </style>
+</head>
+​
+<body>
+    <div>General sibling selector property</div>
+    <p>GeeksforGeeks</p>
+    <div>
+        <div>child div content</div>
+        <p>G4G</p>
+    </div>
+    <p>Geeks</p>
+    <p>Hello</p>
+</body>
+  
+</html>
+2. Adjacent Sibling selector(+)
+The adjacent sibling selector selects an element that is immediately next to a specified element. This selector selects only the next sibling.
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Combinator Property</title>
+    <style>
+        div + p{
+            color: #009900;
+            font-size:32px;
+            font-weight:bold;
+            margin:0px;
+            text-align:center;
+        }
+        div {
+            text-align:center;
+        }
+        p {
+            text-align:center;
+        }
+    </style>
+</head>
+​
+<body>
+    <div>Adjacent sibling selector property</div>
+    <p>GeeksforGeeks</p>
+    <div>
+        <div>child div content</div>
+        <p>G4G</p>
+    </div>
+    <p>Geeks</p>
+    <p>Hello</p>
+</body>
+  
+</html>
+3. Child Selector(>)
+The child selector selects elements that are direct children of a specified element. This combinator is stricter than the descendant selector, as it selects only the direct children.
+
+
+
+
+<!DOCTYPE html>
+<html>
+  
+<head>
+    <title>Combinator Property</title>
+    <style>
+        div > p{
+            color: #009900;
+            font-size:32px;
+            font-weight:bold;
+            margin:0px;
+            text-align:center;
+        }
+        div {
+            text-align:center;
+        }
+        p {
+            text-align:center;
+        }
+    </style>
+</head>
+​
+<body>
+    <div>Child selector property</div>
+    <p>GeeksforGeeks</p>
+    <div>
+        <div>child div content</div>
+        <p>G4G</p>
+    </div>
+    <p>Geeks</p>
+    <p>Hello</p>
+</body>
+  
+</html>
+4. Descendant selector(space)
+The descendant selector selects all elements that are descendants of a specified element. These elements can be any level deep within the specified element.
+
+
+
+
+<!DOCTYPE html>
+<html>
+  
+<head>
+    <title>Combinator Property</title>
+    <style>
+        div p{
+            color: #009900;
+            font-size:32px;
+            font-weight:bold;
+            margin:0px;
+            text-align:center;
+        }
+        div {
+            text-align:center;
+        }
+        p {
+            text-align:center;
+        }
+    </style>
+</head>
+​
+<body>
+    <div>Descendant selector property</div>
+    <p>GeeksforGeeks</p>
+    <div>
+        <div>child div content</div>
+        <p>G4G</p>
+        <p>Descendant selector</p>
+    </div>
+    <p>Geeks</p>
+    <p>Hello</p>
+</body>
+  
+</html>
+Understanding and using CSS combinators effectively can greatly enhance your ability to style web pages precisely.
+Each combinator serves a unique purpose and can be utilized to target elements based on their relationships within the HTML structure.
+Mastering these combinators is essential for any web developer looking to create sophisticated and well-structured stylesheets.
+Comment
+S
+
+SarthakKhandelwal
+
