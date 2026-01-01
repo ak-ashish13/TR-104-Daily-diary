@@ -1,0 +1,217 @@
+In MongoDB, a cursor is a powerful object that enables us to iterate over the results of a query. When we execute a query using methods like find(), MongoDB returns a cursor object that allows you to efficiently retrieve and process documents from the database one by one. Cursors provide various methods for manipulating and accessing query results in MongoDB, making them essential for working with large datasets and complex queries.
+
+This article explains what a cursor is in MongoDB, how it works, and how to manually iterate over the results. We will also cover important MongoDB cursor methods and best practices to improve performance.
+
+What is a Cursor in MongoDB?
+In MongoDB, a cursor is an object that references the documents returned by a query. When we run the find() method to retrieve documents, MongoDB creates a cursor for accessing the result set. By default, MongoDB automatically iterates over the cursor and retrieves documents. However, we can also manually control the iteration process using different cursor methods.
+
+Key Points About MongoDB Cursors:
+Efficiency: Cursors allow for efficient retrieval of large datasets without loading all documents into memory at once.
+Automatic and Manual Iteration: MongoDB can automatically iterate over the cursor or allow us to manually control the iteration.
+Active Time Limit: By default, MongoDB closes a cursor after 10 minutes of inactivity, so it's important to manage cursors properly in long-running operations.
+MongoDB Cursor Example
+Let's look at a simple MongoDB cursor example. Suppose we have the following setup:
+
+Database: gfg
+Collection: student
+Documents: Three documents contain the details of the students
+Here, we use the following query to display all the documents present in the student collection
+
+db.student.find().pretty()
+This find() method returns a cursor containing all documents present in the student collection.
+
+
+
+How to Manually Iterate a Cursor in MongoDB
+While MongoDB automatically iterates over the cursor to fetch documents, you can manually iterate it using various techniques. Here are the most common ways to iterate a cursor:
+
+1. Assigning Cursor to a Var Keyword
+In MongoDB, the find() method returns the cursor, now to access the document we need to iterate the cursor. To iterate a cursor manually, simply assign the cursor return by the find() method to the var keyword Or JavaScript variable. 
+
+Note: In the Mongo shell, if the cursor is not assigned to a var keyword then the Mongo shell automatically iterates the cursor up to 20 documents. If a cursor is inactive for 10 min then the MongoDB server will automatically close that cursor.
+
+Syntax:
+var name = db.collection_name.find()
+name
+
+Example :
+var mycursor = db.student.find({studentId:3}).pretty()
+mycursor
+Explanation:
+
+Here, we iterate the cursor manually to find the document whose studentId is 3. So, we assigned the cursor returned by the find() method to the JavaScript variable(i.e. mycursor).
+
+manually iterate a cursor in mongodb
+
+2. Using the next() Method
+We can also use the next() cursor method to access the next document. We can use this method to manually iterate through the documents one by one. Let us discuss with the help of an example:
+
+Example:
+
+var mycursor = db.student.find({studentId:{$gt:1}});
+> while(mycursor.hasNext()){
+... print(tojson(mycursor.next()));
+... }
+Explanation:
+
+In this example, studentId 2 and 3 documents are displayed because, in the first line, we exclusively took the cursor to start with the studentId > 1. So it skipped 1st document and retrieved the remaining documents. Here, the print(tojson()) method is used to display the result. We can also use printjson() method to display the result.
+
+next() cursor method example
+
+3. Using the forEach() Method
+The forEach() method allows us to apply a JavaScript function to each document in the cursor. This is an easy way to process each document without explicitly using a loop.
+
+Syntax:
+
+db.collection.find().forEach(<function>)
+
+Example:
+var mycursor = db.student.find({studentId:3}).pretty()
+mycursor.forEach(printjson)
+Explanation:
+
+Here, first we store the cursor returned by the find() method(i.e., studentId:3) in the mycursor variable. Now, we use the forEach() method to iterate the cursor and display the resultant document using printjson.
+
+foreach() method example
+
+4. Using the toArray() Method
+In Mongo shell, we are allowed to iterate the cursor and display the resultant document in the array using the toArray() method.
+
+Syntax:
+
+cursor.toArray()
+
+Example:
+var mycursor = db.student.find().pretty()
+var docs = mycursor.toArray()
+var resultdoc = docs[0]
+resultdoc
+Explanation:
+
+Here, first, we assign the returned cursor to the var keyword(i.e. mycursor), in next we create an array from the resultant cursor using the toArray() method and assign the result to the var keyword(i.e. docs). Now we access the documents according to their index e.g. var resultdoc = docs[0], here we display a document whose index is 0.
+
+toArray() method example
+
+5. Alternate Method: Accessing Documents Using Index
+We can also this method to access a document using index on the cursor.  
+
+Example:
+var mycursor = db.student.find().pretty()
+var resultdoc = mycursor[0]
+resultdoc
+access a document using index on the cursor
+
+Commonly Used MongoDB Cursor Methods
+MongoDB offers various cursor methods to enhance query functionality. Here are some of the most commonly used cursor methods:
+
+1. count() Method
+In order to get the correct documents, we need to know how many documents are present for that collection. To get that we can use the count() method which returns the total number of documents present in the given collection.
+
+Syntax:
+
+db.collection_name.find().count()
+or 
+db.collection_name.count()
+
+Example: 
+db.student.find().count()
+Here, we find the total number of documents present in the student collection using the count() method.
+
+count cursor
+
+2. limit() Method
+The limit() method helps to fetch limited records from a collection. Suppose we have multiple documents, but we want to have the topmost or only 2 documents, then by using the limit() method, we can achieve that.
+
+Syntax:
+
+db.collection_name.find().limit(<number>)
+
+Example:
+db.student.find().limit(2).pretty()
+Here, we only display the first two documents from the student collection.
+
+cursor limit
+
+3. size() Method
+The cursor.size() method will be helpful to return a count of the number of documents that got as the output from the db.collection.find() query after applying any cursor.skip() and cursor.limit() methods. Hence, it is mentioned as it has applied cursor.skip() and cursor.limit() methods.
+
+Syntax:
+
+db.collection_name.find().size()
+
+Example:
+db.student.find({studentId:1}).size()
+cursor size
+
+4. sort() Method
+Usually while verifying documents, if the output is in sorted order, either in ascending or descending order, it will be easier. So we use the sort() method to sort the documents. If we want to sort the documents in ascending, then set the value of the field to 1 and in descending, then set -1.
+
+Syntax:
+
+db.collection_name.find().sort(<sort>)
+
+Example:
+db.student.find().sort({studentId:-1}).pretty()
+Here, we sort all the documents present in the student collection in descending order.
+
+cursor sort
+
+5. toArray() Method
+The toArray() method converts the cursor into an array of documents, making it easy to access documents by index.
+
+Syntax:
+
+db.collection_name.find().toArray()
+
+Example:
+db.student.find().toArray()
+cursor.toarray()
+
+6. next() Method
+The next() method is used to return the next document in a cursor. Usually, it will return the first document as that will be the result of the first document in the cursor.
+
+Syntax:
+
+db.collection_name.find().next()
+
+Example:
+db.student.find().next()
+Here, the next() method returns the first document from the collection.
+
+cursor.next()
+
+Additional Cursor Methods in MongoDB
+MongoDB provides additional advanced cursor methods for more specialized functionality:
+
+Method Name	Description
+cursor.addOption()	This method is used to add special wire protocol flags and modify the behavior of the query. 
+cursor.allowDiskUse()	This method allows MongoDB to use temporary files on disk to store data exceeding the 100-megabyte system memory limit while processing a blocking sort operation.
+cursor.allowPartialResults()	This method allows find() operation against a collection to return partial results, rather than an error if one or more queried shards are unavailable.
+cursor.batchSize()	 This method is used to control the number of documents MongoDB will return to the client in a single network message.
+cursor.close()	This method is used to close a cursor and free associated server resources. 
+cursor.isClosed()	This method is used to return true if the cursor is closed.  
+cursor.collation()	This method is used to specify the collation for the cursor that is returned by the find() method.
+cursor.comment()	This method is used to attacha exhausts a comment to the query to allow for traceability in the logs and the system.profile collection.
+cursor.explain()	This method is used to report on the query execution plan for a cursor.
+cursor.forEach()	This function is used to apply a JavaScript function for every document present in the cursor.
+cursor.hasNext()	This method returns true if the cursor has more documents and can be iterated.
+cursor.hint()	This method forces MongoDB to use a specific index for a query.
+cursor.isExhausted()	When the cursor is closed and there are no objects remaining in the batch, this method returns true
+cursor.itcount()	cursor.count() and itcount() are both similar only. In itcount(), execution on an existing iterator, exhausting its contents in the process.
+cursor.map()	Output is available in an array by applying a function to each document in a cursor.
+cursor.max()	This method is used to specify an exclusive upper index bound for the cursor.
+cursor.maxTimeMS()	This method is used to specify the cumulative time limit in cumulative time limit in milliseconds for operations on a cursor.
+cursor.min()	This method is used to specify inclusive lower index bound for a cursor.
+cursor.next()	This method is used to retrieve the next document in a cursor.
+cursor.noCursorTimeout()	This method instructs the server to avoid closing a cursor automatically after a period of inactivity.
+cursor.objsLeftInBatch()	This method is used to find the number of documents left in the current cursor batch.
+cursor.pretty()	This method is used to display the results in an easy-to-read manner.
+cursor.readConcern()	A read concern is specified for a find() operation.
+cursor.readPref()	This method specified a read preference to a cursor to control how the client directs queries to a replica set.
+cursor.returnKey()	Usually, the find() operation resultant cursor provides documents whereas returnkey() modifies the cursor and it returns the realindex keys
+cursor.showRecordId()	This method adds an internal storage engine ID field which is returned by the cursor.
+cursor.skip()	During the display of documents, we may be required to skip few documents due to various reasons. During that time, skip() helps to display results after skipping a number of documents.
+cursor.tailable()	The method is marked as tailable with the cursors of capped collections.
+Conclusion
+MongoDB cursors are essential for efficiently retrieving documents from the database, especially when dealing with large datasets. Understanding how to iterate over a cursor and use its various methods allows developers to optimize query performance and manage data more effectively. In this guide, we covered essential techniques such as manually iterating a cursor, using common cursor methods like limit(), sort(), and toArray(), and exploring advanced cursor features.
+
