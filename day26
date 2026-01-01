@@ -1,0 +1,342 @@
+CSS units define the size of elements, with absolute units (like px, cm) having fixed values and relative units (like em, rem, %, vh) depending on factors like the viewport or parent elements.
+
+CSS provides two main types of units: absolute and relative.
+
+Absolute units
+Absolute units in CSS, such as px, cm, and mm, have fixed values and do not change based on the viewport or parent elements. They are used when precise, unchanging measurements are needed for elements.
+
+1. cm
+A centimeter (cm) is a length unit in the SI system, derived from the meter (m), with 1 m = 100 cm. The SI system is maintained by the BIPM(International Bureau of Weights and Measures).
+
+1 cm = 1 / 100 m
+
+
+
+
+
+↔​
+    <style>
+        p {
+            font-size: 2cm;
+            color: green;
+        }
+    </style>
+↔​
+2. mm
+The millimeter (mm), introduced during the French Revolution's metric system, became part of the SI system. It is maintained by the International Bureau of Weights and Measures (BIPM).
+
+1 cm=10mm
+
+1mm=1/10 cm
+
+
+
+
+
+↔​
+    <style>
+        p {
+            font-size: 20mm;
+            color: green;
+        }
+    </style>
+↔​
+3. inch(in)
+The inch originated from ancient human measurements, based on the width of a thumb or the length of a dried grain of barley. It was standardized in 1959 by an international agreement, defining it as exactly 25.4 millimeters to align with the metric system.
+
+1 inch = 2.54cm =2.54 * 1cm=2.54* 10mm= 25.4mm
+
+
+
+
+
+↔​
+    <style>
+        p {
+            font-size: .5in;
+            color: green;
+        }
+    </style>
+↔​
+4. pixel (px)
+A pixel (px) is the smallest unit on a digital screen, representing a point of light. More pixels mean better image clarity and higher screen resolution.
+
+1px = 0.26mm
+
+
+
+
+
+↔​
+    <style>
+        p {
+            font-size: 40px;
+            color: green;
+        }
+    </style>
+↔​
+5. pt (point)
+A point (pt) is a typography unit equal to 1/72 of an inch, used for font sizes and spacing in design.
+
+1pt = 1/72 inch(1 inch=2.54cm)
+
+1pt= 1.33px
+
+
+
+
+
+↔​
+    <style>
+        p {
+            font-size: 50pt;
+            color: green;
+        }
+    </style>
+↔​
+6. 1 pc(pica)
+A pica is a unit used in print and design, equal to 12 points or 1/6 of an inch (4.233 mm). It helps define layout dimensions like font and image sizes.
+
+1pc=12pt=15.96px
+
+
+
+
+
+↔​
+    <style>
+        p {
+            font-size:5pc;
+            color: green;
+        }
+    </style>
+↔​
+Relative Units
+1. em
+In CSS , the "em" unit refers to the font-size of its parent element, defaulting to the root element (<html>) if it's the only one in the DOM.
+
+
+
+
+
+↔​
+    <style>
+        .ok {
+            font-size: 20px;
+        }
+        .para {
+            font-size: 2em;
+        }
+    </style>
+↔​
+The div has a font-size of 20px, and the p tag's font-size is set to 2em, where 1em equals the div's font-size.
+Therefore, the p tag's font-size is 40px (2 * 20px), based on the parent's font-size.
+2. rem
+In CSS, rem is based on the font-size of the root element (<html>) and stays the same in all cases.
+
+
+
+
+
+↔​
+    <style>
+        html {
+            font-size: 25px; 
+      }
+.para {
+            font-size: 2rem;
+            color: red;
+        }
+    </style>
+↔​
+In this case, with the div set to 2rem and the root font-size at 25px, the div's font-size will be 50px (2 * 25px).
+
+3. vw or view-width
+In CSS, vw depends on the viewport width, which changes with screen size, so an Android phone has a smaller vw than an HD TV.
+
+
+
+
+
+↔​
+    <style>
+        .para {
+            height: 10vw;
+            width: 50vw;
+            border: 2px solid black;
+            background-color: chocolate;
+            font-size: 30px;
+        }
+↔​
+In this code, the div's height is 50% of the viewport width and 10% of the viewport height.
+
+4. vh or view-height
+The vh unit in CSS is 1% of the viewport height, useful for responsive design to scale elements with the window size.
+
+
+
+
+
+↔​
+    <style>
+        .full-height {
+            height: 100vh;
+            background-color: lightblue;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+↔​
+This code creates a div that takes up 100% of the viewport height (100vh). It centers the text inside the div both vertically and horizontally using Flexbox. The background color is light blue.
+
+5. percentage(%)
+The % unit in CSS is relative to the parent element's size, allowing elements to adjust dynamically for responsive design.
+
+
+
+
+
+↔​
+    <style>
+        .container {
+            width: 200px;
+            height: 100px;
+            background-color: lightgreen;
+        }
+        .child {
+            width: 50%;
+            height: 50%;
+            background-color: lightcoral;
+        }
+    </style>
+↔​
+This code creates a container div with a size of 300px by 200px and a child div inside it. The child div is set to 50% of the container's width and height, with a light coral background.
+
+6. vmin
+The vmin unit in CSS is based on the smaller of the viewport's width or height, helping elements scale proportionally for responsive designs.
+
+
+
+
+
+↔​
+<style>
+    div {
+        height: 10vmin;
+        width: 20vmin;
+        background-color: blueviolet;
+    }
+</style>
+↔​
+This code creates a div with a size of 20% of the smaller viewport dimension (vmin) and a blueviolet background. The JavaScript logs the viewport width and height in pixels to the console.
+
+7. vmax
+vmax is a CSS unit that represents 1% of the larger viewport dimension (width or height), helping elements scale based on the screen's dominant size.
+
+
+
+
+
+↔​
+    <style>
+        div {
+            height: 2vmax;
+            width: 8vmax;
+            background-color: cadetblue;
+        }
+    </style>
+</head>
+<body>
+    <div>
+    </div>
+    <script>
+        const vw = window.innerWidth;
+        const vh = window.innerHeight;
+        const actualvw = vw / 100;
+        const actualvh = vh / 100;
+        console.log("view-width:" + actualvw);
+        console.log("view-height:" + actualvh);
+    </script>
+↔​
+The code creates a div with a size of 10% of the larger viewport dimension (vmax) and a cadet blue background.
+The JavaScript calculates and logs the viewport width and height in pixels by dividing the inner Width and inner Height by 100.
+8. ch
+The ch unit in CSS represents the width of the "0" character of the current font. It's a relative unit commonly used for sizing text elements to maintain proportional widths and heights based on character dimensions.
+
+
+
+
+
+↔​
+    <style>
+        .small {
+            font-family: monospace;
+            font-size: 25px;
+            height: 10ch;
+            width: 10ch;
+            background-color: cornflowerblue;
+        }
+    </style>
+↔​
+In this code we have created a div with the class name of small and the height and width of the small box has been set up to 10 times the height of the 'x' character in the current font which is the monospace font.
+
+9. ex
+Relative to the height of the letter "x" in the current font, primarily used for vertical spacing and font-related measurements.
+
+
+
+
+
+↔​
+    <style>
+        .small {
+            font-family: monospace;
+            font-size: 25px;
+            height: 10ex;
+            width: 10ex;
+            background-color: cornflowerblue;
+        }
+​
+    </style>
+↔​
+The code creates a div with the class .small, displaying the text "Hello GFG" in a monospace font with a font size of 25px.
+The div 's height and width are set to 10ex, where "ex" is based on the height of the letter "x" in the font, and the background color is cornflower blue.
+10. lh
+This unit is relative and depends on the line-height of the current element.
+
+
+
+
+
+↔​
+    <style>
+        .small {
+            font-family: sans-serif;
+            font-size: 20px;
+            line-height: 8;
+            height:1lh;
+            width: 1lh;
+            background-color: aquamarine;
+        }
+     
+    </style>
+↔​
+The code creates a div with the class .small, displaying "Hello GFG" with a sans-serif font, 25px font size, and a line height of 10. The div's height and width are set using the lh unit, based on the line height.
+Since the line height is 10, the div's height and width are both 20px (2 * line height), and the background color is aquamarine.
+Difference Between Absolute and Relative Units in CSS
+Aspect	Absolute Units	Relative Units
+Responsiveness	Not responsive; sizes remain fixed regardless of screen size or resolution.	Highly responsive; adjust dynamically based on context.
+Dependence	Independent of parent elements or viewport size.	Dependent on parent, root, or viewport dimensions.
+Scalability	Harder to scale across different devices.	Scales well for responsive design.
+Consistency	Ensures exact sizing, providing uniformity across devices.	Size may vary based on parent or viewport, allowing flexibility.
+Accessibility	Can hinder accessibility by not adjusting to user-defined browser settings.	Adapts to user settings like font size, enhancing accessibility.
+Performance	May be faster to render as values are fixed.	Requires calculation based on context, potentially increasing rendering time.
+When to Use Which Unit?
+Usecase of Absolute Units
+Use for elements requiring fixed sizes, like borders, icons, or print layouts where precise measurements are important.
+Suitable for situations where responsiveness is not a priority, such as static components.
+Usecase of Relative Units
+Use for responsive designs that adapt to various devices and screen sizes, ensuring flexibility and accessibility.
+Ideal for fluid layouts, scalable typography, or elements influenced by viewport or parent dimensions (e.g., vw, %, or rem).
