@@ -1,0 +1,206 @@
+The findOneAndUpdate() method in Mongoose is an essential tool for performing atomic updates in MongoDB, ensuring data consistency and integrity. This method is particularly useful in multi-user environments, where concurrent updates might occur on the same document. By using atomic operations, findOneAndUpdate() guarantees that only one modification happens at a time, preventing race conditions and potential data conflicts.
+
+What is Mongoose findOneAndUpdate() Method in Mongoose()
+The Mongoose findOneAndUpdate() method allows developers to find a single document in a collection and update it in an atomic operation. This method is particularly useful for scenarios where we need to modify a document based on specific criteria.
+
+Mongoose findOneAndUpdatemethod is atomic in nature which ensures that only one modification occurs even in multi-user environments. This helps in preventing conflicts and maintaining data integrity. This function updates a document and returns the updated document.
+
+Key Features
+Atomic updates: Ensures data integrity by applying updates only once.
+Returns the updated document: Can return the modified document using the new: true option.
+Supports upsert: Can insert a new document if no document matches the filter when upsert is set to true.
+How Atomic Updates Work in Mongoose
+In Mongoose, an operation is said to be atomic if it can be considered as a single, indivisible operation. The Mongoose findOneAndUpdatemethod in provides atomicity by ensuring that only one modification occurs even in multi-user environments. This means that if two clients attempt to update the same document simultaneously, Mongoose findOneAndUpdate will ensure that only one of the updates is applied and preventing any potential conflicts.
+
+When findOneAndUpdate() is used, it finds a single document that matches the provided filter and applies the update operation in an atomic manner. This ensures that no other updates can interfere or override the changes during this operation.
+
+Syntax
+
+Model.findOneAndUpdate(filter, update, options, callback);
+
+Parameters:
+filter: The query condition to match the document that needs to be updated.
+update: The update operation to apply (e.g., $set, $inc).
+options(optional): Additional options, such as new: true (to return the modified document), upsert: true (to insert a new document if no match is found).
+callback(optional): A callback function that takes the error and updated document.
+Return Type:
+Returns the modified document when new: true is set, or original document if new: false (default).
+How to Use findOneAndUpdate() Method in Mongoose
+The findOneAndUpdate() method is versatile and can be used in various scenarios. Let’s walk through a few practical examples.
+
+Example 1: Basic Usage
+Consider a scenario where we have a collection of users and we want to update the email address of a user named "Alice". Using findOneAndUpdate we can perform this operation atomically as defined below:
+
+const mongoose = require('mongoose');
+
+// Database connection
+mongoose.connect('mongodb://127.0.0.1:27017/geeksforgeeks', {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false
+});
+
+// User model
+const User = mongoose.model('User', {
+  name: { type: String },
+  email: { type: String },
+});
+
+// Update email address for the user "Alice"
+User.findOneAndUpdate(
+  { name: 'Alice' },
+  { $set: { email: 'alice@example.com' } },
+  { new: true }, // Return the updated document
+  (err, user) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    console.log(user);
+  }
+);
+Explanation:
+
+findOneAndUpdate() searches for a user named "Alice" and updates their email address.
+$set operator is used to update the email field.
+new: true ensures the modified document is returned.
+Example 2: Upsert with findOneAndUpdate
+In Mongoose, an upsert operation allows us to update a document if it exists or insert a new one if no matching document is found. The findOneAndUpdate method in Mongoose provides an upsert option that enables this behavior. When upsert is set to true, findOneAndUpdate will create a new document if no document matches the specified filter.
+
+Suppose we have a collection of books and we want to update the price of a book with a specific title. If the book does not exist, we want to insert a new document for that book. we can achieve this using findOneAndUpdate with the upsert option as follows:
+
+const mongoose = require('mongoose');
+
+// Database connection
+mongoose.connect('mongodb://127.0.0.1:27017/geeksforgeeks', {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false
+});
+
+// Book model
+const Book = mongoose.model('Book', {
+  title: { type: String },
+  price: { type: Number },
+});
+
+// Update or insert a book with the title "The Great Gatsby"
+Book.findOneAndUpdate(
+  { title: 'The Great Gatsby' },
+  { $set: { price: 19.99 } },
+  { upsert: true, new: true },
+  (err, book) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    console.log(book);
+  }
+);
+Explanation: In this example, if a book with the title "The Great Gatsby" exists and its price will be updated to 19.99. If no such book exists, a new document will be inserted with the title "The Great Gatsby" and the price 19.99. The new: true option is used to return the modified or inserted document.
+
+Example 3: Updating Discriminator Keys
+In Mongoose, discriminators are used to create different types of documents in a single collection. When using discriminators, we may need to update the discriminator key of a document to change its type. The MongoosefindOneAndUpdatemethod can be used to update discriminator keysalong with other fields in a document.
+
+Suppose we have a collection of documents that includes different types of animals, each identified by a discriminator key. we want to update the type of an animal from "Dog" to "Cat". we can achieve this using findOneAndUpdateas follows:
+
+const mongoose = require('mongoose');
+
+// Database connection
+mongoose.connect('mongodb://127.0.0.1:27017/geeksforgeeks', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false
+});
+
+// Animal model with a discriminator
+const Animal = mongoose.model('Animal', {
+  name: { type: String },
+  __t: { type: String }, // Discriminator key
+});
+
+// Update the discriminator key to change animal type
+Animal.findOneAndUpdate(
+  { name: 'Fido', __t: 'Dog' },
+  { $set: { __t: 'Cat' } },
+  { new: true },
+  (err, animal) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    console.log(animal);
+  }
+);
+Explanation: In this example, the __t field is the discriminator key that distinguishes between different types of animals. The findOneAndUpdate method is used to find an animal with the name "Fido" and the type "Dog", and update its type to "Cat". The new: true option is used to return the modified document after the update operation is completed.
+
+Steps to Install Mongoose Module
+Follow these steps to set up Mongoose in your project
+
+Step 1: Install Mongoose
+You can visit the link to Install mongoose module. You can install this package by using this command.
+
+npm install mongoose
+This will add Mongoose to your project's dependencies.
+
+Step 2: Verify Mongoose Installation
+After installing mongoose module, you can check your mongoose version in command prompt using the command.
+
+npm version mongoose
+Step 3: Create and Set Up the Project
+1. Create a new folder for your project (if you don’t already have one):
+
+mkdir your-project-name
+cd your-project-name
+2. Create a new file, for example index.js, and add the following code to connect to MongoDB and use the findOneAndUpdate() method in Mongoose
+
+Filename: index.js
+
+const mongoose = require('mongoose');
+
+// Database connection
+mongoose.connect('mongodb://127.0.0.1:27017/geeksforgeeks',{
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false
+});
+
+// User model
+const User = mongoose.model('User',{
+    name: { type: String },
+    age: { type: Number }
+});
+
+// Find document matching the condition(age >= 5)
+// and update first document with new name='Anuj'
+// This function has 4 parameters i.e. filter,
+// update, options, callback
+User.findOneAndUpdate({age: {$gte:5} }, 
+    {name:"Anuj"}, null, function (err, docs) {
+    if (err){
+        console.log(err)
+    }
+    else{
+        console.log("Original Doc : ",docs);
+    }
+});
+The project structure will look like this:project structure
+
+Below is the sample data in the database before the function is executed, You can use any GUI tool or terminal to see the database, like we have used Robo3T GUI tool as shown below:Database
+
+Step 4: Running the Application
+After that, you can just create a folder and add a file, for example index.js. To run this file you need to run the following command.
+
+node index.js
+
+Step 5: Verify the Changes
+You can verify the changes in your MongoDB database by using a GUI tool like Robo3T or MongoDB Compass to check if the document has been updated.
+
+new Database
+So this is how you can use the mongoose findOneAndUpdate() function which finds a matching document and updates it according to the update arg, passing any options, and returns the found document (if any) to the callback.
+
+Conclusion
+The findOneAndUpdate method in Mongoose is a powerful tool for performing atomic updates, upsert operations and updating discriminator keys. Its atomic nature ensures data integrity in multi-user environments, while its flexibility allows for efficient document modifications. By understanding and utilizing this method, developers can effectively manage and update documents in their MongoDB collections. By mastering findOneAndUpdate(), developers can confidently handle document modifications, reduce data conflicts, and efficiently manage their data.
