@@ -1,0 +1,214 @@
+Express Response Functions (res) – Complete Reference
+What is Express Response Object?
+
+The Response object (res) represents the HTTP response that an Express app sends back to the client.
+
+app.get('/', (req, res) => {
+  res.send('Hello World');
+});
+
+1. res.app Property
+Purpose
+
+Returns the Express application instance.
+
+Example
+app.get('/', (req, res) => {
+  console.log(res.app === app); // true
+  res.send('App accessed');
+});
+
+Use Case
+
+Access app-level settings from middleware
+
+2. res.headersSent Property
+Purpose
+
+Checks if response headers have already been sent.
+
+Example
+if (res.headersSent) {
+  console.log('Headers already sent');
+}
+
+Use Case
+
+Prevent sending response multiple times
+
+3. res.locals Property
+Purpose
+
+Stores response-local variables accessible in views.
+
+Example
+app.use((req, res, next) => {
+  res.locals.username = 'Saraswati';
+  next();
+});
+
+Use Case
+
+Pass data to templates
+
+4. res.append() Function
+Purpose
+
+Adds HTTP response headers without overwriting existing ones.
+
+Syntax
+res.append(field, value);
+
+Example
+res.append('Warning', '199 Miscellaneous warning');
+
+5. res.attachment() Function
+Purpose
+
+Sets Content-Disposition header for file download.
+
+Example
+res.attachment('report.pdf');
+res.send('File ready');
+
+Output
+
+Forces browser to download file
+
+6. res.cookie() Function
+Purpose
+
+Sets a cookie on the client.
+
+Syntax
+res.cookie(name, value, options);
+
+Example
+res.cookie('user', 'admin', { maxAge: 60000 });
+res.send('Cookie set');
+
+7. res.clearCookie() Function
+Purpose
+
+Deletes a cookie.
+
+Example
+res.clearCookie('user');
+res.send('Cookie cleared');
+
+8. res.download() Function
+Purpose
+
+Sends a file and forces download.
+
+Example
+res.download('files/report.pdf');
+
+9. res.end() Function
+Purpose
+
+Ends the response without sending data.
+
+Example
+res.end();
+
+Use Case
+
+Low-level response handling
+
+10. res.send() Function
+Purpose
+
+Sends a response body (string, object, array).
+
+res.send('Hello');
+res.send({ success: true });
+
+11. res.json() Function
+Purpose
+
+Sends a JSON response.
+
+res.json({ name: 'Ram' });
+
+12. res.status() Function
+Purpose
+
+Sets HTTP response status code.
+
+res.status(201).send('Created');
+
+13. res.sendStatus() Function
+Purpose
+
+Sets status code and sends status message.
+
+res.sendStatus(404);
+
+14. res.set() Function
+Purpose
+
+Sets response headers.
+
+res.set('Content-Type', 'text/plain');
+
+15. res.get() Function
+Purpose
+
+Returns response header value.
+
+res.get('Content-Type');
+
+16. res.redirect() Function
+Purpose
+
+Redirects the client.
+
+res.redirect('/login');
+
+17. res.type() Function
+Purpose
+
+Sets the response Content-Type.
+
+res.type('json');
+
+18. res.links() Function
+Purpose
+
+Sets Link HTTP header fields.
+
+res.links({
+  next: '/page/2',
+  last: '/page/5'
+});
+
+19. res.location() Function
+Purpose
+
+Sets Location HTTP response header.
+
+res.location('/new-path');
+
+20. res.vary() Function
+Purpose
+
+Adds field to the Vary HTTP header.
+
+res.vary('User-Agent');
+
+Summary Table (Viva Friendly)
+Function / Property	Purpose
+res.app	Access app instance
+res.headersSent	Check headers status
+res.locals	Store response locals
+res.append()	Add headers
+res.attachment()	File attachment
+res.cookie()	Set cookie
+res.clearCookie()	Remove cookie
+res.download()	Download file
+res.end()	End response
+res.send()	Send response
+res.json()	Send JSON
+res.status()	Set status
+res.redirect()	Redirect
