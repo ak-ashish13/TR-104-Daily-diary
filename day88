@@ -1,0 +1,76 @@
+Databases store organized data for easy access and management. Traditional relational databases use structured tables, but modern applications and big data have driven the rise of NoSQL systems. NoSQL databases handle large volumes of unstructured and semi-structured data, offering the scalability and flexibility today’s diverse workloads demand.
+
+Types of NoSQL Database
+NoSQL databases can be classified into four main types, based on their data storage and retrieval methods:
+
+Document-based databases
+Key-value stores
+Column-oriented databases
+Graph-based databases
+Each type has unique advantages and use cases, making NoSQL a preferred choice for big data applications, real-time analytics, cloud computing and distributed systems.
+
+Types of NoSQL Database
+1. Document-Based Database
+The document-based database is a nonrelational database. Instead of storing the data in rows and columns (tables), it uses the documents to store the data in the database. A document database stores data in JSON, BSON or XML documents.
+
+Documents can be stored and retrieved in a form that is much closer to the data objects used in applications which means less translation is required to use these data in the applications. In the Document database, the particular elements can be accessed by using the index value that is assigned for faster querying.
+
+Collections are the group of documents that store documents that have similar contents. Not all the documents are in any collection as they require a similar schema because document databases have a flexible schema.
+
+Key features of document database:
+Flexible schema: Documents in the database has a flexible schema. It means the documents in the database need not be the same schema. 
+Faster creation and maintenance: the creation of documents is easy and minimal maintenance is required once we create the document. 
+No foreign keys: There is no dynamic relationship between two documents so documents can be independent of one another. So, there is no requirement for a foreign key in a document database.
+Open formats: To build a document we use XML, JSON, and others.
+Popular Document Databases & Use Cases
+Database	Use Case
+MongoDB	Content management, product catalogs, user profiles
+CouchDB	Offline applications, mobile synchronization
+Firebase Firestore	Real-time apps, chat applications
+2. Key-Value Stores
+A key-value store is a nonrelational database. The simplest form of a NoSQL database is a key-value store. Every data element in the database is stored in key-value pairs. The data can be retrieved by using a unique key allotted to each element in the database. The values can be simple data types like strings, numbers or complex objects. A key-value store is like a relational database with only two columns which is the key and the value. 
+
+Key features of the key-value store:
+Simplicity: Data retrieval is extremely fast due to direct key access.
+Scalability: Designed for horizontal scaling and distributed storage.
+Speed: Ideal for caching and real-time applications.
+Popular Key-Value Databases & Use Cases
+Database	Use Case
+Redis	Caching, real-time leaderboards, session storage
+Memcached	High-speed in-memory caching
+Amazon DynamoDB	Cloud-based scalable applications
+3. Column Oriented Databases
+A column-oriented database is a non-relational database that stores the data in columns instead of rows. That means when we want to run analytics on a small number of columns, we can read those columns directly without consuming memory with the unwanted data. Columnar databases are designed to read data more efficiently and retrieve the data with greater speed. A columnar database is used to store a large amount of data.
+
+Key features of Columnar Oriented Database
+High Scalability: Supports distributed data processing.
+Compression: Columnar storage enables efficient data compression.
+Faster Query Performance: Best for analytical queries.
+Popular Column-Oriented Databases & Use Cases
+Database	Use Case
+Apache Cassandra	Real-time analytics, IoT applications
+Google Bigtable	Large-scale machine learning, time-series data
+HBase	Hadoop ecosystem, distributed storage
+4. Graph-Based Databases
+Graph-based databases focus on the relationship between the elements. It stores the data in the form of nodes in the database. The connections between the nodes are called links or relationships, making them ideal for complex relationship-based queries.
+
+Data is represented as nodes (objects) and edges (connections).
+Fast graph traversal algorithms help retrieve relationships quickly.
+Used in scenarios where relationships are as important as the data itself.
+Key features of Graph Database
+Relationship-Centric Storage: Perfect for social networks, fraud detection, recommendation engines.
+Real-Time Query Processing: Queries return results almost instantly.
+Schema Flexibility: Easily adapts to evolving relationship structures
+Popular Graph Databases & Use Cases
+Database	Use Case
+Neo4j	Fraud detection, social networks
+Amazon Neptune	Knowledge graphs, AI recommendations
+ArangoDB	Multi-model database, cybersecurity
+Comparison of NoSQL Database Types
+Feature	Document-Based	Key-Value Store	Column-Oriented	Graph-Based
+Data Model	JSON-like documents	Key-Value pairs	Columns instead of rows	Nodes & Relationships
+Best Use Case	Semi-structured data	Fast lookups & caching	Analytics & big data	Relationship-heavy data
+Query Performance	Moderate	Fast	High for analytics	Optimized for relationships
+Schema	Flexible	Dynamic	Semi-structured	Schema-less
+Scalability	Horizontal	High horizontal	Highly scalable	Scales with relationships
+Examples	MongoDB, CouchDB	Redis, DynamoDB	Cassandra, HBase	Neo4j, Amazon Neptune
