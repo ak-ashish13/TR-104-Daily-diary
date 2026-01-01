@@ -1,0 +1,106 @@
+The CSS syntax defines how CSS rules are written so that browsers can interpret and apply them to HTML elements.
+
+diagram_of_a_css_rule
+Selector: Targets the HTML element "h1" to apply styles.
+Declaration Block: Enclosed in curly braces { }, contains one or more declarations.
+Property: Specifies the style attribute, here "color" for text color.
+Value: Defines the property's setting, here "blue" for the text hue.
+Overall Structure: Forms a complete CSS rule: h1 { color: blue; }, styling h1 headings blue.
+
+
+
+<html>
+<head>
+    <style>
+        /* CSS Rule */
+        h1 {
+            color: blue;
+            /* Property: value */
+            font-size: 24px;
+        }
+​
+        p {
+            color: green;
+            font-size: 16px;
+        }
+    </style>
+</head>
+​
+<body>
+    <h1>Hello, World!</h1>
+    <p>This is a simple paragraph.</p>
+</body>
+</html>
+In above Example,
+
+h1: This selector targets all <h1> elements on the page. The style applied to <h1> will set the text color to blue and the font size to 24px.
+p: This selector targets all <p> elements. The text color will be green and the font size will be 16px.
+Selectors in CSS
+Selectors define which HTML elements are styled. CSS offers several types of selectors.
+
+1. Universal Selector: Applies styles to all elements.
+
+
+* {
+    margin: 0;
+    padding: 0;
+} 
+2. Type Selector: Targets specific HTML elements.
+
+
+h1 {
+    font-family: Arial, sans-serif;
+}
+3. Class Selector: Styles elements with a specific class attribute.
+
+
+.box {
+    border: 1px solid black;
+    padding: 10px;
+}
+4. ID Selector: Targets a single element with a specific ID.
+
+
+#header {
+    background-color: lightgray;
+}
+Declaration Block in CSS Syntax
+Each declaration consists of a property and a value, separated by a colon, and each declaration is followed by a semicolon:
+
+1. Properties: Properties are the aspects of the selected elements you want to style (like color, width, height, etc.).
+
+color: Defines the text color.
+background-color: Defines the background color of an element.
+font-size: Sets the size of the font.
+margin: Specifies the space around an element.
+padding: Defines the space between the element's content and its border.
+2. Values: Values define the specifics of the property you want to apply, such as a color name, a number (e.g., 16px), or percentages (e.g., 50%).
+
+Grouping and Nesting of CSS Selectors
+You can group selectors to apply the same styles or nest them for hierarchical targeting.
+
+1. Grouping
+
+h1, h2, h3 {
+    color: darkblue;
+}
+2. Nesting
+
+ul li {
+    list-style-type: square;
+}
+Pseudo-classes and Pseudo-elements
+Pseudo-classes and pseudo-elements are used for styling specific states or parts of elements. Pseudo classes target's the elements based on a particular state and pseudo elements targets the elements on basis of a particular part of that element.
+
+
+
+
+/*pseudo-class selector*/
+a:hover {
+    color: green;
+}
+​
+/*pseudo-element selector*/
+p::first-line {
+    font-weight: bold;
+}
