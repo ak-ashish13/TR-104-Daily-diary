@@ -1,0 +1,133 @@
+Installing MongoDB on Windows involves downloading the official MongoDB installer, running it to set up the server, and configuring it to run as a Windows service. Once installed, you can use the MongoDB shell or Compass GUI to interact with your databases. This process ensures MongoDB is ready for development or production use on a Windows system.
+
+Requirements for Installing MongoDB on Windows
+Before installing MongoDB on Windows, ensure your system meets the following requirements:
+
+1. Supported Versions
+MongoDB 4.4 or higher (64-bit only).
+2. Compatible Operating Systems
+Windows Server 2022
+Windows Server 2019
+Windows 11
+2. Permissions Required
+The user running MongoDB services (mongod, mongos) must have membership in the following groups:
+
+Performance Monitor Users
+Performance Log Users
+How to Install MongoDB on Windows Using MSI
+To install MongoDB on Windows, first, download the MongoDB server and then install the MongoDB shell. The Steps below explain the installation process in detail and provide the required resources for the smooth download and install MongoDB.
+
+Step 1: Download MongoDB Community Server
+Go to the MongoDB Download Center to download the MongoDB Community Server.
+
+install-mongodb-on-windows-using-msi
+
+Here, You can select any version, Windows, and package according to your requirement. For Windows, we need to choose:
+
+Version: 7.0.4
+OS: Windows x64
+Package: msi
+Step 2: Install MongoDB
+When the download is complete open the msi file and click the next button in the startup screen:
+install-mongodb-on-windows-using-msi
+
+Now accept the End-User License Agreement and click the next button:
+install-mongodb-on-windows-using-msi
+
+Now select the complete option to install all the program features. Here, if you can want to install only selected program features and want to select the location of the installation, then use the Custom option:
+install-mongodb-on-windows-using-msi
+
+Step 3: Configure MongoDB Service
+Select “Run service as Network Service user” and copy the path of the data directory. Click Next:
+install-mongodb-on-windows-using-msi
+
+Click the Install button to start the MongoDB installation process:
+install-mongodb-on-windows-using-msi
+
+After clicking on the install button installation of MongoDB begins:
+install-mongodb-on-windows-using-msi
+
+Step 4: Complete Installation
+Now click the Finish button to complete the MongoDB installation process:
+Step 5: Set Environment Variables
+Now we go to the location where MongoDB installed in step 5 in your system and copy the bin path:
+install-mongodb-on-windows-using-msi
+
+Now, to create an environment variable open system properties >> Environment Variable >> System variable >> path >> Edit Environment variable
+paste the copied link to your environment system and click Ok:
+install-mongodb-on-windows-using-msi
+
+Run MongoDB Server (mongod)
+To run the MongoDB server (mongod) on Windows, follow these steps:
+
+Step 1. Start MongoDB Service
+After setting the environment variable, we will run the MongoDB server, i.e. mongod.
+So, open the command prompt and run the following command:
+ mongod
+When you run this command you will get an error i.e. C:/data/db/ not found. 
+
+Step 2. Create Required Folders
+Now, Open C drive and create a folder named "data"
+Inside the data folder create another folder named "db".
+Step 3. Restart MongoDB
+After creating these folders. Again open the command prompt and run the following command:
+
+ mongod
+Now, this time the MongoDB server(i.e., mongod) will run successfully.
+
+install-mongodb-on-windows-using-msi
+
+Run the MongoDB Shell (mongosh)
+Starting from MongoDB version 5.0, the traditional MongoDB shell (mongo) has been deprecated. The recommended shell for interacting with MongoDB databases is now mongosh, which provides improved functionality, better syntax, and full compatibility with the latest MongoDB features.
+
+Step 1. Connect to MongoDB Server with mongosh
+Now we are going to connect our server (mongod) with the mongo shell. So, keep that mongod window
+open a new command prompt window and type:
+mongosh
+You are now connected to the MongoDB shell.
+Please do not close the mongod window if you close this window your server will stop working and it will not able to connect with the mongo shell.
+
+run-mongo-shell
+
+Step 2. Create a Database
+Now we can make a new database, collections, and documents in our shell. Use the following command within the mongosh shell to create a new database:
+
+use database_name
+The use Database_name command makes a new database in the system if it does not exist, if the database exists it uses that database:
+
+use gfg
+Step 3: Add Data to a Collection
+Insert a document into a collection using:
+
+db.collection_name.insertOne({field: value})
+The db.Collection_name command makes a new collection in the gfg database and the insertOne() method inserts the document in the student collection:
+
+db.student.insertOne({Akshay:500})
+run-mongodb
+
+Installing MongoDB on Windows Without Admin Rights
+Here is Step by Step process on How to Install MongoDB on Windows without Admin Rights -
+
+Step 1: Download the MongoDB ZIP Archive
+Get the ZIP version of MongoDB from the official MongoDB website.
+
+Step 2: Extract Files
+Extract the ZIP archive to a location on your computer where you have write permissions, such as your user directory.
+
+Step 3: locate the "bin" folder
+Navigate to the extracted MongoDB directory and locate the "bin" folder.
+Open a command prompt window and navigate to the "bin" folder within the MongoDB directory.
+Step 4: Run MongoDB Server Without Installation
+Run the MongoDB server by executing the command with the path to the directory where you want to store MongoDB data files. Make sure to use a location where you have write permissions.
+
+Command: mongod.exe --dbpath=path\to\data\directory, replacing "path\to\data\directory"
+Step 5: Run MongoDB Shell
+MongoDB should now be running locally on your Windows system without the need for admin rights.
+You can interact with MongoDB using the MongoDB shell by running the command.
+mongo.exe 
+By following these steps, you can install and run MongoDB on Windows without admin rights, allowing you to work with MongoDB databases on your local machine.
+
+Important Points to Remember
+The old MongoDB shell command mongo is deprecated from MongoDB version 5.0 onward.
+Always use the modern mongosh command for compatibility with new features.
+Ensure the MongoDB server (mongod) runs continuously while interacting through mongosh.
