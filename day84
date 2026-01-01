@@ -1,0 +1,94 @@
+In Express.js, HTTP methods determine how a server handles client requests. They define the type of operation to perform on a resource, such as retrieving, creating, updating, or deleting data. Express allows defining routes that handle requests efficiently and in an organized manner.
+
+Methods of HTTP Requests
+Here are the different types of http requests
+
+1. GET Method
+The GET method is an HTTP request used by a client to retrieve data from the server. It takes two parameters: the URL to listen on and a callback function with req (client request) and res (server response) as arguments.
+
+Syntax:
+
+app.get("URL",(req,res)=>{})
+In the above syntax
+
+app.get – defines a GET route in Express.
+"URL" – the path the route listens to.
+(req, res) => {} – callback function where req is the client request and res is the server response.
+2. POST Method
+The POST method sends data from the client to the server, usually to store it in a database. It takes two parameters: the URL to listen on and a callback function with req (client request) and res (server response). The data sent is available in the request body and must be parsed as JSON.
+
+Syntax:
+
+app.post("URL",(req,res)=>{})
+In the above syntax
+
+app.post – defines a POST route in Express.
+"URL" – the path the route listens to.
+(req, res) => {} – callback function where req contains client data and res sends the server response.
+3. PUT Method
+The PUT method updates existing data in the database. It takes two parameters: the URL to listen on and a callback function with req (client request containing updated data in the body) and res (server response).
+
+Syntax:
+
+app.put("URL",(req,res)=>{})
+In the above syntax:
+
+app.put – defines a PUT route in Express.
+"URL" – the path the route listens to.
+(req, res) => {} – callback function where req contains the client’s updated data (usually in the body) and res sends the server response.
+4. DELETE Method
+The DELETE method removes data from the database. It takes two parameters: the URL to listen on and a callback function with req (containing the ID of the item to delete in the body) and res (server response).
+
+Syntax:
+
+app.delete("URL",(req,res)=>{})
+In the above syntax
+
+app.delete – defines a DELETE route in Express.
+"URL" – the path the route listens to.
+(req, res) => {} – callback function where req contains data (e.g., ID to delete) and res sends the server response.
+5. PATCH Method
+The PATCH method is used to partially update data on the server. It takes two parameters: the URL to listen on and a callback function with req (containing the data to update, usually in the body or URL parameters) and res (server response).
+
+Syntax:
+
+app.patch("URL", (req, res) => {})
+In the above syntax:
+
+app.patch: defines a PATCH route in Express.
+"URL": the path the route listens to.
+(req, res) => {}: callback function where req contains the data to update (e.g., fields to change) and res sends the server response.
+Example: Implementation of above HTTP methods.
+
+
+const express = require('express');
+const app = express();
+const PORT = 3000;
+app.use(express.json());
+
+app.get("/", (req, res) => {
+	console.log("GET Request Successfull!");
+	res.send("Get Req Successfully initiated");
+})
+
+app.put("/put", (req, res) => {
+	console.log("PUT REQUEST SUCCESSFUL");
+	console.log(req.body);
+	res.send(`Data Update Request Recieved`);
+})
+
+app.post("/post", (req, res) => {
+	console.log("POST REQUEST SUCCESSFUL");
+	console.log(req.body);
+	res.send(`Data POSt Request Recieved`);
+})
+
+app.delete("/delete", (req, res) => {
+	console.log("DELETE REQUEST SUCCESSFUL");
+	console.log(req.body);
+	res.send(`Data DELETE Request Recieved`);
+})
+
+app.listen(PORT, () => {
+	console.log(`Server established at ${PORT}`);
+})
