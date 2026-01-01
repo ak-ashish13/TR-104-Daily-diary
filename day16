@@ -1,0 +1,442 @@
+HTML Symbols are special characters used in HTML to display characters that aren't on the keyboard or might cause issues with HTML code. Like if you used < (less than) or > (greater than) symbols in your HTML document then the browser will treat them differently.
+
+To define HTML symbols, you can use either a named entity or a number entity.
+
+Commonly Used HTML Symbols
+©:copyright sign:
+&copy;
+code :
+
+
+
+<p>these is the sign of : &copy;</p>
+®:registered trade mark sign:
+&reg;
+code :
+
+
+
+<p>these is the sign of : &reg;</p>
+™:trade mark sign:
+ &trade;
+code :
+
+
+
+<p>these is the sign of : &trade; </p>
+@: at symbol sign:
+&commat; 
+code :
+
+
+
+<p>these is the sign of : &commat; </p>
+¶: paragraph sign :
+&para; 
+code :
+
+
+
+<p>these is the sign of : &para; </p>
+§:section sign:
+&sect;
+code :
+
+
+
+<p>these is the sign of : &sect; </p>
+ℂ: double-struck capital c:
+& copf;
+code :
+
+
+
+<p>these is the sign of : &copf;</p>
+℅: care of :
+&incare; 
+code :
+
+
+
+<p>these is the sign of : &incare; </p>
+ℊ:script small g syntax :
+&gscr;
+code :
+
+
+
+<p>these is the sign of : &gscr; </p>
+ℋ: script capital h syntax :
+&hamilt; 
+code :
+
+
+
+<p>these is the sign of : &hamilt; </p>
+ℌ: black-letter capital h syntax :
+&hfr; 
+code :
+
+
+
+<p>these is the sign of : &hfr; </p>
+ℍ: double-struck capital h syntax :
+&hopf; 
+code :
+
+
+
+<p>these is the sign of : &hopf; </p>
+ℎ:planckh constant syntax :
+&planckh; 
+code :
+
+
+
+<p>these is the sign of :&planckh; </p>
+ℏ: planck constant over two pi syntax :
+&planck; 
+code :
+
+
+
+<p>these is the sign of : &planck; </p>
+ℐ:script capital i syntax :
+&iscr; 
+code :
+
+
+
+<p>these is the sign of : &iscr; </p>
+ℑ: black-letter capital syntax :
+&image; 
+code :
+
+
+
+<p>these is the sign of : &image; </p>
+ℒ :script capital l syntax :
+&lscr; 
+code :
+
+
+
+<p>these is the sign of : &lscr; </p>
+ℓ: script small l syntax :
+&ell; 
+code :
+
+
+
+<p>these is the sign of : &ell; </p>
+ℕ: &nopf; syntax :
+&nopf; 
+code :
+
+
+
+<p>these is the sign of : &nopf; </p>
+№: numero sign syntax :
+&numero; 
+code :
+
+
+
+<p>these is the sign of : &numero;</p>
+℗:sound recording copyright syntax :
+&copysr; 
+code :
+
+
+
+<p>these is the sign of : &copysr; </p>
+℘: script capital p syntax :
+&weierp; 
+code :
+
+
+
+<p>these is the sign of : &weierp; </p>
+ℚ:double-struck capital qsyntax :
+&qopf; 
+code :
+
+
+
+<p>these is the sign of : &qopf; </p>
+" : " Sign Syntax
+& 
+code :
+
+
+
+<p>these is the sign of :  </p>
+ℛ:script capital r syntax :
+&rscr; 
+code :
+
+
+
+<p>these is the sign of : &rscr; </p>
+ℜ : black-letter capital r syntax :
+&real; 
+code :
+
+
+
+<p>these is the sign of :&real;  </p>
+ℝ : double-struck capital r syntax :
+&ropf; 
+code :
+
+
+
+<p>these is the sign of : &ropf; </p>
+℞ : prescription take syntax :
+&rx; 
+code :
+
+
+
+<p>these is the sign of : &rx; </p>
+ℤ : double-struck capital z syntax :
+&zopf; 
+code :
+
+
+
+<p>these is the sign of : &zopf; </p>
+℧:inverted ohm sign :
+&mho; 
+code :
+
+
+
+<p>these is the sign of : &mho; </p>
+ℨ:black-letter capital z syntax :
+&zfr; 
+code :
+
+
+
+<p>these is the sign of : &zfr; </p>
+℩ : turned greek small letter iota syntax :
+&iiota;
+code :
+
+
+
+<p>these is the sign of :&iiota;</p>
+ℬ:script capital b syntax :
+&bernou; 
+code :
+
+
+
+<p>these is the sign of :&bernou; </p>
+ℭ: black-letter capital c syntax :
+&cfr;
+code :
+
+
+
+<p>these is the sign of :&cfr; </p>
+ℯ: script small e syntax :
+&escr;
+code :
+
+
+
+<p>these is the sign of :&escr;</p>
+ℰ:script capital e syntax :
+&escr;
+code :
+
+
+
+<p>these is the sign of : &escr; </p>
+ℱ:script capital f syntax :
+&fscr; 
+code :
+
+
+
+<p>these is the sign of : &fscr; </p>
+ℳ : script capital m syntax :
+&mscr; 
+code :
+
+
+
+<p>these is the sign of :&mscr;  </p>
+ℴ: script small o syntax :
+&oscr;
+code :
+
+
+
+<p>these is the sign of : &oscr;  </p>
+ℵ: alef symbol syntax :
+&alefsym; 
+code :
+
+
+
+<p>these is the sign of : &alefsym; </p>
+ℶ: bet symbol syntax :
+&beth; 
+code :
+
+
+
+<p>these is the sign of : &beth; </p>
+ℷ : gimel symbol syntax :
+&gimel;
+code :
+
+
+
+<p>these is the sign of : &gimel; </p>
+ℸ : dalet symbol syntax :
+&daleth; 
+code :
+
+
+
+<p>these is the sign of : &daleth; </p>
+ⅆ :double-struck italic small d syntax :
+&dd; 
+code :
+
+
+
+<p>these is the sign of :&dd;  </p>
+ⅇ : double-struck italic small e syntax :
+&ee; 
+code :
+
+
+
+<p>these is the sign of :&ee;  </p>
+ⅈ:double-struck italic small i syntax :
+&ii;
+code :
+
+
+
+<p>these is the sign of : &ii;  </p>
+★ : black star syntax :
+&starf;
+code :
+
+
+
+<p>these is the sign of :&starf;  </p>
+☆: white star syntax :
+&star; 
+code :
+
+
+
+<p>these is the sign of :&star;  </p>
+☎: black telephone syntax :
+&phone;
+code :
+
+
+
+<p>these is the sign of : &phone; </p>
+♀ : female sign syntax :
+&female; 
+code :
+
+
+
+<p>these is the sign of :&female;  </p>
+♂:male sign syntax :
+&male; 
+code :
+
+
+
+<p>these is the sign of :&male;  </p>
+♠ : black spade suit syntax :
+&spades; 
+code :
+
+
+
+<p>these is the sign of : &spades; </p>
+♣ : black club suit syntax :
+&clubs;
+code :
+
+
+
+<p>these is the sign of : &clubs; </p>
+♥ : black heart suit syntax :
+&hearts; 
+code :
+
+
+
+<p>these is the sign of : &hearts; </p>
+♦ : black diamond suit syntax :
+&diams; 
+code :
+
+
+
+<p>these is the sign of : &diams; </p>
+♪: eighth note syntax :
+&sung; 
+code :
+
+
+
+<p>these is the sign of :&sung;  </p>
+♭:music flat sign syntax :
+&flat; 
+code :
+
+
+
+<p>these is the sign of : &flat; </p>
+♮: music natural sign syntax :
+&natural; 
+code :
+
+
+
+<p>these is the sign of : &natural;  </p>
+♯ : music sharp sign syntax :
+&sharp; 
+code :
+
+
+
+<p>these is the sign of : &sharp; </p>
+✓:check mark syntax :
+&check;
+code :
+
+
+
+<p>these is the sign of : &check;  </p>
+✗:ballot x syntax :
+&&cross;
+code :
+
+
+
+<p>these is the sign of : &cross;  </p>
+✠:maltese cross syntax :
+&malt; 
+code :
+
+
+
+<p>these is the sign of : &malt;  </p>
+✶:six pointed black star syntax :
+&sext;
+code :
