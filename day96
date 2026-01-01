@@ -1,0 +1,93 @@
+In MongoDB, each document within a collection is uniquely identified by a field called _id. By default, this field uses the ObjectId format, a 12-byte BSON data type that ensures uniqueness and embeds valuable metadata, such as the creation timestamp. Understanding how ObjectId works is crucial for MongoDB users and developers, as it plays a vital role in data management, retrieval, and performance optimization.
+
+This article will explore the ObjectId in MongoDB in detail, covering its structure, significance, methods, and usage with real-world examples. We will also provide a comparison with custom _id formats, helping you better understand how MongoDB generates and manages document identifiers.
+
+MongoDB ObjectId
+Every document in the collection has an "_id" field that is used to uniquely identify the document in a particular collection it acts as the primary key for the documents in the collection. The "_id" field can be used in any format and the default format is the ObjectId of the document.
+
+The ObjectId is a 12-byte BSON type that guarantees uniqueness across different machines and processes, which is essential for distributed systems. It is generated in such a way that ensures no collisions across different databases or servers.
+
+Key Characteristics of ObjectId
+Uniqueness: ObjectId ensures that every document in a collection has a unique identifier, even across multiple MongoDB instances and servers.
+Timestamp: The ObjectId includes a timestamp, allowing you to retrieve the creation time of the document.
+Efficiency: ObjectId generation is efficient and does not require coordination between servers, making it ideal for distributed systems.
+ObjectId Format
+The ObjectId is composed of 12 bytes, broken down as follows:
+
+The first 4 bytes represent the Unix Timestamp of the document.
+The next 3 bytes are the machine ID on which the MongoDB server is running.
+The next 2 bytes are of the process ID.
+The last Field is 3 bytes used for incrementing the objectid.
+
+The ObjectId is represented as a hexadecimal string, and its default format is:
+
+ObjectId(<hexadecimal>)
+ObjectId accepts one parameter which is optional Hexadecimal ObjectId in String. We can give our own ObjectId to the document but it must be unique.
+
+*db.<collectionname>.insertOne({"_id":"231231"})
+Example of ObjectId in MongoDB
+When we insert a document into a collection, MongoDB automatically assigns a unique_id using the ObjectId format
+
+Database : gfg
+Collection: student_gfg
+Example:
+
+
+In this example, MongoDB generates a unique _id for the document in the student_gfg collection. The _id field is automatically assigned an ObjectId value.
+
+Methods of MongoDB ObjectId
+MongoDB provides several useful methods to interact with the ObjectId. These methods allow you to access the timestamp, convert the ObjectId to a string, and more.
+
+str: Returns the hexadecimal string format of the ObjectId.
+ObjectId.getTimestamp() : It returns the timestamp portion of the object as a Date.
+ObjectId.valueOf(): It return the hexadecimal format of a given String Literal.
+ObjectId.toString(): This method returns ObjectId in String format in javascript representation.
+1. Creating an ObjectId
+We can generate a new ObjectId using the ObjectId() constructor.
+
+Example:
+newObjectId = ObjectId()
+Output:
+
+
+2. Getting the Timestamp from ObjectId
+We can retrieve the creation timestamp of the ObjectId using the getTimestamp() method. This method returns the timestamp as a Date object.
+
+Example:
+
+var id =new ObjectId();     
+id.getTimestamp()
+Output:
+
+
+3. Converting ObjectId to String
+We can convert an ObjectId into its string format using the str property.
+
+Example:
+
+ new ObjectId().str
+Output:
+
+Converting-ObjectId-to-string
+4. Getting the Hexadecimal Representation
+You can also use the valueOf() method to get the hexadecimal representation of the ObjectId.
+
+Example:
+
+new ObjectId().valueOf()
+Output:
+
+"5f92cdce0cf217478ba93563"
+Using ObjectId for Querying
+Since ObjectId is used as the default unique identifier for MongoDB documents, we can use it to efficiently query for documents by their _id.
+
+Example:
+
+db.student_gfg.findOne({ _id: ObjectId("5f92cbf10cf217478ba93561") })
+Explanation: In this query, the ObjectId is used to retrieve a document with a specific _id. Since ObjectId is indexed, these queries are very efficient.
+
+When to Use ObjectId vs. Custom _id
+Use ObjectId: When you need an automatically generated unique identifier with a timestamp and efficient indexing.
+Use Custom _id: When you need to control the identifier format or when you already have a unique identifier (e.g., a UUID or an existing system-generated ID).
+Conclusion
+The ObjectId is an essential part of MongoDB that ensures each document within a collection is uniquely identifiable. With its embedded timestamp and efficient generation process, ObjectId simplifies document management in distributed systems. By understanding how ObjectId works and its various methods, you can leverage it effectively for indexing, querying, and managing data in MongoDB. Whether you choose to use the default ObjectId or create custom identifiers, MongoDB’s flexibility allows you to meet your unique application requirements while maintaining data integrity and performance.
