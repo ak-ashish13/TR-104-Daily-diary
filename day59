@@ -1,0 +1,131 @@
+Installing Node.js on a Linux-based operating system can vary slightly depending on your distribution. This guide will walk you through various methods to install Node.js and npm (Node Package Manager) on Linux, whether using Ubuntu, Debian, or other distributions.
+
+Prerequisites
+A Linux System: such as Ubuntu, Debian, CentOS, Fedora, or any other popular distribution. The installation steps may vary slightly between distributions, but most methods work on all major Linux distros.
+Access to the Command Line: You will need terminal access with root or sudo privileges to install software and packages.
+Updated System: It’s essential that your system’s package list is up-to-date.
+Internet Connection: An active internet connection is required to download Node.js and npm packages.
+Looking to host your Node.js applications? Hostinger’s affordable VPS hosting offers an optimized environment for seamless development and deployment. With pre-configured Node.js templates on Ubuntu 22.04 and OpenLiteSpeed server support, you get a performance boost right out of the box. For beginners, Hostinger’s CloudPanel template makes Node.js app creation simple. Plus, with scalable plans, you have full control to customize your server setup, making it perfect for developers at any stage.
+
+1. Use Package Manager
+For most Linux distributions, the easiest way to install Node.js is through the default package manager. Here’s how to do it for common distributions:
+
+Steps to Install Node.js on Ubuntu/Debian
+Step 1: Update your system
+Before installing Node.js, make sure your package list is up to date.
+
+sudo-update
+sudo apt update
+sudo apt update
+Step 2: Upgrade the system
+Once updates are installed you need to upgrade your system and to do this enter the below command.
+
+sudo-upgrade
+sudo apt upgrade
+sudo apt upgrade
+Step 3: Install Node.js
+Ubuntu and Debian come with the apt package manager, which can be used to install Node.js. You can install Node.js directly from the official Ubuntu repositories.
+
+install-node
+sudo apt install nodejs
+sudo apt install nodejs
+Step 4: Install npm
+npm is the package manager that comes bundled with Node.js. If it is not installed automatically, you can install it separately.
+
+install-npm
+sudp apt install npm
+sudo apt install npm
+Step 5: Verify the Installation
+To confirm that Node.js and npm are installed correctly, you can check their versions using:
+
+Type node -v and press Enter to check the Node.js version.
+Type npm -v and press Enter to check the npm version.
+Both commands should return version numbers, confirming successful installation.
+npm-version
+verify the installations
+Steps to Install Node.js on CentOS/RHEL
+Step 1: Update your system
+sudo yum update
+Step 2: Install Node.js
+You can install Node.js by adding the NodeSource repository:
+
+curl -sL https://rpm.nodesource.com/setup_16.x | sudo -E bash -
+sudo yum install -y nodejs
+Step 3: Verify the Installation
+Open Terminal to check the installed versions by running these commands:
+
+node -v: To check the Node.js Version
+npm -v: To check the npm version
+npm-version
+verify the installation
+2. Using Node Version Manager
+NVM is a popular way to install and manage multiple versions of Node.js. It's ideal if you need to use different versions of Node.js for various projects or if you want to easily upgrade or downgrade Node.js versions.
+
+Step 1: Install and Activate NVM
+First, download and install NVM using the following script:
+
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+bash3
+nvm
+Once installed, you need to add NVM to your shell configuration. You can do this by running the following command:
+
+source ~/.bashrc
+bash4
+bash
+Step 2: Install Node.js Using NVM
+To install the latest LTS (Long Term Support) version of Node.js, run:
+
+nvm install --lts
+Switch Node.js Versions
+
+If you need to switch between multiple versions, you can list installed versions using: nvm ls
+
+To switch to a specific version you can use: nvm use 22
+
+Step 3: Verify the Installation
+You may now verify the nodejs installation using the following command:
+
+Type node -v and press Enter to check the Node.js version.
+Type npm -v and press Enter to check the npm version.
+npm-version
+verify the installations
+Note: Both commands should return version numbers, confirming successful installation.
+
+3. Install Node.js from NodeSource
+NodeSource provides an up-to-date repository that ensures you get the latest version of Node.js.
+
+Note: To install NVM on your Ubuntu machine, visit the project’s GitHub page. Copy the curl command from the README file that displays on the main page to get the most recent version of the installation script.
+
+Step 1: Add NodeSource repository
+NodeSource maintains separate repositories for each version of Node.js. To install the latest version of Node.js
+
+Before running your actual curl command if you are not a sudo user or root user run the below command:
+
+sudo su        
+curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+Step 2: Install Node.js
+After adding the repository, install Node.js using apt (for Debian-based systems):
+
+sudo apt install -y nodejs
+Step 3: Verify Installation by node -v and npm -v
+Use the following command to verify the installations:
+
+node -v
+npm -v
+4. Using Snap
+Snap is another method for installing Node.js on Linux, especially for those who prefer installing software in a containerized form.
+
+Step 1: Install Node.js with Snap
+On Ubuntu and other distributions that support Snap, you can install Node.js directly:
+
+sudo snap install node --classic
+Step 2: Verify Installation
+After installation, check the Node.js version:
+
+node -v
+
+
+npm-version
+verify the installations
+Conclusion
+Installing Node.js on Linux is a relatively simple process, but it can vary depending on your distribution and preferred installation method. Using package managers like apt or yum is the easiest method for most users, while NVM provides greater flexibility for managing multiple Node.js versions. With these installation methods, you can easily get Node.js up and running on your Linux machine.
