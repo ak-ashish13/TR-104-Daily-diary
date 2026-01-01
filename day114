@@ -1,0 +1,161 @@
+The updateOne() method in MongoDB updates the first document that matches a specified condition in a collection. It is used to change fields or values in a single matching document without affecting others.
+
+Syntax:
+
+db.collection.updateOne(<filter>, <update>, {
+   upsert: <boolean>,
+   writeConcern: <document>,
+   collation: <document>,
+   arrayFilters: [<filterdocument1>, ...],
+   hint: <document|string> // Available starting in MongoDB 4.2.1
+})
+
+In the above syntax:
+
+<filter>: Criteria to select the document to update.
+<update>: Modifications to apply (document or pipeline).
+upsert: false by default; true inserts a new document if none match.
+writeConcern: Overrides the default write concern.
+collation: Language-specific rules for string comparison.
+arrayFilters: Filters specifying which array elements to update.
+hint: Specifies which index to use for the operation.
+Return
+This method returns a document that contains the following fields:
+
+nMatched: This field contains the number of matched documents.
+modifiedCount: This field contains the number of modified documents.
+upsertedId: This field contains the _id for the upserted document.
+acknowledged: The value of this field is true if write concern was enabled or false if write concern was disabled.
+Examples of MongoDB updateOne() Method
+To better understand how the updateOne() method works, let's explore some practical examples using a students collection. In the following examples, we are working with:
+
+Database: gfg
+Collection: student
+Document: Four documents contains name and age of the students
+
+
+Example 1: Update an Integer Value in the Document
+Update the age of the student whose name is Annu
+
+Query:
+
+db.student.updateOne({name: "Annu"}, {$set:{age:25}})
+Output:
+
+update the age of the student whose name is annu example output
+
+Explanation: Here, the first parameter is the document whose value is to be changed i.e. {name:”Annu”} and the second parameter is the set keyword means to set(update) the following first matched key value with the older key value, i.e., from 20 to 25.
+
+Example 2: Update a String Value in the Document
+Update the name of the first matched document whose name is Bhannu to Babita. Here, the value of the key must be of the same data type that was defined in the collection.
+
+Query:
+
+db.student.updateOne({name:"Bhannu"},{$set:{name:"Babita"}})
+Output:
+
+example 2 output
+
+Explanation: Here, the first parameter is the document whose value is to be changed {name:”Bhannu”} and the second parameter is the set keyword means to set(update) the following first matched key value with the older key value.
+
+Example 3: Insert a new field in the document
+Add a new field named class with the value 3 to the document where the student’s name is Bhannu.
+
+Query:
+
+db.student.updateOne({name: "Bhannu"}, {$set:{class: 3}})
+Output
+
+
+
+Explanation: Here, a new field is added, i.e., class: 3 in the document of a student whose name is Bhannu.
+
+Example 4: Update using Update Operator Expressions
+Let's Updating all documents where name is "Bhannu" to set age to 25:
+
+Query:
+
+// Update all documents where name is "Bhannu" to set age to 25
+db.student.updateMany(
+  { name: "Bhannu" },
+  { $set: { age: 25 } }
+);
+Output:
+
+{
+    "_id" : ObjectId("600e9afd0cf217478ba93566"),
+    "name" : "Annu",
+    "age" : 20
+}
+{
+    "_id" : ObjectId("600e9afd0cf217478ba93567"),
+    "name" : "Bhannu",
+    "age" : 25
+}
+{
+    "_id" : ObjectId("600e9afd0cf217478ba93568"),
+    "name" : "Bhannu",
+    "age" : 25
+}
+Example 5: Update with Aggregation Pipeline
+Incrementing the age of all documents by 1 where name is "Bhannu" using the aggregation pipeline:
+
+Query:
+
+// Increment the age of all documents by 1 where name is "Bhannu"
+db.student.updateMany(
+  { name: "Bhannu" },
+  [
+    { $set: { age: { $add: ["$age", 1] } } }
+  ]
+);
+Output:
+
+{
+    "_id" : ObjectId("600e9afd0cf217478ba93566"),
+    "name" : "Annu",
+    "age" : 20
+}
+{
+    "_id" : ObjectId("600e9afd0cf217478ba93567"),
+    "name" : "Bhannu",
+    "age" : 26
+}
+{
+    "_id" : ObjectId("600e9afd0cf217478ba93568"),
+    "name" : "Bhannu",
+    "age" : 26
+}
+Example 6: Update with Upsert
+Updating the document with name "Charlie" if it exists; otherwise, inserting a new document with name "Charlie" and age 28:
+
+Query:
+
+// Update the document with name "Charlie" if it exists; otherwise, insert a new document
+db.student.updateOne(
+  { name: "Charlie" },
+  { $set: { age: 28 } },
+  { upsert: true }
+);
+Output:
+
+{
+    "_id" : ObjectId("600e9afd0cf217478ba93566"),
+    "name" : "Annu",
+    "age" : 20
+}
+{
+    "_id" : ObjectId("600e9afd0cf217478ba93567"),
+    "name" : "Bhannu",
+    "age" : 26
+}
+{
+    "_id" : ObjectId("600e9afd0cf217478ba93568"),
+    "name" : "Bhannu",
+    "age" : 26
+}
+{
+    "_id" : ObjectId("600e9b3e0cf217478ba93569"),
+    "name" : "Charlie",
+    "age" : 28
+}
