@@ -1,0 +1,191 @@
+Express Application Functions (Complete Reference)
+What is an Express Application?
+
+An Express Application is an object returned by the express() function.
+
+const express = require('express');
+const app = express();
+
+
+The app object contains application functions used to:
+
+Handle routes
+
+Configure settings
+
+Add middleware
+
+Start the server
+
+1. app.listen()
+Purpose
+
+Starts the Express server and listens for incoming requests.
+
+Syntax
+app.listen(port, callback);
+
+Example
+app.listen(3000, () => {
+  console.log('Server started on port 3000');
+});
+
+2. app.get()
+Purpose
+
+Handles GET HTTP requests.
+
+Syntax
+app.get(path, callback);
+
+Example
+app.get('/', (req, res) => {
+  res.send('Home Page');
+});
+
+3. app.post()
+Purpose
+
+Handles POST HTTP requests.
+
+Example
+app.post('/login', (req, res) => {
+  res.send('Login Success');
+});
+
+4. app.put()
+Purpose
+
+Handles PUT requests (update entire data).
+
+app.put('/user/:id', (req, res) => {
+  res.send('User Updated');
+});
+
+5. app.patch()
+Purpose
+
+Handles PATCH requests (partial update).
+
+app.patch('/user/:id', (req, res) => {
+  res.send('User Partially Updated');
+});
+
+6. app.delete()
+Purpose
+
+Handles DELETE requests.
+
+app.delete('/user/:id', (req, res) => {
+  res.send('User Deleted');
+});
+
+7. app.use()
+Purpose
+
+Registers middleware.
+
+Syntax
+app.use([path], middleware);
+
+Example
+app.use(express.json());
+app.use('/api', userRoutes);
+
+8. app.all()
+Purpose
+
+Handles all HTTP methods for a route.
+
+app.all('/test', (req, res) => {
+  res.send('Works for all methods');
+});
+
+9. app.route()
+Purpose
+
+Creates chainable route handlers.
+
+Example
+app.route('/student')
+  .get((req, res) => res.send('Get Student'))
+  .post((req, res) => res.send('Add Student'))
+  .put((req, res) => res.send('Update Student'));
+
+10. app.set()
+Purpose
+
+Sets application-level variables.
+
+app.set('view engine', 'ejs');
+
+11. app.get(setting)
+Purpose
+
+Gets application settings.
+
+app.get('view engine');
+
+12. app.engine()
+Purpose
+
+Registers a template engine.
+
+app.engine('html', require('ejs').renderFile);
+
+13. app.param()
+Purpose
+
+Runs logic when a route parameter is present.
+
+app.param('id', (req, res, next, id) => {
+  console.log(id);
+  next();
+});
+
+14. app.disable()
+Purpose
+
+Disables application setting.
+
+app.disable('x-powered-by');
+
+15. app.enable()
+Purpose
+
+Enables application setting.
+
+app.enable('trust proxy');
+
+16. app.disabled()
+Purpose
+
+Checks if setting is disabled.
+
+app.disabled('etag'); // true / false
+
+17. app.enabled()
+Purpose
+
+Checks if setting is enabled.
+
+app.enabled('trust proxy');
+
+18. app.locals
+Purpose
+
+Stores global variables accessible in views.
+
+app.locals.title = 'My App';
+
+Common Express Application Flow
+const express = require('express');
+const app = express();
+
+app.use(express.json());
+
+app.get('/', (req, res) => {
+  res.send('Welcome');
+});
+
+app.listen(3000);
