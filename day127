@@ -1,0 +1,261 @@
+MongoDB query and projection operators help control what data is retrieved from a collection. Query operators filter documents based on specific conditions, while projection operators determine which fields of those documents are returned.
+
+MongoDB Query Operators
+MongoDB query operators are used to filter documents based on specific conditions. These operators compare values, match patterns, handle arrays, and process geospatial data. MongoDB query operators check the conditions for the given data and logically compare the data with the help of two or more fields in the document.
+
+Setting Up an Environment
+To understand the Query and Projection Operators in MongoDB we need a database on which we will perform operations. So we have created a collection called count_no with the help of the db.createCollection( ) function. After containing some data, the count_no collections look like this:
+
+demo database and collection
+We have inserted some of the documents in the collection.
+Types of Query Operators in MongoDB
+The Query operators in MongoDB can be further classified into 8 more types. The 8 types of Query Operators in MongoDB are:
+
+Comparison Operators ($eq, $ne, $gt, $lt, $gte, $lte, $in, $nin)
+Logical Operators ($and, $or, $not, $nor)
+Array Operators ($all, $elemMatch, $size)
+Evaluation Operators ($mod, $expr, $regex, $text, $where)
+Element Operators ($exists, $type)
+Bitwise Operators ($bitsAllSet, $bitsAnySet, $bitsAllClear, $bitsAnyClear)
+Geospatial Operators ($near, $geoWithin, $maxDistance, $minDistance)
+Comment Operators ($comment)
+1. Comparison Operators
+The comparison operators in MongoDB are used to perform value-based comparisons in queries. The comparison operators in the MongoDB are shown as below:
+
+Comparison Operator	Description	Syntax
+$eq	Matches values that are equal to a specified value.	{ field: { $eq: value } }
+$ne	Matches all values that are not equal to a specified value.	{ field: { $ne: value } }
+$lt	Matches values that are less than a specified value.	{ field: { $lt: value } }
+$gt	Matches values that are greater than a specified value.	{ field: { $gt: value } }
+$lte	Matches values that are less than or equal to a specified value.	{ field: { $lte: value } }
+$gte	Matches values that are greater than or equal to a specified value.	{ field: { $gte: value } }
+$in	Matches any of the values specified in an array.	{ field: { $in: [<value1>, <value2>, ... ] } }
+Example 1: Using $gte Operator
+Let's find out all those records in which the age of the person is equal to or greater than 23.
+
+Query:
+
+db.count_no,find( { "Age": {$gte:23} }, {"_id":0} );
+Output:
+
+$gte method examples
+Greater Than Equal Operator.
+Explanation: In the above image we have written a query to return the documents that have the age field greater than or equal to 23 and the id is not shown as we mentioned id:0
+
+Example 2: Using $gt Operator
+Let's find out those people whose age is greater than 21.
+
+Query:
+db.count_no,find( { "Age": {$gt:21} }, {"_id":0} );
+Output:
+
+$gt operator example
+Greater Than Operator in MongoDB
+Explanation: In the above query we have used find() to retrieve the documents whose age is strictly greater than 21.
+
+Example 3: Using $eq Operator
+Let's find out if the person named Krishna is present in our Collections or not.
+
+Query:
+
+db.count_no,find( { "name": {$eq:"Krishna"} }, {"_id":0} );
+Output:
+
+example of using $eq operator
+Equality Operator in MongoDB.
+Explanation: In the above-mentioned query we used the $eq operator to find the document with the name Krishna.
+
+2. Logical Operators
+The logical operators in MongoDB are used to filter data based on expressions that evaluate to true or false. The Logical operators in MongoDB are shown in the table below:
+
+Logical Operator	Description	Syntax
+$and	Returns all the documents that satisfy all the conditions.	{ $and: [ { <expression1> }, { <expression2> } , ... , { <expressionN> } ] }
+$not	Inverts the effect of the query expression and returns documents that do not match the query expression.	{ field: { $not: { <operator-expression> } } }
+$or	Returns the documents from the query that match either one of the conditions in the query.	{ $or: [ { <expression1> }, { <expression2> }, ... , { <expressionN> } ] }
+$nor	Returns the documents that fail to match both conditions.	{ $nor: [ { <expression1> }, { <expression2> }, ... , { <expressionN> } ] }
+Example 1: Using $and Operator
+Let's find out the name of the Person whose Likes are 3 and whose Age is 23.
+
+Query:
+
+db.count_no.find({$and : [ {"Likes":3},{"Age":23} ] } ) }
+Output:
+
+example of using $and operator
+And operator in MongoDB
+Explanation:
+
+In the above image the $and operator are used and it will return the documents whose likes are 3 and the age is 23.
+If the condition is not satisfied it will not return anything.
+Example 2: Using $or Operator
+Let's find out the Person whose Age is either 23 or 22.
+
+Query:
+
+db.count_no.find({$or: [ {"Age":23}, {"Age":22} ] } ) }
+Output:
+
+example of using $or operator
+$Or operator in MongoDB
+Explanation:
+
+The $or operator is used in the above image.
+It returns the documents whose age is 23 or age is 22.
+It returns the documents if either of any conditions is satisfied.
+3. Array Operators
+The Array operators in the MongoDB return the result based on the Multiple conditions specified in the array using the array operators. The Array Operators in the MongoDB are:
+
+Array Operator	Description	Syntax
+$all	Returns the documents in the collection which have all the elements specified in the array.	{ field: { $all: [<value1> , <value2>, ... ] } }
+$elemMatch	Returns the documents that match all the conditions in the given array of conditions.	{ field: { $elemMatch: { <query1>, <query2>, ... } } }
+$size	Returns the documents that satisfy the given size mentioned in the query if the field contains an array of specified size.	{ field: { $size: value } }
+Example 1: Using $all Operator
+Let's find out the Person whose Age is 23.
+
+Query:
+
+db.count_no.find( {"Age" :{$all : [23] } }, {_id:0} );
+Output:
+
+example of using $all operator
+$ALL operator in MongoDB.
+Explanation: In the above query, We have used the $all operator along with the Age and it should have all the values in the array and it should be of array type.
+
+Example 2: Using $elemMatch Operator
+Let's first make some updates in our demo collection. Here we will Insert some data into the count_no database
+
+Query:
+
+db.count_no.insertOne( {"name" : "Harsha", "Age": 24,"Likes" : 2,"Colors":["Red","Green","Blue"] } );
+Output:
+
+updating demo collection
+Inserting the array of elements .
+Now, using the $elemMatch operator in MongoDB let's match the Red colors from a set of Colors.
+
+Query:
+
+db.count_no.find( {"Colors": {$elemMatch: {$eq: "Red" } } },{_id: 0 } );
+Output:
+
+example of using $elemmatch operator
+Using the elemMatch Operator.
+Explanation:
+
+The $elemMatch operator is used with the field Colors which is of type array.
+In the above query, it returns the documents that have the field Colors and if any of the values in the Colors field has "Red" in it.
+4. Evaluation Operators
+The evaluation operators in the MongoDB are used to return the documents based on the result of the given expression. Some of the evaluation operators present in the MongoDB are:
+
+Evaluation Operator	Description	Syntax
+$mod operator	The $mod operator in MongoDB performs a modulo operation on the value of a field and selects documents where the modulo equals a specified value. It only works with numerical fields.	{ field: { $mod: [ divisor, remainder ] } }
+$expr operator	The $expr operator in MongoDB allows aggregation expressions to be used as query conditions. It returns documents that satisfy the conditions of the query.	{ $expr: { <aggregation expression> } }
+$where operator	The $where operator in MongoDB uses JavaScript expression or function to perform queries. It evaluates the function for every document in the database and returns the documents that match the condition.	{ $where: <JavaScript expression
+5. Element Operators
+The element operators in the MongoDB return the documents in the collection which returns true if the keys match the fields and datatypes. There are mainly two Element operators in MongoDB:
+
+Element Operator	Description	Syntax
+$exists	Checks if a specified field exists in the documents.	{ field: { $exists: <boolean> } }
+$type	Verifies the data type of a specified field in the documents.	{ field: { $type: <BSON type> } }
+Example: Using $type Operator
+Let's find out How many documents are in the count_no whose type is 16.
+
+Query:
+db.count_no.find({"Age":{$type:16}},{_id:0 } );
+Output:
+
+example of using $type operator
+$type op
+Explanation:
+
+It checks if the age is of type Int and returns True if it is of Integer data type.
+It uses BSON code to return the document. The BSON code for integers is 16.
+The type operator generally takes the BSON which is nothing but the number that is given to the datatype.
+6. Bitwise Operators
+The Bitwise operators in the MongoDB return the documents in the MongoDB mainly on the fields that have numeric values based on their bits similar to other programming languages.
+
+Bitwise Operator	Description	Syntax
+$bitsAllClear	Returns documents where all bits in the specified field are 0.	{ field: { $bitsAllClear: <bitmask> } }
+$bitsAllSet	Returns documents where all bits in the specified field are 1.	{ field: { $bitsAllSet: <bitmask> } }
+$bitsAnySet	Returns documents where at least one bit in the specified field is set (1).	{ field: { $bitsAnySet: <bitmask> } }
+$bitsAnyClear	Returns documents where at least one bit in the specified field is clear (0).	{ field: { $bitsAnyClear: <bitmask> } }
+Example of Using $bitsAllSet Operator
+Let's find the Person whose Age has bit 1 from position 0 to 4.
+
+Query:
+
+ db.count_no.find({"Age":{$bitsAllSet: [0,4] } },{_id:0 } );
+Output:
+
+example of using $bitsallset operator
+$bitsAllSet in MongoDB
+Explanation:
+
+In the above query, we have used $bitsAllSet and it returns documents whose bits position from 0 to 4 are only ones.
+It works only with the numeric values.
+The numeric values will be converted into the bits and the bits numbering takes place from the right.
+7. Geospatial Operators
+The Geospatial operators in the MongoDB are used mainly with the terms that relate to the data which mainly focuses on the directions such as latitude or longitudes. The Geospatial operators in the MongoDB are:
+
+Geospatial Operator	Description	Syntax
+$near	Finds geospatial objects near a point. Requires a geospatial index.	{ $near: { geometry: <point_geometry>, maxDistance: <distance> (optional) } }
+$center	(For $geoWithin with planar geometry) Specifies a circle around a center point	{ $geoWithin: { $center: [<longitude>, <latitude>], radius: <distance> } }
+$maxDistance	Limits results of $near and $nearSphere queries to a maximum distance from the point.	{ $near: { geometry: <point_geometry>, maxDistance: <distance> } }
+$minDistance	Limits results of $near and $nearSphere queries to a minimum distance from the point.	{ $near: { geometry: <point_geometry>, minDistance: <distance> } }
+8. Comment Operators
+The $comment operator in MongoDB is used to write the comments along with the query in the MongoDB which is used to easily understand the data.
+
+Comment Operator Example
+Let's apply some comments in the queries using the $comment Operator.
+
+Query:
+
+db.collection_name.find( { $comment : comment })
+Output:
+
+comment operator example
+$Comment operator in MongoDB
+Explanation:
+
+In the above query we used the $comment operator to mention the comment.
+We have used "This is a comment" with $comment to specify the comment.
+The comment operator in the MongoDB is used to represent the comment and it increases the understandibility of the code.
+MongoDB Projection Operators
+The Projection Operator in MongoDB allows us to control which fields are included in the results of a Query. With the help of the Projection Operator, the performance of our Query will be enhanced. The Projection operator is a MongoDB query modifier that controls what fields are returned in the results of a find() or aggregate() operation.
+
+Syntax:
+
+db.collection_name.find({},{<field> : <value>})
+Operator	Description	Example Syntax
+$include	Returns only specified fields	{ field1: 1, field2: 1 }
+$exclude	Excludes specific fields from the results	{ field: 0 }
+$elemMatch
+
+Projects only the first array element that matches the specified condition.
+
+{ grades: { $elemMatch: { score: { $gt: 80 } } } }
+
+$slice
+
+Limits the number of array elements returned. Positive number from start, negative from end.
+
+{ comments: { $slice: 3 } }
+
+$meta
+
+Projects document metadata (e.g., textScore).
+
+{ score: { $meta: "textScore" } }
+
+Example: Using Projection Operators
+Query: Retrieve only the name and age fields:
+
+db.count_no.find({}, { "name": 1, "age": 1, "_id": 0 });
+Output:
+
+db
+Explanation:
+
+Selects all documents in the count_no collection ({} as filter).
+Returns only the name and age fields.
+Excludes the _id field
