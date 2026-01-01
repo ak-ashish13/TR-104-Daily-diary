@@ -1,0 +1,46 @@
+Context API in React is used to share data across the components without passing the props manually through every level. It allows to create global state of data providing global access to all the components.
+
+Here, we will discuss about the context API in React and its uses with implementation.
+
+What is Context API?
+Context API is used to pass global variables anywhere in the code without the prop drilling. It helps when there is a need for sharing state between a lot of nested components. It is light in weight and easier to use, to create a context just need to call React.createContext(). No need to install other dependencies or third-party libraries like redux for state management.
+
+Why is Context API used?
+Context API solves the problem of prop drilling in React. Prop Drilling occurs when data is to be passed between multiple layers before finally sending it to the required component. This makes the application slower. This problem is solved by Context API as it creates global variables to be used throughout the application without any middle components involved. It is also easier to use than React Redux
+
+Working
+To work with Context API we need React.createContext(). It has two properties Provider and Consumer. The Provider acts as a parent it passes the state to its children whereas the Consumer uses the state that has been passed.
+
+Provider: This is used to provide the context to components.
+Consumer: This is used to consume the context value in child components.
+Benefits of Context API over React Redux
+In Redux we have to manipulate or update multiple files to add even a single feature but in context it can be done in much lesser lines of code.
+One way data binding in React is maintained using Context whereas Redux violates it.
+Multiple stores/contexts can be created using Context whereas Redux creates just a single store
+Steps to Implement Context API in React
+Step 1: Create a React application using the following command.
+
+npx create-react-app context-api-demo
+Step 2: After creating your project folder(i.e. project), move to it by using the following command.
+
+cd context-api-demo
+Step 3: We will create two new files one is Context.js to create our context and another file named as WelcomePage.js for creating a component that will consume the context.
+
+Project Structure:
+It will look like this:
+
+Project Structure
+Approach
+We will use Context API to display a user's name and ID.
+
+First, create a Context.js file in the src folder, where we define the UserContext. The context provides Provider and Consumer, so we'll store them in constants.
+In a simple component file, we'll display a message showing the user's name and ID, which will be passed through the Provider.
+Finally, wrap the App component in index.js with the Provider and pass the name and ID as values. If no value is passed, the page will be blank.
+Example: Write the following code in respective files
+
+Context.js: We create the consumer and provider in this file
+WelocomePage.js: The consumer consumes the value in this file
+Index.js: The provider is given to the application in this file
+App.js: The components are imported in this file and then rendered on the webpage
+
+// App.js
