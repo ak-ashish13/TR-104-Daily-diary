@@ -1,0 +1,138 @@
+React Tutorial
+Last Updated : 06 Dec, 2025
+React is a powerful JavaScript library for building fast, scalable front-end applications. Created by Facebook, it's known for its component-based structure, single-page applications (SPAs), and virtual DOM,enabling efficient UI updates and a seamless user experience.
+
+qwer.webpqwer.webp
+Note: The latest stable version of React is 19.1.0.
+
+Why Learn React?
+Before React, front-end development struggled with:
+
+Manual DOM Manipulation: Traditional JavaScript directly modified the DOM, slowing down the performance.
+Complex State Management: Maintaining UI state became messy and hard to debug.
+Tight Coupling in Frameworks: Frameworks like Angular introduced complex two-way data binding that made code harder to manage.
+React solved these issues with a modern and modular approach.
+
+Core Features
+Virtual DOM: React updates only the changed parts of the DOM, resulting in faster rendering.
+One-Way Data Binding: Ensures predictable and easy to debug data flow.
+Component-Based Architecture: Breaks UI into reusable pieces, improving the code reusability and scalability.
+React Tutorial Prerequisites:  HTML, CSS and JavaScript
+
+React Hello World Program
+To start with React, you need to install it. Follow the steps below to install it on your system.
+
+How to Install ReactJS on Windows
+How to Install ReactJS on MacOS
+How to Install ReactJS on Linux
+After installing React, let's write your first React program. Here's a simple code example:
+
+
+import React from 'react';
+
+function App() {
+    return (
+        <div>
+            <h1>Hello World</h1>
+        </div>
+    );
+}
+
+export default App;
+In this example:
+
+import React from 'react': Imports the React library to use React features in the component.
+function App() { ... }: Defines a React functional component called App.
+return ( ... ): The return statement renders HTML-like code (JSX) inside the component.
+<div><h1>Hello World</h1></div>: Displays a div element containing a heading (h1) with the text "Hello World."
+export default App: Exports the App component so it can be used in other files.
+Getting Started with React: A Beginner’s Guide
+This React tutorial provides you with a step-by-step learning journey for mastering React. You will start with React fundamentals and then move on to advanced topics. By the end of this tutorial, you will have a solid foundation in React and be ready to build scalable and maintainable web applications.
+
+1. React Basics
+Mastering React fundamentals, which will lay the groundwork for building dynamic and efficient applications.
+
+Introduction
+Import and Export
+JSX Introduction
+Components
+Conditional Rendering
+Virtual DOM
+Quiz 1: React Fundamentals
+PropTypes
+Prop Drilling
+React Lists
+Context API
+React Redux
+Quiz 2: Props and State Management
+2. React Hooks
+Different hooks to access and mange state and lifecycle in functional components.
+
+Hooks Introduction
+useState Hook
+useEffect Hook
+useRef Hook
+useMemo Hook
+useContext Hook
+Quiz: React Hooks
+3. React DOM Events
+Handle DOM events in react like mouse, keyboard and form events.
+
+React Events Introduction
+onclickcapture Event
+onMouseDown Event
+onDoubleClick Event
+onSubmit Event
+onScroll Event
+onBlur Event
+Quiz: React DOM events
+4. Lifecycle of Components
+The lifecycle of react components from creation, mounting and unmounting to manage the different phases.
+
+Introduction to lifecycle of components
+componentDidMount
+componentWillUnmount
+componentDidCatch
+componentDidUpdate
+shouldComponentUpdate
+Quiz: Lifecycle of Components
+5. Routing in React
+Manage navigation and routing within the single page application.
+
+React JS Router
+What is react-router-dom?
+React JS Types of Routers
+React-Router Hooks
+Learn Navigation and Routing in React Apps
+Link and NavLink components in React-Router-Dom
+Quiz: Routing in React
+6. Packages for Enhancing React Application
+Additional libraries for styling and state management to enhance your react projects.
+
+Redux
+Material UI
+react-bootstrap
+Tailwind
+Framer Motion
+7. React Interview Questions
+React Interview questions categorised for different levels including most asked questions.
+
+Beginner Level Interview Questions
+Advanced Level Interview Questions
+7 Most Asked ReactJS Interview Questions
+8. React Complete References
+Refer to the following articles to have a quick glance at all the important key concepts which are helpful while developing web applications using React
+
+Basic Concepts Reference
+Components Complete Reference
+Props Reference
+Events Reference
+Hooks Reference
+Advanced Guide Reference
+If you want to have a simple, quick reference to commonly used React methods you can refer to ReactJS Cheat Sheet article
+
+Advantages of React
+Composable: React allows building reusable components, improving code organization and maintainability.
+Declarative: React’s declarative approach makes it easy to design interactive UIs by changing component states, with React handling the DOM updates.
+SEO-Friendly: React’s Single Page Application (SPA) setup can be optimized for SEO by rendering and indexing content properly.
+Large Community: React has a stro
