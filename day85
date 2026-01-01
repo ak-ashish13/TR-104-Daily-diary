@@ -1,0 +1,174 @@
+Node.js and Express are two essential tools in the JavaScript ecosystem, especially for server-side development. While they are often used together, they serve different purposes. This article will explain what Node.js and Express are, their key differences, and when to use each.
+
+Table of Content
+
+Node JS
+Express JS 
+Below are basic examples of creating a server in Node JS & Express JS
+Routing in Express JS
+Routing in Node JS
+Difference between Node JS and Express JS
+Node JS
+Node JS is an open-source and cross-platform runtime environment for executing JavaScript code outside of a browser. You need to remember that Node JS is not a framework and it’s not a programming language. Most people are confused and understand it’s a framework or a programming language. We often use Node.js for building back-end services like APIs for Web Apps or Mobile Apps. It’s used in production by large companies such as Paypal, Uber, Netflix, Walmart, and so on. 
+
+Express JS 
+Express is a small framework that sits on top of Node JS’s web server functionality to simplify its APIs and add helpful new features. It makes it easier to organize your application’s functionality with middleware and routing. It adds helpful utilities to Node JS’s HTTP objects. It facilitates the rendering of dynamic HTTP objects.
+
+Note: These codes are covered in the below comparisons.
+
+Example: The following comparison shows how the same code is written differently in Node.js (Left tab code) and Express.js (Right tab code). 
+
+
+
+While Node.js provides the runtime, Express is a web framework that simplifies building server-side applications.
+
+Below are basic examples of creating a server in Node JS & Express JS
+Express JS Server:
+Step to Install Express: Install Express using the following command.
+
+npm i --save express
+
+// Filename - index.js
+
+// Requiring the module
+const express = require('express');
+const app = express();
+
+// Route handling
+app.get('/', (req, res) => {
+    res.send('<h2>Hello from Express.js server!!</h2>');
+});
+
+// Server setup
+app.listen(8080, () => {
+    console.log('server listening on port 8080');
+});
+Steps to Run the Server: Run the index.js file using the following command:
+
+node index.js
+Output:
+
+Node JS Server:
+Require the HTTP module using the following code:
+
+const http = require('http');
+
+// Filename - index.js
+
+// Requiring the module
+const http = require('http');
+
+// Creating server object
+const server = http.createServer(
+    (req, res) => {
+        res.setHeader('Content-Type', 'text/html');
+        res.write('<html>');
+        res.write(
+'<head><title>GeeksforGeeks</title><head>'
+        );
+        res.write(
+'<body><h2>Hello from Node.js server!!</h2></body>'
+        );
+        res.write('</html>');
+        res.end();
+    });
+
+// Server setup
+server.listen(3000, () => {
+    console.log("Server listening on port 3000")
+});
+Steps to Run the Server:
+
+node index.js
+Output:
+
+
+Routing in Express JS
+Routing in Express.js simplifies implementation, offering ease of use. Through Express's built-in functions, we can directly specify route names and associated functions, indicating the type of request, whether it's a GET or POST, for instance. This streamlined approach streamlines the development process, enhancing productivity and reducing complexity.
+
+
+// Filename - index.js
+
+// Requiring module
+const express = require('express');
+const app = express();
+
+// Handling '/' request
+app.get('/', (req, res) => {
+    res.send('<h2>Hello from Express.js server!!</h2>');
+});
+
+// Handling '/about' request
+app.get('/about', (req,res) => {
+    res.send('<h2>GeeksforGeeks- Express.js</h2>');
+});
+
+// Server setup
+app.listen(8080, () => {
+    console.log('server listening on port 8080');
+});
+Steps to Run the Server: Run the index.js file using the following command:
+
+node index.js
+Open your browser and go to http://localhost:8080/about, following will be the output:
+
+
+
+Routing in Node JS
+In Node.js, routing isn't inherently provided. Instead, developers must manually inspect the URL and method of each incoming request to determine how to handle and respond to it appropriately. This means that routing logic needs to be implemented within the application code, typically through conditional statements or frameworks like Express.js, which offer more structured routing capabilities. By checking the URL and method of each request, developers can tailor responses dynamically based on the specific requirements of the application.
+
+
+// Filename - index.js
+
+// Requiring the module
+const http = require('http');
+
+// Creating server object
+const server = http.createServer((req, res) => {
+    const url = req.url;
+    
+    if(url === '/') {
+        res.write('<html>');
+        res.write(
+'<head><title>GeeksforGeeks</title><head>');
+        res.write(
+'<body><h2>Hello from Node.js server!!</h2></body>');
+        res.write('</html>');
+        return res.end();
+    }
+    
+    if(url === '/about') {
+        res.write('<html>');
+        res.write(
+'<head><title>GeeksforGeeks</title><head>');
+        res.write(
+'<body><h2>GeeksforGeeks- Node.js</h2></body>');
+        res.write('</html>');
+        return res.end();
+    }
+});
+
+// Server setup
+server.listen(3000, () => {
+    console.log("Server listening on port 3000")
+});
+Steps to Run the Server:
+
+node index.js
+Output: Open your browser and go to http://localhost:3000/about:
+
+
+
+Difference between Node JS and Express JS
+Node JS is a platform for building I/O applications that are server-side event-driven and made using JavaScript.
+Express JS is a framework based on Node JS which is used for building web applications using approaches and principles of Node JS's event-driven architecture.
+Feature	Express JS	Node JS
+Usage	It is used to build web apps using approaches and principles of Node JS	 It is used to build server-side, input-output, event-driven apps.
+Level of features	More features than Node JS.	Fewer features.
+Building Block	It is built on Node JS	It is built on Google’s V8 engine.
+Written in	JavaScript	C, C++, JavaScript
+Framework/Platform	Framework based on Node JS	Run-time platform or environment designed for server-side execution of JavaScript.
+Controllers	Controllers are provided.	Controllers are not provided.
+Routing	Routing is provided.	Routing is not provided.
+Middleware	Uses middleware for the arrangement of functions systematically server-side.	Doesn’t use such a provision.
+Coding time	It requires less coding time.	It requires more coding time.
