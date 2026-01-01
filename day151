@@ -1,0 +1,54 @@
+Authentication is enforced when access control is enabled on a MongoDB deployment, requiring users to identify themselves. Users can only conduct activities that are defined by their roles when visiting a MongoDB deployment with access control enabled.
+
+In this article, We will utilize the default authentication approach to provide access control on a solo Mongo instance and see Authentication Techniques for a list of all supported authentication mechanisms.
+
+Administrator of Users
+If access control is enabled, make sure the admin database has a user with the userAdmin or userAdminAnyDatabase roles. This user can manage users and roles, including the ability to create new users, give or revoke roles to existing users, and create or change custom roles.
+
+To access or alter the database, MongoDB does not require a login or password by default. Mandatory authentication should be enabled and configured.
+
+Note: The instance of MongoDB uses port 27017 as well as the location of data /var/lib/mongodb. The example presumes the existence of the data directory, i.e., /var/lib/mongodb. And specify a different data directory as appropriate.
+
+How to Enable Authentication on MongoDB
+Follow the below steps to enable Authentication as defined:
+
+Step 1: Open a Mongo Shell 
+mongo
+Output:
+
+
+Step 2: Setting Up Administrator and Service Users in MongoDB
+The database binstar must be able to read and write to the repository. To establish an administrator user and a service user, run the following commands in the MongoDB shell:
+
+use admin
+Step 3: To manage database users, create an administrative user
+db.createUser({user:'siteUserAdmin', pwd: '<secure password #1>', 
+               roles:['userAdminAnyDatabase']})
+Output:
+
+
+Step 4: To validate the password, log in as that user
+db.auth('siteUserAdmin', '<secure password #1>')
+Step 5: Create a Repository service user
+db.createUser({user:'spandan', pwd: '<secure password #2>', 
+               roles:[{db:'binstar', role:'readWrite'}]})
+Step 6: In MongoDB, enable required authentication
+Add the auth key to /etc/mongod.conf if you're using the classic MongoDB configuration format:
+auth=true
+Add the security.authorization key to /etc/mongod.conf if you're using the current MongoDB configuration format:
+security:
+    authorization: enabled
+Step 7: To reload the settings, restart MongoDB
+sudo service mongod restart
+
+Step 8: Set the MONGO URL option in the Repository configuration file to mongodb:/username:password@hostname>. 
+
+Step 9: Restart Repository after modifying the configuration file to see the changes take effect.
+
+Exception for localhost
+It is possible to create users before or after access control is activated.
+MongoDB allows a localhost exception if you enable access control before creating any users..
+This enables you to create a user administrator in the admin database.
+Once a user is created, you must log in as the user administrator to add additional users as needed.
+Conclusion
+Enabling authentication in MongoDB is essential for securing your database by ensuring that only authorized users can perform specific operations based on their roles. This tutorial provided a step-by-step guide to setting up authentication on a standalone MongoDB instance and creating necessary users with appropriate roles. Following these steps will help maintain the security and integrity of your MongoDB deployment.
