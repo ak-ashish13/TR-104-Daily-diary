@@ -1,0 +1,102 @@
+HTML Tutorial
+Last Updated : 8 Nov, 2025
+HTML (HyperText Markup Language) is the standard language used to create and structure content on the web. It forms the backbone of every website, defining elements like text, images, links, and layout to make content visible and organized in browsers.
+
+what_is_html5_.webpwhat_is_html5_.webp
+Provides the basic framework for all web pages.
+Uses opening and closing tags (e.g., <p>, <h1>, <div>) to define elements.
+Allows adding hyperlinks, images, audio, and video.
+Attributes give extra information about elements like src, href, or alt.
+HTTP is the mechanism by which HTML documents are transported across the internet.
+1. HTML Basics
+By learning the basics of HTML, you can start creating your own web pages and bring your ideas to life online.
+
+Introduction to HTML
+HTML Editors
+HTML Comments
+HTML Element
+HTML Attributes
+HTML Doctypes
+HTML Heading
+HTML Paragraphs
+HTML Links
+HTML Images
+HTML Semantics
+HTML Entities
+HTML Symbols
+2. HTML Beginner Projects
+Start simple and learn by doing beginner HTML projects that teach you how to make basic web pages, giving you real-world practice in building websites.
+
+Simple Portfolio Website
+Design an Event Web Page
+Top 10 Projects For Beginners
+3. HTML Basic Tag Questions
+HTML tags are the building blocks of web pages. By understanding and using HTML tags effectively, you can create well-structured and informative webpages.
+
+Add a Paragraph in HTML
+Create a Link in HTML
+Div Tag in HTML
+Span Tag in HTML
+Add a Header on a Webpage
+Add a Footer on a Webpage
+Line Break in HTML
+Add Navigation Bar in HTML
+Link JavaScript to HTML
+HTML Tags – A to Z List
+4. HTML Tables
+HTML tables provide a structured way to organize information into rows and columns, making it easy for users to understand and navigate.
+
+What is a Table in HTML?
+Add a Table Row in HTML
+Add a Table Header in HTML
+Add a Table Cell in HTML
+Set captions in HTML Table
+Group Columns in HTML
+5. HTML Lists
+HTML lists organize information clearly on your website. They're perfect for step-by-step instructions, lists of ingredients, or ranking items. This improves readability and helps users to understand your content.
+
+Lists in HTML
+Ordered lists in HTML
+Unordered List in in HTML
+Description Lists in HTML
+6. HTML Formatting
+HTML offers tags and attributes to style your website's text, images, and more. This improves visual appeal, helps users navigate your content, and signals important information to users. Let's explore some of the common HTML formatting tags.
+
+Make Text Italic in HTML
+Create Small text in HTML
+Mark Text in HTML
+Add a Subscript in HTML
+Strong Tag in HTML
+Bold Text in HTML
+Highlight Text in HTML
+Show a Deleted Text in HTML
+How to Emphasize Text in HTML
+Add a Superscript in HTML
+7. HTML Form
+HTML forms let users interact with your website. Use them to collect contact details, run surveys, search your site, and more. Let's explore more about HTML form:
+
+What is a Form in HTML?
+Add an Input Field in HTML
+Label tag in HTML
+Add a Button in HTML
+Add a Dropdown in HTML
+Add a Textarea in HTML
+Fieldset Tag in HTML
+Legend Tag in HTML
+Datalist Tag in HTML
+8. HTML Advanced Concepts
+Beyond the Basics in HTML there are also advance concept exists. So, once you have mastered the fundamental building blocks of HTML, we can explore advanced HTML concepts for dynamic, interactive, and meaningful web pages.
+
+iframe in HTML
+File Paths
+Favicon
+Computer Code Elements
+Add Emojis in HTML
+Charsets in HTML
+URL Encoding in HTML
+Responsive Web Design
+HTML Layout
+9. HTML Media Elements
+Add Audio to a Webpage
+Add video to a Webpage
+10. HTML References
