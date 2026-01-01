@@ -1,0 +1,127 @@
+In NodeJS, when you install packages using npm (Node Package Manager), you often need to decide whether to install them as a dependency or devDependency. This is where the flags --save and --save-dev come into play. These flags control where the installed packages are placed in the package.json file and whether they are required in production or development environments.
+
+In this article, we will explore the difference between --save and --save-dev, how they impact your project, and when to use each one. We will also explain how these flags affect your dependencies and provide examples to help you make informed decisions.
+
+Difference between --save and --save-dev
+Here is a detailed comparison of --save and --save-dev based on various features:
+
+Features
+
+--save
+
+--save-dev
+
+Purpose
+
+Adds the package to dependencies in package.json, indicating it is required in production
+
+Adds the package to devDependencies in package.json, indicating it is only needed during development
+
+When It's Used
+
+For packages essential for running the application in production
+
+For packages needed only during development (e.g., testing frameworks, build tools)
+
+Location in package.json
+
+Added under the "dependencies" section.
+
+Added under the "devDependencies" section.
+
+Effect on node_modules Folder
+
+It increases in size as production dependencies are installed.
+
+Also increases its size, but these dependencies are ignored in production.
+
+Production Deployment
+
+Installed when deploying or running the app in production
+
+Not installed in production, reducing the size of production dependencies
+
+Examples of Packages
+
+express, mongoose, cors, jsonwebtoken
+
+jest, mocha, chai, eslint, webpack
+
+Default in npm 5 and Later
+
+By default, npm adds packages to dependencies even without the --save flag
+
+Must explicitly use --save-dev to add to devDependencies
+
+What is --save?
+In earlier versions of npm (before version 5), the --save flag was required to indicate that a package should be installed as a dependency in the package.json file. When you install a package with --save, it is added to the dependencies section of the package.json. These packages are essential for the core functionality of your application and are required when running the app in both development and production environments.
+
+Since npm version 5 and later, the --save flag is no longer necessary. By default, npm adds the installed package to dependencies without needing to specify --save.
+
+Key Features of --save
+Installs the package and adds it to the "dependencies" section in package.json.
+Ensures the package is installed when running npm install in a cloned repository.
+Required for production environments.
+Example of Using --save
+
+npm install express --save
+This command installs the express package and adds it to the dependencies section in the package.json
+
+"dependencies": {
+    "express": "^4.17.3"
+}
+Key Points
+
+--save adds a package to dependencies in the package.json.
+Packages installed with --save are required in both development and production environments.
+What is --save-dev?
+The --save-dev flag is used to install a package as a development dependency. Development dependencies are not necessary for the application to run in production but are required during the development process. These dependencies are typically used for tools like testing frameworks, build tools, linters, and other utilities that required in development but are not needed in the production environment.
+
+When you install a package with --save-dev, it is added to the devDependencies section of the package.json.
+
+Example of Using --save-dev
+
+npm install jest --save-dev
+This command installs the jest package and adds it to the devDependencies section in the package.json:
+
+"devDependencies": {
+    "jest": "^27.0.6"
+}
+Key Points
+
+--save-dev adds a package to devDependencies in the package.json.
+Packages installed with --save-dev are only needed during development and are not installed when the app is deployed in production.
+Key Differences Between --save and --save-dev
+1. Purpose and Use Case
+--save: Used for installing packages that are necessary for running the application in both development and production (e.g., frameworks, databases).
+--save-dev: Used for installing packages that are only needed during the development phase (e.g., testing tools, build systems, code linters).
+2. Location in package.json
+--save: Adds the package to the dependencies section in package.json.
+--save-dev: Adds the package to the devDependencies section in package.json.
+3. Impact on Production Deployment
+--save: Packages installed with --save are included when deploying the application in production.
+--save-dev: Packages installed with --save-dev are excluded when the application is deployed in production, making the production environment cleaner.
+4. Example of Use
+--save: Used when installing core libraries like express, react, or mongodb, which are required for your app to run.
+--save-dev: Used when installing tools like webpack, babel, or eslint, which help with the development process but aren’t needed in production.
+5. Default Behavior in npm 5+
+--save: Since npm 5, the --save flag is no longer required. By default, npm adds installed packages to dependencies in package.json.
+--save-dev: This flag is still necessary to install packages as development dependencies.
+When to Use --save?
+Use npm install package (default --save) when:
+
+The package is needed in production.
+It is part of the core application (e.g., frameworks, database clients, authentication tools).
+You want it installed when running the project in any environment.
+Examples: express, mongoose, jsonwebtoken, cors
+When to Use --save-dev?
+Use npm install package --save-dev when:
+
+The package is only needed for development (e.g., testing, debugging, building).
+It should not be included in production to keep the build lightweight.
+You need linters, testing libraries, or build tools.
+Examples: jest, eslint, prettier, webpack
+Conclusion
+The --save and --save-dev flags in Node.js are important for managing your project's dependencies in an organized manner. --save is used for installing packages that are essential for the core functionality of your application and should be included in production. --save-dev, on the other hand, is used for packages that are only necessary during development and should not be included in the production environment.
+
+With npm 5+, the --save flag is now the default behavior, and you no longer need to explicitly specify it. Understanding the difference between runtime dependencies and development dependencies is important for keeping your production environment clean and efficient, while also ensuring that you have the right tools available during development.
