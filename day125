@@ -1,0 +1,132 @@
+MongoDB is a widely used NoSQL database that provides flexibility and scalability for handling large volumes of data. One of the key methods in MongoDB for document deletion is the findOneAndDelete() method. This method allows us to delete a single document from a collection based on specified criteria and returns the deleted document.
+
+What is MongoDB findOneAndDelete() Method?
+The MongoDB findOneAndDelete() method deletes a single document based on the selection criteria from the collection. It deletes the first document from the collection that matches the given filter query expression. It takes five parameters the first parameter is the selection criteria and the others are optional. It is particularly useful when you need to delete a document and retrieve the deleted document for further use or auditing purposes.
+
+Key Features of the findOneAndDelete() Method
+Deletes one document from the collection based on the provided filter.
+Returns the deleted document, or null if no document matches.
+Allows us to specify projection, sorting, and write concerns to customize the operation.
+Useful for performing delete operations where you need the deleted document for auditing or further use.
+Syntax:
+
+db.Collection_name.findOneAndDelete(
+
+ Selection_criteria,
+
+{
+
+    projection: <document>,
+
+    sort: <document>,
+
+    maxTimeMS: <number>,
+
+    collation: <document>
+
+})
+
+Parameters:
+The first parameter is a selection criteria. The type of this parameter is a document.
+The second parameter is optional.
+Optional Parameters:
+projection: It allows us to select only the necessary data rather than selecting whole data from the document.
+sort: It specifies the sorting order for the documents matched by the selection criteria. The value 1 sort in increasing order and -1 sort in decreasing order.
+maxTimeMs: It is the maximum amount of time to allow the query to run.
+collation: It specifies the use of the collation for operations. This parameter allow us to set rules for how strings are compared such as considering letter case and accent marks. It's specified as a document.
+Return:
+If a document matches the given filter query then this method returns the deleted document.
+If no document matches the given filter query then this method return null.
+Examples of MongoDB findOneAndDelete()
+Let’s explore various examples of how the findOneAndDelete() method can be used in MongoDB. In the following examples, we are working with:
+
+Database: gfg
+Collections: student
+Document: Four documents contains name and age of the students
+
+Example 1: Delete A Document by Name
+Delete the first document where the name is "Bablue" from the student collection.
+
+Query:
+
+db.student.findOneAndDelete({name:"Bablue"})
+Output:
+
+
+Expalnation: This query finds a document in the `student` collection where the `name` is "Bablue", deletes that document, and returns the deleted document.
+
+Example 2: Find and Delete the document according to the selection criteria
+Delete the first document where age is 17, but sort the matching documents by age in descending order.
+
+Query:
+
+db.student.findOneAndDelete({age:17},{sort:{age:-1}})
+Output:
+
+
+Expalnation: This query finds a document in the `student` collection where the `age` is 17, sorts the matching documents by `age` in descending order, deletes the first document found, and returns the deleted document.
+
+Example 3: When no document matches the filter query.
+Delete a document where the name is "Sumit", but no such document exists in the collection.
+
+Query:
+
+db.student.findOneAndDelete({name: "Sumit"})
+Output:
+
+example3
+Explanation: Here, no sumit named document is present in the student collection. So, this method return null.
+
+Example 4: Delete A Document Using Write Concern
+Delete a document based on its _id, specifying a write concern for acknowledgment from the majority of the replica set.
+
+Query:
+
+db.student.deleteOne(
+   { "_id": ObjectId("601bd3ce0cf217478ba935b2") },
+   { writeConcern: { w: "majority", wtimeout: 5000 } }
+)
+Output :
+
+{     "acknowledged" : true,     "deletedCount" : 1 }
+Explanation: The deleteOne() method deletes a single document that matches the specified filter. The writeConcern option specifies the level of acknowledgment requested from MongoDB for write operations.
+
+Example 5: Sort And Delete A Document
+Sort the documents by name and delete the first document found.
+
+Query:
+
+db.student.find().sort({ "name": 1 }).limit(1).forEach(function(doc) {
+   db.student.deleteOne({ "_id": doc._id });
+});
+Output :
+
+{
+    "acknowledged" : true,
+    "deletedCount" : 1
+}
+Explanation: The find().sort().limit().forEach() method chain sorts the documents by name and deletes the first document found.
+
+Example 6: Update Document with Time Limit
+MongoDB does not directly support updating a document with a time limit. However, we can achieve similar functionality by updating a document and then setting a TTL (Time-To-Live) index on a date field. This will automatically delete the document after a specified period of time. For example, to update a document and set a TTL index:
+
+Query:
+
+db.student.updateOne(
+   { "_id": ObjectId("601bd3ce0cf217478ba935b2") },
+   { $set: { "status": "inactive", "expiryDate": new Date(Date.now() + 86400000) } }
+);
+db.student.createIndex( { "expiryDate": 1 }, { expireAfterSeconds: 0 } )
+Output:
+
+{ "n" : 1, "nModified" : 1, "ok" : 1 }
+Explanation:In this example, expiryDate is set to be one day from the current date (Date.now() + 86400000 represents milliseconds in a day), and a TTL index is created on expiryDate to automatically delete documents after their expiryDate value.
+
+Best Practices for Using MongoDB findOneAndDelete()
+Use Projections: When you don’t need the entire document, use projections to include or exclude specific fields, improving performance and reducing data load.
+Sorting: Always define the sorting order if you need to prioritize which document to delete when multiple documents match the filter.
+Handle null Results: Ensure that you handle the possibility of no document being deleted (i.e., when the result is null).
+Indexing: Ensure that frequently queried fields (like _id, name, or age) are indexed for faster query execution.
+Write Concerns: Use write concerns for critical delete operations to ensure the action is properly acknowledged by the database and is part of the replication process.
+Conclusion
+The MongoDB findOneAndDelete() method is an essential operation for deleting a single document from a collection based on specific criteria. Its flexibility in filtering, sorting, and projecting fields makes it a powerful tool for managing data in MongoDB collections. Whether we need to delete a document and retrieve it for logging or auditing purposes, this method provides the precise control needed for efficient data management.
