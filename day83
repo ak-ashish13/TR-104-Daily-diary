@@ -1,0 +1,141 @@
+Express Router Functions – Complete Reference
+What is Express Router?
+
+An Express Router is a mini Express application used to:
+
+Create modular routes
+
+Organize large applications
+
+Reuse routing logic
+
+const express = require('express');
+const router = express.Router();
+
+1. router.METHOD() Function
+Purpose
+
+Handles HTTP requests of a specific method.
+
+Syntax
+router.get(path, callback);
+router.post(path, callback);
+router.put(path, callback);
+router.delete(path, callback);
+
+Example
+router.get('/users', (req, res) => {
+  res.send('User List');
+});
+
+Mounted in App
+app.use('/api', router);
+
+Final URL
+/api/users
+
+2. router.all() Function
+Purpose
+
+Handles all HTTP methods for a given route.
+
+Example
+router.all('/test', (req, res) => {
+  res.send('Works for all methods');
+});
+
+Use Case
+
+Authentication checks
+
+Logging
+
+Route-level middleware
+
+3. router.param() Function
+Purpose
+
+Runs middleware whenever a route parameter is present.
+
+Syntax
+router.param(paramName, callback);
+
+Example
+router.param('id', (req, res, next, id) => {
+  console.log('User ID:', id);
+  next();
+});
+
+router.get('/user/:id', (req, res) => {
+  res.send(`User ${req.params.id}`);
+});
+
+4. router.route() Function
+Purpose
+
+Creates chainable route handlers for the same path.
+
+Example
+router.route('/student')
+  .get((req, res) => res.send('Get Student'))
+  .post((req, res) => res.send('Add Student'))
+  .put((req, res) => res.send('Update Student'));
+
+Advantage
+
+Clean and readable code
+
+Groups logic of same route
+
+5. router.use() Function
+Purpose
+
+Adds middleware to the router.
+
+Syntax
+router.use([path], middleware);
+
+Example
+router.use((req, res, next) => {
+  console.log('Router middleware');
+  next();
+});
+
+Mounting
+app.use('/api', router);
+
+Folder Structure (Real MERN Project)
+backend/
+ ├── routes/
+ │    └── userRoutes.js
+ ├── controllers/
+ ├── models/
+ └── app.js
+
+Complete Router Example
+const express = require('express');
+const router = express.Router();
+
+// Middleware
+router.use((req, res, next) => {
+  console.log('Request received');
+  next();
+});
+
+// Param middleware
+router.param('id', (req, res, next, id) => {
+  console.log('ID:', id);
+  next();
+});
+
+// Routes
+router.get('/users', (req, res) => {
+  res.send('All Users');
+});
+
+router.route('/user/:id')
+  .get((req, res) => res.send('Get User'))
+  .put((req, res) => res.send('Update User'))
+  .delete((req, res) => res.send('Delete User'));
+
+module.exports = router;
