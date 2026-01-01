@@ -1,0 +1,148 @@
+Node.js is a powerful, open-source, and cross-platform JavaScript runtime environment built on Chrome's V8 engine. It allows you to run JavaScript code outside the browser, making it ideal for building scalable server-side and networking applications.
+
+JavaScript was mainly used for frontend development earlier. With Node.js (introduced in 2009), JavaScript became a backend language as well.
+Non-blocking, event-driven architecture for high performance.
+Supports the creation of REST APIs, real-time applications, and microservices.
+Comes with a rich library of modules through npm (Node Package Manager).
+apriori_algorithm_9.webpapriori_algorithm_9.webp
+Note: Deploy Node.js applications on Hostinger’s VPS hosting for top-notch performance. Enjoy high-speed NVMe SSD storage and AMD EPYC processors for faster execution. Hostinger’s platform offers scalability, full control, and industry-standard KVM virtualization. Benefit from a 300 Mb/s network for seamless connectivity. Visit the website to get started now.
+
+To start with Node.js, you need to install and set it up on your machine. Follow these articles to install, depending on your system:
+
+How to Install Node.js on Windows?
+Installation of Node.js on Linux
+How to Install NodeJS on MacOS
+Let us now take a look at our first code example.
+
+
+// Import the http module
+const http = require("http");
+
+// Create a server
+const server = http.createServer((req, res) => {
+    res.statusCode = 200;
+    res.setHeader("Content-Type", "text/plain");
+    res.end("Welcome to the Node.js Tutorial");
+});
+
+// Listen on port 3000
+server.listen(3000, () => {
+    console.log(
+        "Server is running on http://localhost:3000");
+});
+It will start a server, and when you visit http://localhost:3000, it will display
+
+Welcome to the Node.js Tutorial
+The http module is imported to create a basic HTTP server.
+The createServer() method is used to handle incoming requests and send responses.
+The server listens on port 3000, and a message is displayed in the browser when accessed.
+Why Learn Node.js
+It Enables the use of JavaScript for both frontend and backend development.
+It Supports building real-time applications like chat apps and gaming servers.
+It Provides high scalability for I/O-heavy applications.
+It Backed by a vibrant community and extensive library support
+Introduction to Node.js
+Prerequisites: JavaScript and basic knowledge of web development
+
+Basics of Node.js
+Node.js Introduction
+Why Node.js?
+How Node.js Works?
+NPM (Node.jsPackage Manager)
+Installation of Node.js on Linux
+Installation of Node.js on Windows
+Basics
+First Application
+REPL
+modules
+Core modules
+Third Party modules
+Custom modules
+Blocking and Non-Blocking
+Callback Concept
+Debugging
+Set Console Font Color
+Web Server
+Create and Publish NPM packages
+Difference Between –save and –save-dev
+Event Loop
+Frameworks
+Promise Chaining
+This Binding
+Global Objects
+Automatic Restart Server with Nodemon
+Child Process
+Global Installation of Dependencies
+Session Variable
+Node.js Complete References
+Assert
+Buffer
+Console
+Crypto
+DNS
+File System
+Globals Objects
+HTTP Module
+HTTP2
+OS
+Path Module
+Process
+Query String
+Stream
+String Decoder
+Timers Module
+TLS/SSL Module
+UDP/DataGram
+URL
+Utility
+V8
+VM Module
+Zlib
+Also Check: Recent Articles on Node.js
+
+Node.js Interview Questions
+Interview Questions and Answers – Beginner Level
+Interview Questions and Answers – Intermediate Level
+Interview Questions and Answers – Advanced Level
+Node.js Online Quiz Questions
+Quiz | Set-1
+Quiz | Set-2
+Quiz | Set-3
+Node.js Projects
+Library Management System
+User Management System
+Stock Market Portfolio App
+Chat App using socket.io
+Mail sender
+Task Manager
+Video Call App
+AI Whatsapp Bot
+Real Time News Aggregator
+Careers with Node.js
+Around 6 million websites use Node.js, it is growing day by day. Most of the eCommerce, and IoT companies looking for pro Node.js developer.
+
+Accenture
+Google
+Cognizant
+HCL Technologies
+Capgemini
+IBM India
+Microsoft India
+Amazon India
+Adobe Inc
+Oracle Inc
+Intel India
+Deloitte India
+Cisco Systems Inc
+Node.js Advantages
+Easy Scalability: It compiles and executes JavaScript at lightning speeds, making it highly scalable.
+Real-time Web Apps: It enables real-time communication for chat, gaming, social media updates, and more.
+Microservices: It is lightweight and ideal for microservice architectures.
+JavaScript Everywhere: It Learn JavaScript once, and you can use it both for front-end and back-end development.
+Efficient Data Streaming: It efficiently handles I/O processes like media transcoding during uploads.
+Event-Driven Architecture: Unlike traditional servers, Node.js handles concurrent requests effectively.
+Strong Community Support: It has an independent community backing its development.
+Important Links
+Careers and Jobs in Node.js
+Companies That Use Node.js
+Node.js vs Django vs Spring
