@@ -1,0 +1,118 @@
+In NodeJS, blocking and non-blocking are two ways of writing code. Blocking code stops everything else until it's finished, while non-blocking code lets other things happen while it's waiting. This difference is key to understanding how NodeJS works and writing fast, efficient applications.
+
+Blocking in NodeJS
+When your code runs a task, it stops and waits for that task to completely finish before moving on to the next thing. It's like reading a book one word at a time, never skipping ahead.
+
+The program waits patiently for the current operation to finish.
+No other code can run until that operation is done.
+
+function myFunction() {
+    console.log("Starting a task...");
+    // Simulate a long-running task (blocking)
+    let sum = 0;
+    for (let i = 0; i < 1000000000; i++) { // A big loop!
+        sum += i;
+    }
+    console.log("Task finished!");
+    return sum;
+}
+
+console.log("Before the function call");
+let result = myFunction(); 
+console.log("After the function call");
+console.log("Result:", result);
+The for loop acts like a long-running task. The program waits for it to complete.
+The "After the function call" message doesn't print until the loop is totally done.
+This makes the code run step-by-step, one thing at a time.
+Output
+
+blocking code output 
+Blocking Operation in NodeJS
+Non-Blocking in NodeJS
+Non-blocking means your program can keep doing other things while a task is running in the background. It doesn't have to stop and wait for that task to finish before moving on.
+
+The program doesn't wait for the current task to complete.
+Other code can run while the task is working in the background.
+
+function myFunction() {
+    console.log("Starting a task...");
+    // Simulate a long-running task (non-blocking) - using setTimeout
+    setTimeout(() => {
+        let sum = 0;
+        for (let i = 0; i < 1000000000; i++) { // A big loop!
+            sum += i;
+        }
+        console.log("Task finished!");
+        console.log("Result:", sum);
+    }, 0); // The 0 delay makes it asynchronous
+}
+
+console.log("Before the function call");
+myFunction(); // The program doesn't wait here
+console.log("After the function call");
+The setTimeout makes the big loop run in the background. The program doesn't stop.
+"After the function call" prints before "Task finished!" because the loop runs later.
+This lets the program do multiple things "at the same time."
+Output
+
+Non-Blocking  output
+Non Blocking Operation in NodeJS
+Difference Between Blocking and Non-Blocking
+Here's a table which shows the key differences between blocking and non-blocking operations
+
+Feature	Blocking Operations	Non-Blocking Operations
+Execution	Waits until the operation completes.	Continues immediately; operation completes later.
+Thread Behavior	Current thread waits (is blocked).	Current thread continues; operation handled separately.
+Resource Usage	Easier to implement but may waste resources while waiting.	More complex but uses resources more efficiently.
+Responsiveness	Can cause delays if operations are slow.	Keeps application responsive during long operations.
+Use Cases	Simple tasks where waiting is acceptable.	Tasks requiring high responsiveness, like user interfaces.
+Complexity	Easier to implement.	Requires managing callbacks or async mechanisms.
+Examples	Reading a file entirely before proceeding.	Starting a file read and continuing without waiting.
+Error Handling	Errors handled immediately after the operation.	Errors handled later, often in callbacks or error handlers.
+Real-World Examples
+Let's see how blocking and non-blocking I/O work with web servers. This will show why non-blocking is so much better, especially in NodeJS.
+
+Blocking HTTP Server
+A blocking server handles one request at a time. If it's busy reading a file for one user, other users have to wait.
+
+const http = require('http');
+const fs = require('fs');
+http.createServer((req, res) => {
+    const data = fs.readFileSync('largeFile.txt', 'utf8'); // Blocking!
+    res.end(data);
+}).listen(3000);
+
+console.log("Server running at http://localhost:3000/");
+fs.readFileSync is blocking. The server stops and waits until the entire largeFile.txt is read.
+If another user tries to access the server while it's reading the file, they have to wait.
+Non-Blocking HTTP Server
+A non-blocking server can handle many requests at the same time. If it needs to read a file, it starts the read and then goes back to handling other requests. When the file is ready, the server is told about it and then it can send the data to the user.
+
+const http = require('http');
+const fs = require('fs');
+
+http.createServer((req, res) => {
+    fs.readFile('largeFile.txt', 'utf8', (err, data) => { // Non-blocking!
+        if (err) {
+            res.writeHead(500);
+            res.end("Error reading file");
+            return;
+        }
+        res.end(data);
+    });
+}).listen(3000);
+
+console.log("Server running at http://localhost:3000/");
+fs.readFile is non-blocking, allowing the server to handle other requests while the file is being read.
+This approach is much more efficient for concurrent requests, as the server remains responsive and doesn't wait for I/O operations to complete.
+How NodeJS Handles Non-Blocking I/O
+NodeJS handles non-blocking I/O using
+
+The Event Loop: A single thread (the event loop) manages asynchronous operations. When a task like file I/O or a network request is initiated, NodeJS delegates it and doesn't wait. The event loop continues processing other events.
+Callbacks: When the I/O operation completes, NodeJS is notified and executes a callback function associated with that task. This callback handles the result of the operation.
+Thread Pool: Certain tasks (like some file operations or computations) are handled by a thread pool. This prevents these tasks from blocking the event loop. The thread pool also uses callbacks to notify the event loop when a task is done.
+How Concurrency and throughput is handled?
+NodeJS is single-threaded, but it achieves concurrency through the event loop, which efficiently handles non-JavaScript operations, such as I/O tasks. Callback functions are sent to the event loop and executed only after other operations are completed.
+
+Concurrency: The event loop manages multiple operations, ensuring non-blocking asynchronous tasks are handled efficiently.
+Throughput: Non-blocking asynchronous operations are significantly faster than blocking synchronous ones, which helps in maximizing throughput.
