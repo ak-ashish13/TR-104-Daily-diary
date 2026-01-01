@@ -1,0 +1,145 @@
+What is Aggregation in MongoDB?
+
+Aggregation is used to process data and return computed results
+(similar to GROUP BY in SQL).
+
+👉 It works using an aggregation pipeline, where data passes through multiple stages.
+
+🔷 Aggregation Pipeline Structure
+db.collection.aggregate([
+  { stage1 },
+  { stage2 },
+  { stage3 }
+])
+
+
+Each stage transforms the data and passes it to the next stage.
+
+🔷 Common Aggregation Stages (Very Important)
+Stage	Use
+$match	Filter documents
+$group	Group data
+$project	Select/modify fields
+$sort	Sort documents
+$limit	Limit output
+$count	Count documents
+$lookup	Join collections
+$unwind	Split array into documents
+1️⃣ $match – Filter Data
+
+(Works like find())
+
+db.students.aggregate([
+  { $match: { course: "BCA" } }
+])
+
+2️⃣ $group – Group Data
+
+Used with aggregate functions
+
+db.students.aggregate([
+  {
+    $group: {
+      _id: "$course",
+      totalStudents: { $sum: 1 }
+    }
+  }
+])
+
+
+📌 Output: number of students per course
+
+3️⃣ $project – Select / Rename Fields
+db.students.aggregate([
+  {
+    $project: {
+      name: 1,
+      age: 1,
+      _id: 0
+    }
+  }
+])
+
+4️⃣ $sort – Sort Data
+db.students.aggregate([
+  { $sort: { age: -1 } }   // Descending
+])
+
+5️⃣ $limit – Limit Results
+db.students.aggregate([
+  { $limit: 5 }
+])
+
+6️⃣ $count – Count Documents
+db.students.aggregate([
+  { $count: "totalStudents" }
+])
+
+7️⃣ $lookup – JOIN Collections
+
+(Important for MERN)
+
+Example:
+
+students collection
+
+{ "name": "Amit", "deptId": 1 }
+
+
+departments collection
+
+{ "deptId": 1, "deptName": "Computer Science" }
+
+Aggregation:
+db.students.aggregate([
+  {
+    $lookup: {
+      from: "departments",
+      localField: "deptId",
+      foreignField: "deptId",
+      as: "departmentDetails"
+    }
+  }
+])
+
+
+➡️ Similar to SQL JOIN
+
+8️⃣ $unwind – Flatten Array
+db.students.aggregate([
+  { $unwind: "$subjects" }
+])
+
+
+Turns:
+
+["Math", "Physics"]
+
+
+Into separate documents.
+
+🔷 Multiple Stages Example (Real Viva Example)
+db.students.aggregate([
+  { $match: { course: "BCA" } },
+  {
+    $group: {
+      _id: "$year",
+      avgAge: { $avg: "$age" }
+    }
+  },
+  { $sort: { avgAge: -1 } }
+])
+
+🔷 Aggregation Operators
+Operator	Use
+$sum	Total
+$avg	Average
+$min	Minimum
+$max	Maximum
+$first	First value
+$last	Last value
+🔷 Aggregation vs Find()
+find()	aggregate()
+Simple queries	Complex processing
+No grouping	Supports grouping
+Faster for small tasks	Powerful for analytics
