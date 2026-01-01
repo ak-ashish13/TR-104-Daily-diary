@@ -1,0 +1,117 @@
+When building web applications with NodeJS, managing session data becomes an important task, especially for things like user authentication, shopping carts, or temporary data storage. In this article, we will explore how to use session variables in NodeJS. Unlike cookies, which are stored on the client side, session variables are stored in memory (or a database in some cases) on the server.
+
+Why Use Session Variables?
+User Authentication: Sessions are commonly used to store user authentication states (e.g., whether a user is logged in).
+Data Persistence: Session variables ensure that important data is available across multiple requests without requiring the user to send it back to the server every time.
+Improved User Experience: By maintaining session states, users can continue their activities on your website without interruptions.
+How to Set Up Session Variables in NodeJS?
+To begin using sessions in NodeJS, you need to install and configure a session middleware. The most popular one is express-session.
+
+Step 1: Initialize the project using the following command in the terminal 
+npm init -y
+Step 2: Install the following required modules using the terminal.
+npm install express express-session cookie-parser
+Using Session Variable in NodeJS
+This implementation shows how to use session variables to track a view counter for a client. When a user first visits the site, a unique session is created, and a cookie is assigned to the user. On subsequent visits, the server recognizes the user via the cookie, and the view counter is updated based on the session data, allowing you to track the number of visits a user has made to the site.
+
+
+const express = require("express");
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
+const PORT = 4000;
+
+const app = express();
+
+app.use(cookieParser());
+
+app.use(session({
+    secret: "amar",
+    saveUninitialized: true,
+    resave: true
+}));
+
+app.get('/', (req, res) => {
+    if (req.session.view) {
+        req.session.view++;
+        res.send("You visited this page for " 
+            + req.session.view + " times");
+    }
+    else {
+        req.session.view = 1;
+        res.send("You have visited this page"
+           + " for first time ! Welcome....");
+    }
+})
+
+app.listen(PORT, () =>
+    console.log(`Server running at ${PORT}`));
+Output: The number of times you visit the same page, the number of times the counter will increase.
+
+Run the file using the below command in the terminal.
+
+node app.js
+In this example
+
+The code imports the necessary modules: express, express-session, and cookie-parser, and sets up a server on port 4000.
+cookieParser() middleware is used to parse cookies, and express-session() middleware is configured to handle session management.
+When the user visits the homepage (/), it checks if the session has a view variable; if it exists, it increments the count to track page visits.
+If it’s the user’s first visit, it initializes the view variable and displays a welcome message; otherwise, it shows the number of times the page has been visited.
+Creating Login and Log out with session variables
+Suppose there are three links login, logout, and profile. The user can't go to the profile directly until he logged in. When the user logs in the session is created and the session will be destroyed after logout. 
+We are creating a login logout page. Whenever a user logs in we put that user into the session and throughout the session, the user stays in that session. When the user logs out, we will destroy the session.
+
+const express = require("express");
+const app = express();
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
+const PORT = 4000;
+
+app.use(cookieParser());
+
+app.use(session({
+    secret: "amar",
+    saveUninitialized: true,
+    resave: true
+}));
+
+const user = {
+    name: "Amar",
+    Roll_number: 43,
+    Address: "Pune"
+};
+
+app.get("/login", (req, res) => {
+    req.session.user = user;
+    req.session.save();
+    return res.send("Your are logged in");
+});
+
+app.get("/user", (req, res) => {
+    const sessionuser = req.session.user;
+    res.send(sessionuser);
+});
+
+app.get("/logout", (req, res) => {
+    req.session.destroy();
+    res.send("Your are logged out ");
+});
+
+app.listen(PORT, () => console.log(`Server at ${PORT}`));
+Step 5: Run the file using the following command in the terminal.
+
+node app.js
+Output
+
+In this example
+
+The code sets up an Express server with session management using express-session and cookie parsing with cookie-parser.
+A sample user object containing name, Roll_number, and Address is defined.
+When the user visits the /login route, their session is initialized with the user object, and a login success message is sent.
+The /user route retrieves the user data from the session and displays it, while the /logout route destroys the session and logs the user out.
+Best Practices for Using Sessions in NodeJS
+Use Secure Cookies: Always use secure cookies by setting the secure: true flag when running in a production environment with HTTPS.
+Session Expiration: Set a reasonable expiration time for your sessions to improve security.
+Session Data Encryption: If you're storing sensitive information, ensure that session data is encrypted before being stored on the server.
+Use a Persistent Session Store: For large applications, use a persistent session store like Redis or MongoDB instead of relying on in-memory storage.
+Avoid Storing Sensitive Information: Never store sensitive information such as passwords in session variables. Always store only the necessary identifiers or tokens.
+Suggested Quiz
