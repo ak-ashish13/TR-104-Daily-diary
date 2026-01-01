@@ -1,0 +1,209 @@
+Express Request Functions (req) – Complete Reference
+What is Express Request Object?
+
+The Request object (req) represents the HTTP request and contains information about:
+
+URL
+
+Parameters
+
+Query strings
+
+Headers
+
+Body data
+
+app.get('/user', (req, res) => {
+  console.log(req);
+});
+
+1. req.params
+Purpose
+
+Gets route parameters.
+
+Example
+app.get('/user/:id', (req, res) => {
+  res.send(req.params.id);
+});
+
+URL
+/user/101
+
+Output
+{ id: '101' }
+
+2. req.query
+Purpose
+
+Gets query string parameters.
+
+Example
+app.get('/search', (req, res) => {
+  res.send(req.query);
+});
+
+URL
+/search?name=ram&age=20
+
+Output
+{ name: 'ram', age: '20' }
+
+3. req.body
+Purpose
+
+Gets request body data (POST/PUT).
+
+Middleware Required
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+Example
+app.post('/login', (req, res) => {
+  console.log(req.body);
+});
+
+4. req.headers
+Purpose
+
+Returns all request headers.
+
+Example
+console.log(req.headers);
+
+5. req.get()
+Purpose
+
+Gets a specific header value.
+
+Example
+req.get('Content-Type');
+
+6. req.method
+Purpose
+
+Returns the HTTP method used.
+
+console.log(req.method); // GET, POST, PUT
+
+7. req.url
+Purpose
+
+Returns request URL.
+
+console.log(req.url);
+
+8. req.originalUrl
+Purpose
+
+Returns the original request URL.
+
+console.log(req.originalUrl);
+
+9. req.path
+Purpose
+
+Returns path of the request.
+
+console.log(req.path);
+
+10. req.protocol
+Purpose
+
+Returns protocol used (http or https).
+
+req.protocol;
+
+11. req.hostname
+Purpose
+
+Returns host name.
+
+req.hostname;
+
+12. req.ip
+Purpose
+
+Returns client IP address.
+
+req.ip;
+
+13. req.secure
+Purpose
+
+Checks if request is HTTPS.
+
+req.secure; // true / false
+
+14. req.cookies
+Purpose
+
+Access cookies.
+
+Middleware Required
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
+
+req.cookies;
+
+15. req.signedCookies
+Purpose
+
+Access signed cookies.
+
+req.signedCookies;
+
+16. req.accepts()
+Purpose
+
+Checks acceptable response types.
+
+req.accepts('json');
+
+17. req.is()
+Purpose
+
+Checks request content type.
+
+req.is('application/json');
+
+18. req.xhr
+Purpose
+
+Checks if request is AJAX.
+
+req.xhr; // true / false
+
+19. req.route
+Purpose
+
+Returns current route info.
+
+req.route;
+
+20. req.baseUrl
+Purpose
+
+Returns matched router path.
+
+req.baseUrl;
+
+21. req.subdomains
+Purpose
+
+Returns subdomains.
+
+req.subdomains;
+
+Summary Table (Viva Friendly)
+Function	Use
+req.params	Route parameters
+req.query	Query strings
+req.body	Request body
+req.headers	Request headers
+req.get()	Single header
+req.method	HTTP method
+req.url	URL
+req.ip	Client IP
+req.cookies	Cookies
+req.accepts()	Accepted types
