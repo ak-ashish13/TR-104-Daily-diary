@@ -1,0 +1,69 @@
+The deleteOne() method in MongoDB removes a single document from a collection that matches a specified filter. It is useful for deleting a specific document based on given criteria, helping maintain the integrity and relevance of the data in the collection.
+
+Features:
+
+Deletes one document based on the filter criteria.
+Ensures minimal impact by removing only the first matching document.
+Helps maintain data integrity by selectively removing irrelevant or outdated documents.
+Can be used with various query operators to match documents based on complex conditions.
+Syntax:
+
+db.Collection_name.deleteOne(
+selection_criteria:<document>,
+{
+    writeConcern: <document>,
+    collation: <document>,
+    hint: <document|string>
+})
+
+In the above syntax:
+
+selection criteria: Document specifying which documents to delete.
+writeConcern: Overrides the default write concern.
+collation: Defines language-specific rules for string comparison.
+hint: Specifies which index to use; must exist.
+Return
+This method returns a document that contains the following fields:
+
+acknowledged: It is a boolean field, if the value of this field is true then the operation run with write concern. If the value of this field is false, then the operation runs without write concern.
+deleteCount: This field contains the total number of deleted documents.
+Examples of MongoDB deleteOne() Method
+Let's look at some examples of the deleteOne method in MongoDB. In the following examples, we are working with:
+
+Database: gfg
+Collections: student
+Document: Four documents contains the name and the age of the students.
+demo mongodb database and collection
+
+Example 1: Delete One Document that Match Selection Criteria
+Delete the first matched document whose age is 17 from the student collection using the deleteOne() method.
+
+Query:
+
+db.student.deleteOne({age:17})
+original database and collection
+
+Output:
+
+database and collection after deleteone method
+
+Explanation:
+
+The document with age: 17 is removed from the collection.
+If no document matches, no document is deleted.
+Example 2: Deleting a Document from the 'student' Collection Based on Age
+Delete the first matched document whose age is less than 18 from the student collection using the deleteOne() method.
+
+Query:
+
+db.student.deleteOne({age:{$lt:18}})
+before deletion
+
+Output:
+
+after deletion
+
+Explanation:
+
+The $lt operator is used to specify that we want to delete the first document where age is less than 18.
+This query ensures that only one document is deleted, even if multiple documents meet the condition.
