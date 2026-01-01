@@ -1,0 +1,165 @@
+NodeJS is designed to be single-threaded, but it provides a child_process module to create and manage child processes. This allows you to run system commands, execute other scripts, and perform computationally expensive tasks in parallel. The child process module is essential for tasks like running shell commands, spawning worker processes, and integrating with other programs.
+
+Execute scripts (like Python, Bash, or another NodeJS script)
+Perform CPU-intensive operations without blocking the main event loop
+Create multiple processes that run in parallel (multi-threading in NodeJS)
+The child_process module in NodeJS provides four methods to create child processes:
+
+spawn: Launches a new process with a given command. It streams data between the parent and child processes.
+exec: Runs a command in a shell and buffers the output. It’s useful for short-running commands.
+execFile: Similar to exec, but it runs a specific executable file directly without a shell.
+fork: A special case of spawn used to create NodeJS child processes. It enables communication between parent and child processes using send and on('message').
+Methods to Create Child Processes
+1. spawn() method
+The spawn() method launches a new process with a specified command and arguments, providing streams for input/output. It's ideal for handling large outputs or long-running processes.
+
+
+const { spawn } = require('child_process');
+const child = spawn('ls', ['-lh', '/usr']);
+
+child.stdout.on('data', (data) => {
+    console.log(`stdout: ${data}`);
+});
+
+child.stderr.on('data', (data) => {
+    console.error(`stderr: ${data}`);
+});
+
+child.on('close', (code) => {
+    console.log(`child process exited with code ${code}`);
+});
+Output
+
+Child-Process
+Node child Process
+In this example
+
+spawn('ls', ['-lh', '/usr']): Executes the ls command with -lh and /usr as arguments.
+child.stdout.on('data', ...): Listens for data from the standard output.
+child.stderr.on('data', ...): Listens for data from the standard error.
+child.on('close', ...): Listens for the close event, indicating the process has finished.
+2. fork() method
+The fork() method is a special case of spawn() used specifically for spawning new NodeJS processes. It establishes an IPC (Inter-Process Communication) channel between the parent and child processes, allowing them to communicate via message passing.
+
+
+const { fork } = require('child_process');
+
+const child = fork('child.js');
+
+child.on('message', (message) => {
+  console.log(`Message from child: ${message}`);
+});
+
+child.send('Hello from parent');
+Output
+
+Fork-methode
+Fork methode
+In this example
+
+fork('child.js'): Spawns a new NodeJS process running the child.js module.
+child.on('message', ...): Listens for messages from the child process.
+child.send('Hello from parent'): Sends a message to the child process.
+3. exec() method
+The exec() method runs a command in a shell and buffers the output, which is suitable for short-lived commands with small outputs.
+
+
+const { exec } = require('child_process');
+
+// Counts the number of directory in
+// current working directory
+exec('dir | find /c /v ""', (error, stdout, stderr) => {
+    if (error) {
+        console.error(`exec error: ${error}`);
+        return;
+    }
+    console.log(`stdout: No. of directories = ${stdout}`);
+    if (stderr != "")
+        console.error(`stderr: ${stderr}`);
+});
+Output
+
+Execute-method
+exec methdo
+In this example
+
+exec('ls -lh /usr', ...): Executes the ls command with -lh and /usr as arguments.
+The callback receives error, stdout, and stderr as parameters.
+Logs the standard output and error to the console.
+4. execFile() method
+The execFile() method runs an executable file directly without spawning a shell, making it more efficient than exec() for running binaries and scripts directly.
+
+
+const { execFile } = require('child_process');
+
+execFile('node', ['--version'], (error, stdout, stderr) => {
+    if (error) {
+        console.error(`execFile error: ${error}`);
+        return;
+    }
+    console.log(`stdout: ${stdout}`);
+    if (stderr) {
+        console.error(`stderr: ${stderr}`);
+    }
+});
+execFile('node', ['--version'], ...): Executes the NodeJS binary with the --version flag.
+The callback receives error, stdout, and stderr as parameters.
+Logs the standard output and error to the console.
+Comparison of exec, execFile, spawn, and fork
+Method
+
+Use Shell?
+
+Returns Output
+
+Streaming
+
+Use Cases
+
+exec()
+
+Yes
+
+Buffers output
+
+No
+
+Small shell commands
+
+execFile()
+
+No
+
+Buffers output
+
+No
+
+Running binary files
+
+spawn()
+
+Yes
+
+No (streams instead)
+
+Yes
+
+Handling large outputs
+
+fork()
+
+No
+
+Uses message passing
+
+Yes
+
+Running child NodeJS processes
+
+Best Practices for Using Child Processes
+Use exec() for simple shell commands (when output size is small).
+Use execFile() for executing binary files (faster & safer).
+Use spawn() for handling large data or real-time output streaming.
+Use fork() for multi-processing and parallel execution in NodeJS.
+Always handle errors properly (use stderr and error events).
+Use asynchronous methods whenever possible to avoid blocking the event loop.
