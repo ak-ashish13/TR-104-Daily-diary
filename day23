@@ -1,0 +1,501 @@
+A CSS ruleset is the foundation of how styles are applied to HTML elements on a web page. It consists of a selector and one or more declarations, which define how elements are displayed.
+
+A CSS ruleset is made up of a selector and declarations.
+The selector targets HTML elements to apply styles.
+Declarations are pairs of property names and values that define how the selected elements should be styled.
+The declarations are enclosed in curly braces {}.
+
+
+
+
+↔​
+    <style>
+        /* This is a CSS ruleset */
+        p {
+            color: blue;
+            font-size: 16px;
+        }
+    </style>
+↔​
+In the example,
+
+The selector is p, which targets all <p> (paragraph) elements in the HTML.
+The declarations define how the <p> element should look. The color property changes the text color to blue, and the font-size property sets the text size to 16px.
+Types of Selectors
+Selectors in CSS are used to target HTML elements that you want to style. They are the first part of a ruleset.
+
+Type Selector: Targets elements by their tag name (e.g., div, p).
+Class Selector: Targets elements by their class (e.g., .my Class).
+ID Selector: Targets an element by its ID (e.g., #myId).
+Universal Selector: Targets all elements (e.g., *).
+Attribute Selector: Targets elements based on their attributes (e.g., [type="text"]).
+Click to enlarge
+CSS Ruleset
+Selectors: Targeting Elements
+Selectors determine which HTML elements the styles apply to. They play a very important role in determining the element on which the set of rules are to be applied. Here are some common types.
+
+1. Universal Selector
+The universal selector targets all the elements that are visible on the screen that means it targets the complete cross-axis and main-axis of the screen we could also say it as the view-width and view-height of the screen.
+
+
+
+
+
+↔​
+    <style>
+        * {
+            font-family: sans-serif;
+            font-weight: 900;
+        }
+    </style>
+↔​
+In this code the font-family and the font-size property will be applied to all the paragraph tags no matter what id they contain ,because the universal selector targets all the hat are inside it's view width and view height.
+
+2. Type Selector
+Targets specific HTML tags.
+
+
+
+
+
+↔​
+    <style>
+        h1 {
+            font-size: 25px;
+        }
+    </style>
+↔​
+3. Class Selector
+Targets elements with a specific class attribute. Classes start with a dot (.).
+
+
+
+
+
+↔​
+    <style>
+        .alert {
+            height: 200px;
+            width: 200px;
+            background-color: blueviolet;
+            color: white;
+            font-size: 23px;
+        }
+    </style>
+↔​
+4. ID Selector
+Targets an element with a specific id attribute. IDs start with a hash (#).
+
+
+
+
+
+↔​
+    <style>
+        #GFG {
+            height: 200px;
+            width: 200px;
+            background-color: blueviolet;
+            color: white;
+            font-size: 23px;
+            text-align: center;
+        }
+    </style>
+↔​
+5. Grouping Selector
+Applies the same style to multiple elements. Same style can be applied on different elements with the help of grouping.
+
+
+
+
+
+↔​
+    <style>
+       h1,h2,h3{
+        font-family: sans-serif;
+        font-size: 25px;
+        color: green;
+       }
+    </style>
+↔​
+6. Descendant Selector
+The descendant selector helps to apply rule sets to all the children of a parent. It is denoted by a gap, whether they are direct or indirect children.
+
+
+
+
+
+↔​
+    <style>
+        #one p {
+            color: blueviolet;
+        }
+    </style>
+↔​
+7. Child Selector
+targets all direct children of a parent it uses >(decrement operator) as a child selector.
+
+
+
+
+
+↔​
+    <style>
+        #one>p {
+            color: blueviolet;
+        }
+    </style>
+↔​
+8. Pseudo-classes
+Applies style based on state of an element.
+
+
+
+
+
+↔​
+    <style>
+        #one {
+            height: 200px;
+            width: 200px;
+            border: 2px solid black;
+        }
+​
+        #one:hover {
+            background-color: blueviolet;
+        }
+    </style>
+↔​
+Declarations: Styling Properties
+A declaration specifies a CSS property and its value, separated by a colon (:). Declarations must end with a semicolon (;).
+
+1. Color and Background
+The declaration block to style the body of an element can be written by keeping body as a selector and the declaration must be kept within these {} braces.
+
+
+
+
+
+↔​
+    <style>
+        body {
+            color: black;
+            background-color: white;
+            background-image: url('background.jpg');
+        }
+    </style>
+↔​
+2. Font and Text
+The declaration block to style the h1 element by using an element selector.
+
+
+
+
+
+↔​
+    <style>
+        h1 {
+            font-size: 32px;
+            font-weight: bold;
+            text-align: center;
+            text-transform: uppercase;
+        }
+    </style>
+↔​
+3. Box Model (Margin, Padding, Border)
+The box model describes the structure of an element as a rectangular box consisting of content, padding, border, and margin.
+
+
+
+
+
+↔​
+    <style>
+        div {
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid black;
+        }
+    </style>
+↔​
+4. Positioning of elements within the width and height of the screen
+CSS positioning controls how an element is placed on a page using properties like static, relative, absolute, fixed, and sticky.
+
+
+
+
+
+↔​
+    <link rel="stylesheet" href="styles.css">
+↔​
+5. Flexbox
+Flexbox is a layout model that provides efficient alignment and distribution of space among items in a container, even if their size is dynamic.
+
+
+
+
+
+↔​
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: lightgray;
+        }
+​
+        .box {
+            width: 150px;
+            height: 150px;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+        }
+    </style>
+↔​
+6. Responsive Design
+Using media queries to adjust styles for different screen sizes.
+
+
+
+
+
+↔​
+<head>
+    <style>
+        body {
+            font-size: 16px;
+        }
+​
+        @media (max-width: 600px) {
+            body {
+                font-size: 14px;
+            }
+        }
+    </style>
+↔​
+7. Advanced Selectors
+Advanced selectors in CSS allow for more precise targeting of elements, such as using pseudo-classes (e.g., :nth-child()), pseudo-elements (e.g., ::before), attribute selectors, and combinators like > or ~. They enhance styling capabilities by enabling dynamic and contextual styling based on states, relationships, and element attributes.
+
+
+
+
+
+↔​
+    <style>
+        /* Attribute selector */
+        input[type="text"] {
+            border: 1px solid gray;
+            padding: 5px;
+        }
+​
+        /* Pseudo-element */
+        p::first-letter {
+            font-size: 2em;
+            color: red;
+        }
+    </style>
+↔​
+8. Pseudo-classes
+A pseudo-class is a keyword added to a selector that defines a special state of the selected elements. For example, you might want to style an element when the user hovers over it, or when a link has been visited.
+
+:hover-: Applies styles when the user hovers over an element .When the mouse pointer is over the button, its background turns brown, and text color changes to white.
+
+
+
+
+↔​
+    <style>
+        button:hover {
+            background-color: brown;
+            color: white;
+        }
+    </style>
+↔​
+
+
+hover
+rule sets applied on hover state of element
+:nth-child()-: Targets elements based on their position in a parent element. Alternates the background color of list items, creating a striped effect.
+
+
+
+
+↔​
+    <style>
+        li:nth-child(odd) {
+            background-color: #f0f0f0;
+            /* Light gray */
+        }
+​
+        li:nth-child(even) {
+            background-color: #ffffff;
+            /* White */
+        }
+​
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+​
+        li {
+            padding: 10px;
+        }
+    </style>
+↔​
+:focus –: Applies styles when an element (like an input field) is focused .When a user clicks or tabs into an input field, the border changes to green and the outline is removed.
+
+
+
+
+↔​
+    <style>
+        input:focus {
+            border: 2px solid green;
+            outline: none;
+        }
+​
+        input {
+            border: 1px solid gray;
+            padding: 5px;
+            width: 200px;
+        }
+    </style>
+↔​
+:visited –:Styles links that the user has already clicked .Changes the color of links that the user has already visited to purple.
+
+
+
+
+↔​
+    <style>
+        a:visited {
+            color: purple;
+        }
+​
+        a {
+            color: blue;
+            text-decoration: none;
+            font-size: 18px;
+        }
+    </style>
+↔​
+:not() –: Excludes elements that match a specific selector .Styles all <p> elements except those with the class .special.
+
+
+
+
+↔​
+    <style>
+        p:not(.special) {
+            color: gray;
+        }
+​
+        p.special {
+            color: blue;
+            font-weight: bold;
+        }
+    </style>
+↔​
+9. Pseudo-Elements
+A pseudo-element allows you to style specific parts of an element, such as the first letter or the first line, or even insert content before or after the element.
+
+(Note: Double colons :: are recommended for pseudo-elements, but some older browsers also support a single colon :)
+
+::before –: Inserts content before an element .Adds a red arrow emoji before every <h1>.
+
+
+
+
+↔​
+    <style>
+        h1::before {
+            content: "👉 ";
+            color: red;
+        }
+    </style>
+↔​
+::after –: Inserts content after an element. Appends " (Read more)" to every paragraph.
+
+
+
+
+↔​
+    <style>
+        p::after {
+            content: " (Read more)";
+            color: blue;
+        }
+    </style>
+↔​
+::first-letter – : Styles the first letter of a block of text.
+
+
+
+
+↔​
+    <style>
+        p::first-letter {
+            font-size: 100px;
+            color: red;
+        }
+​
+        p {
+            color: green;
+        }
+    </style>
+↔​
+this code enlarges the first letter of the paragraph which is w in this case.
+
+Screenshot-2024-12-04-114023
+first letter got selected and rules are set on to it
+::first-line –: Styles the first line of a block of text. Makes the first line bold and uppercase.
+
+
+
+
+↔​
+    <style>
+        p::first-line {
+            font-size: 30px;
+            font-family: sans-serif;
+            font-weight: 900;
+        }
+​
+        p {
+            color: green;
+        }
+    </style>
+↔​
+::placeholder –: Styles the placeholder text in input fields. Changes the appearance of placeholder text in input fields.
+
+
+
+
+↔​
+    <style>
+        input::placeholder {
+            color: gray;
+            font-style: italic;
+            font-size: 12px;
+            font-weight: 900;
+        }
+​
+        input {
+            height: 50px;
+            width: 200px;
+        }
+    </style>
+↔​
+Screenshot-2024-12-04-115054
+rule set's applied on input's placeholder
+10. Combining Pseudo-Classes and Pseudo-Elements
+You can use pseudo-classes and pseudo-elements together for advanced styling. On hovering the button a flame symbol will appear before the content ie Click me in the button.
+
+
+
+
+
