@@ -1,0 +1,56 @@
+NodeJS is a runtime environment for executing JavaScript outside the browser, built on the V8 JavaScript engine. It enables server-side development, supports asynchronous, event-driven programming, and efficiently handles scalable network applications.
+
+Nodejs
+Nodejs
+Hello, World!” Program in NodeJS
+A “Hello, World!” program is the simplest way to get started with NodeJS. Unlike the browser, where JavaScript runs inside the console, NodeJs executes JavaScript in a server environment or via the command line.
+
+
+console.log("Hello, World!");
+Output:
+
+helloworld
+Hello, World! in NodeJS
+Key Features of NodeJS
+Server-Side JavaScript: NodeJS allows JavaScript to run outside the browser, enabling backend development.
+Asynchronous & Non-Blocking: Uses an event-driven architecture to handle multiple requests without waiting, improving performance.
+Single-Threaded Event Loop: Efficiently manages concurrent tasks using a single thread, avoiding thread overhead.
+V8 Chrome Engine: High performance, Open-Source Javascript web assembly engine developed by google and rewoned for compiling JS into native machine code to execute it with exceptional speed..
+Scalable & Lightweight: Ideal for building microservices and handling high-traffic applications efficiently.
+Rich NPM Ecosystem: Access to thousands of open-source libraries through Node Package Manager (NPM) for faster development.
+How NodeJS Works?
+NodeJS is a runtime environment that allows JavaScript to run outside the browser. It is asynchronous, event-driven, and built on the V8 JavaScript engine, making it ideal for scalable network applications.
+
+request.webprequest.webp
+
+Single-Threaded Event Loop Model
+NodeJS operates on a single thread but efficiently handles multiple concurrent requests using an event loop.
+
+Client Sends a Request: The request can be for data retrieval, file access, or database queries.
+NodeJS Places the Request in the Event Loop: If the request is non-blocking (e.g., database fetch), it is sent to a worker thread without blocking execution.
+Asynchronous Operations Continue in Background: While waiting for a response, NodeJS processes other tasks.
+Callback Execution: Once the operation completes, the callback function executes, and the response is sent back to the client.
+
+const fs = require('fs');
+
+fs.readFile('file.txt', 'utf8', (err, data) => {
+    if (err) throw err;
+    console.log(data); 
+});
+
+console.log("Reading file..."); 
+Components of NodeJS Architecture
+V8 Engine: Compiles JavaScript to machine code for fast execution.
+Event Loop: Manages asynchronous tasks without blocking the main thread.
+Libuv: Handles I/O operations, thread pool, and timers.
+Non-Blocking I/O: Executes tasks without waiting for previous ones to complete.
+Where to Use NodeJS?
+NodeJS is best suited for applications that require high performance, scalability, and real-time processing. Below are some common use cases:
+
+Web APIs and Backend Services : Ideal for building RESTful APIs and GraphQL APIs. It also Used in backend services for mobile apps and web applications.
+Real-Time Applications: Chat applications (e.g., WhatsApp, Slack). Live streaming services (e.g., Netflix, Twitch).
+Microservices Architecture: It helps in developing scalable and independent services. It also used in cloud-based applications.
+IoT (Internet of Things) Applications: Handles real-time data streaming from IoT devices. It is suitable for smart home automation and sensor-based systems.
+Serverless Computing: Works well with AWS Lambda, Azure Functions, and Google Cloud Functions. Runs lightweight serverless functions efficiently.
+Single-Page Applications (SPAs): It used in React, Angular, and Vue.js applications. It manages API requests efficiently in the backend.
+Data-Intensive Applications: It used for big data processing and real-time analytics. It works well with NoSQL databases like MongoDB and Firebase.
