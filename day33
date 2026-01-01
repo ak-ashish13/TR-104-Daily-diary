@@ -1,0 +1,110 @@
+Control flow statements in JavaScript control the order in which code is executed. These statements allow you to make decisions, repeat tasks, and jump between parts of a program based on specific conditions.
+
+JavaScript if Statement
+The if statement executes a block of code only if a specified condition is true.
+
+if_statement
+
+
+
+Loading Playground...
+const age = 18;
+if (age >= 18) {
+    console.log("You are an adult.");
+}
+
+Output
+You are an adult.
+Checks if age is greater than or equal to 18.
+Logs "You are an adult." if the condition is true.
+JavaScript if...else Statement
+The if...else statement provides an alternate block of code to execute if the condition is false.
+
+if_else_statement
+
+
+
+Loading Playground...
+const score = 40;
+if (score >= 50) {
+    console.log("You passed.");
+} else {
+    console.log("You failed.");
+}
+
+Output
+You failed.
+It will log "You passed." if the score is 50 or more.
+Otherwise, logs "You failed."
+JavaScript if...else if...else Statement
+The if...else if...else statement is used when you want to handle multiple conditions.
+
+if_else_if_else_statement
+
+
+
+Loading Playground...
+const temp = 25;
+if (temp > 30) {
+    console.log("It's hot.");
+} else if (temp >= 20) {
+    console.log("It's warm.");
+} else {
+    console.log("It's cold.");
+}
+
+Output
+It's warm.
+Checks if the temperature is greater than 30, logs "It's hot."
+If not, checks if it's between 20 and 30, logs "It's warm."
+Otherwise, logs "It's cold."
+JavaScript switch Statement
+The switch statement evaluates an expression and executes a block of code based on matching cases. It provides an alternative to long if-else chain.
+
+switch_statement
+
+
+
+Loading Playground...
+const day = "Monday";
+switch (day) {
+    case "Monday":
+        console.log("Start of the week.");
+        break;
+    case "Friday":
+        console.log("End of the workweek.");
+        break;
+    default:
+        console.log("It's a regular day.");
+}
+
+Output
+Start of the week.
+Checks the value of day and matches it to a case.
+Logs "Start of the week." if day is "Monday".
+Logs "End of the workweek." if day is "Friday".
+Logs "It's a regular day." if no cases match.
+JavaScript Ternary Operator or Conditional Operator:
+In some programming languages, a ternary operator is used to assign a value to a variable based on a condition.
+
+ternary_operator_or_conditional_operator
+
+
+
+Loading Playground...
+let a = 10;
+console.log(a === 5 ? "a is equal to 5" : "a is not equal to 5");
+Output
+
+a is not equal to 5
+Variable Declaration: let a = 10; assigns 10 to variable a.
+Ternary Operator: a === 5 ? "a is equal to 5" : "a is not equal to 5"; checks if a is strictly equal to 5.
+If true, it returns "a is equal to 5".
+If false, it returns "a is not equal to 5".
+Uses of Control Flow Statements
+Control flow statements are backbone in programming for
+
+Decision-Making: To execute specific blocks of code based on conditions (e.g., if, if...else).
+Branching: To exit loops or skip iterations (break, continue).
+Looping: To repeat tasks (for, while, do...while).
+Switching: To handle multiple conditions effectively (switch).
