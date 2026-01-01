@@ -1,0 +1,157 @@
+Prop drilling refers to the practice of passing data through several layers of nested components in React, even though intermediate components don't directly utilize this data. This means that a middle component doesn't necessarily need the data, but it must still pass it down to the next component, creating an unnecessary and sometimes lengthy chain of props.
+
+Example
+
+
+import React from "react";
+
+// Parent component that holds the message and passes it down
+function Parent() {
+    const message = "Hello from Parent";
+    return (
+        <div>
+            <Child message={message} />
+        </div>
+    );
+}
+
+function Child({ message }) {
+    return (
+        <div>
+            <Grandchild message={message} />
+        </div>
+    );
+}
+
+function Grandchild({ message }) {
+    return (
+        <div>
+            <p>Message: {message}</p>
+        </div>
+    );
+}
+
+export default function App() {
+    return (
+        <div>
+            <Parent />
+        </div>
+    );
+}
+Output
+
+Message: Hello from Parent
+In this example, the message is passed from Parent to Grandchild through the Child, even though the Child does not use it. This can become unmanageable as the app scales.
+
+Why Prop Drilling is Problematic?
+Prop drilling is problematic because:
+
+Code Complexity: It makes the component tree overly complicated, as intermediate components receive and forward props without using them, cluttering your code and causing confusion.
+Maintenance Overhead: Any change to the props requires updating multiple components, which can be time-consuming and error-prone.
+Reduced Readability: It becomes difficult to trace how and where data flows through components, making debugging and development more challenging.
+Tight Component Coupling: Components become less reusable and more tightly coupled, leading to reduced flexibility and difficulties in refactoring.
+Scalability Issues: As your application grows, prop drilling worsens, leading to further complexity and making the app harder to scale effectively.
+How to Avoid Prop Drilling Problem?
+Below are the some approaches which is used to avoid prop drilling:
+
+1. Using Context API
+The React Context API provides a way to share values (like state, functions, or constants) between components without explicitly passing props.
+
+
+import React, { createContext, useContext } from 'react';
+const UserContext = createContext();
+const App = () => {
+    const userName = 'geeksforgeeks';
+    return (
+        <UserContext.Provider value={userName}>
+            <Parent />
+        </UserContext.Provider>
+    );
+};
+const Parent = () => {
+    return <Child />;
+};
+const Child = () => {
+    return <GrandChild />;
+};
+const GrandChild = () => {
+    const userName = useContext(UserContext); // Access context value
+    return <p>Hello, {userName}!</p>;
+};
+export default App;
+Output
+
+Hello geeksforgeeks!
+In this example
+
+createContext() creates a context (UserContext) to share data across components.
+The App component uses UserContext.Provider to pass userName ('geeksforgeeks') as the context value.
+ParentComponent and its children (ChildComponent, GrandChildComponent) are wrapped by the provider.
+GrandChildComponent accesses the context value using useContext(UserContext).
+The value ('geeksforgeeks') is displayed in a <p> tag as “Hello, geeksforgeeks!”.
+2. Using Custom Hooks
+Custom hooks are reusable functions in React that encapsulate stateful logic, starting with use (e.g., useFetch). They improve code reusability, keep components clean, and allow sharing logic across components.
+
+
+import React, { createContext, useContext } from "react";
+const UserContext = createContext();
+const useUser = () => { return useContext(UserContext); };
+const App = () => {
+    const userName = "GeeksforGeeks";
+
+    return (
+        <UserContext.Provider value={userName}>
+            <Component />
+        </UserContext.Provider>
+    );
+};
+const Component = () => {
+    return <Child />;
+};
+const Child = () => { return <Grand />; };
+const Grand = () => {
+    const userName = useUser();
+    return <p>Hello, {userName}!</p>;
+};
+export default App;
+Output
+
+Hello, GeeksforGeeks!
+In this example
+
+createContext() creates UserContext to share data across components.
+useUser() is a custom hook wrapping useContext(UserContext) for simplicity.
+App provides the context value ("GeeksforGeeks") using UserContext.Provider.
+Nested components (Component, Child, Grand) inherit the context value.
+Grand accesses the value via useUser() and displays "Hello, GeeksforGeeks!
+3. Global State Management (Redux, Zustand, MobX)
+In this approach we use libraries such as Redux, Zustand, or MobX manage application state globally, eliminating the need for prop drilling entirely.
+
+
+import { configureStore, createSlice } from "@reduxjs/toolkit";
+
+const userSlice = createSlice({
+    name: "user",
+    initialState: { name: "Amit", age: 30 },
+    reducers: {}
+});
+
+const store = configureStore({
+    reducer: {
+        user: userSlice.reducer
+    }
+});
+
+export default store;
+Output
+
+User Profile
+Name: Amit
+Age: 30 years old
+In this code
+
+store.js: Creates a Redux store containing initial user data { name: "Amit", age: 30 }.
+App.jsx: Uses the Redux Provider to share the Redux store globally with all child components.
+UserProfile.jsx: Retrieves the user data (name and age) directly from the Redux store using the useSelector hook and renders it to the UI.
+Conclusion
+Prop drilling can complicate your React applications, making them harder to maintain and scale. By using modern approaches like React’s Context API, state management libraries, or custom hooks, you can simplify data sharing across components. Adopting these strategies helps you build cleaner, more efficient, and maintainable React apps.
