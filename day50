@@ -1,0 +1,110 @@
+In ReactJS PropTypes are the property that is mainly shared between the parent components to the child components. It is used to solve the type validation problem.
+
+Type Safety: When the wrong data type is passed in the component, PropTypes help find the issues.
+Better Debugging: During development, they give warning messages in the console, which makes it easier to find the bugs.
+Improved Documentation: It acts as self-documentation for your components, showing the expected types of props.
+Prevents Runtime Errors: We can avoid errors caused by unexpected data types during the execution of the application, by enforcing prop types.
+Note: In the latest version of the react 19 the proptypes has been removed. It was deprecated in react version 15.5.
+
+How to Use PropTypes in React?
+Below are the steps to use PropTypes in React:
+
+Step 1: Install the prop-types Package
+npx create-react-app react-app
+cd react-app
+npm install prop-types
+Project Structure
+Output
+
+//src/components/Button.js
+
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const Button = ({ label, type }) => {
+    return <button className={`btn btn-${type}`}>{label}</button>;
+};
+
+Button.propTypes = {
+    label: PropTypes.string.isRequired,
+    type: PropTypes.oneOf(['primary', 'secondary', 'danger']).isRequired,
+};
+
+export default Button;
+Output
+
+Screenshot-2025-02-20-112235
+ReactJS PropTypes
+In this example
+
+three reusable components are there Greeting, Button, and UserProfile, each with PropTypes validation to implement correct prop types and default values.
+Greeting displays a personalized message and age (default age: 25 if not provided).
+Button enforces type as one of ['primary', 'secondary', 'danger'].
+UserProfile expects a user object with name, age, and email.
+The App component renders Greeting, Button, and UserProfile, passing props like name, age, label, type, and user object.
+The index.js file initializes the React app using ReactDOM.createRoot() and renders the App component inside <React.StrictMode>, ensuring best practices and error handling.
+Common PropTypes Validators
+Here's a list of common PropTypes validators:
+
+PropType	Description
+PropTypes.string	Confirms the prop is a string.
+PropTypes.number	Confirms the prop is a number.
+PropTypes.bool	Confirms the prop is a boolean (true or false).
+PropTypes.func	Confirms the prop is a function.
+PropTypes.array	Confirms the prop is an array.
+PropTypes.object	Confirms the prop is an object.
+PropTypes.node	Confirms the prop can be anything that can be rendered (e.g., numbers, strings, elements, or an array of elements).
+PropTypes.element	Confirms the prop is a React element.
+PropTypes.instanceOf(Class)	Confirms the prop is an instance of a particular class.
+PropTypes.oneOf([value1, value2])	Confirms the prop matches one of the provided values.
+PropTypes.oneOfType([type1, type2])	Confirms the prop matches one of the provided types.
+PropTypes.arrayOf(type)	Confirms the prop is an array of a specific type.
+PropTypes.objectOf(type)	Confirms the prop is an object where all values are of a specific type.
+PropTypes.shape({})	Confirms the prop is an object with a specific shape.
+Advanced PropTypes Usage
+Below are some of the advanced PropTypes usage:
+
+Default Props
+By using the defaultProps we can also specify the default values for props. This is used when certain props are optional and we want to set a default value in case they are not passed.
+
+Greeting.defaultProps = {
+    name: 'Guest',
+    age: 18,
+};
+With this, if no name or age is provided, the component will use 'Guest' and 18 as default values.
+
+PropTypes with Arrays and Objects
+Array of specific types:
+
+Component.propTypes = {
+    items: PropTypes.arrayOf(PropTypes.string),
+};
+Object with specific shape:
+
+Component.propTypes = {
+    user: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+    }),
+};
+PropTypes with Custom Validation
+Component.propTypes = {
+    age: (props, propName, componentName) => {
+        if (props[propName] < 18) {
+            return new Error(`${componentName}: ${propName} should be at least 18.`);
+        }
+    },
+};
+PropTypes with Enum (One of Specific Values)
+We can use oneOf from setting the proper to set of predefined values.
+
+Button.propTypes = {
+    type: PropTypes.oneOf(['primary', 'secondary', 'danger']),
+};
+PropTypes with One of Multiple Types
+Component.propTypes = {
+    value: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+    ]),
+};
