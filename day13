@@ -1,0 +1,255 @@
+The HTML <img> tag is used to embed an image in web pages by linking them. It creates a placeholder for the image, defined by attributes like src, width, height, and alt, and does not require a closing tag.
+
+There are two ways to insert the images into a webpage:
+By providing a full path or address (URL) to access an internet file.
+By providing the file path relative to the location of the current web page file.
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" 
+          content="width=device-width, initial-scale=1.0">
+    <title>HTML</title>
+</head>
+<body>
+    <img src=
+"https://media.geeksforgeeks.org/wp-content/uploads/20210915115837/gfg3-300x300.png" 
+         alt="GFG image" />
+</body>
+</html>
+Output:
+
+gfg3-300x300
+The <img> tag is used to embed an image into the webpage.
+src attribute: Specifies the source URL of the image, which in this example is https://media.geeksforgeeks.org/wp-content/uploads/20210915115837/gfg3-300x300.png. The image is loaded from this URL when the webpage is accessed.
+alt attribute: Provides alternative text for the image, "GFG image," which describes the image content. If, for any reason, the image cannot be displayed, the text "GFG image" will be shown instead.
+Various HTML <img> Tag Attributes
+Here's, the different attributes of <img> tag:
+
+Attribute	Description
+src	Specifies the path to the image file.
+alt	Provides alternate text for the image, useful for accessibility and when the image cannot be displayed.
+crossorigin	Allows importing images from third-party sites with cross-origin access, typically used with canvas.
+height	Specifies the height of the image.
+width	Specifies the width of the image.
+ismap	Specifies an image as a server-side image map.
+loading	Specifies whether the browser should defer image loading or load it immediately.
+longdesc	Specifies a URL to a detailed description of the image.
+referrerpolicy	Specifies which referrer information to use when fetching the image.
+sizes	Specifies image sizes for different page layouts.
+srcset	Specifies a list of image files to use in different situations, allowing for responsive images.
+usemap	Specifies an image as a client-side image map.
+Table of Content
+
+HTML Image tag - alt Attribute
+Set Image Size - Width and Height Attribute
+Adding Titles to an Image
+Setting Style of an Image
+Set Image Alignment
+Adding Image as a Link
+Image Formats
+Tips for Using HTML Images Effectively
+Question About HTML Images
+HTML Image tag - alt Attribute
+The alt attribute in <img> tag provides a text alternative if the image fails to load. It aids accessibility for users unable to view images due to slow internet, src errors, or screen reader usage.
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" 
+          content="width=device-width, initial-scale=1.0">
+    <title>HTML</title>
+</head>
+<body>
+    <img src=
+"https://media.geeksforgeeks.org/wp-content/cdn-uploads/201907101022/download3.png"
+        alt="This is GeeksforGeeks logo" />
+</body>
+</html>
+The alt attribute provides a text description for the image.
+This text appears when the image fails to load or for screen readers.
+Set Image Size - Width and Height Attribute
+The width and height attributes are used to specify the width and height of an image. The attribute values are specified in pixels by default. The width and height attributes are always declared in pixels.
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" 
+          content="width=device-width, initial-scale=1.0">
+    <title>HTML</title>
+</head>
+<body>
+    <img src=
+"https://media.geeksforgeeks.org/wp-content/cdn-uploads/20190710102234/download3.png"
+        alt="GeeksforGeeks logo" 
+        width="300" 
+        height="300" />
+</body>
+</html>
+The width and height attributes set the displayed size of the image to 300×300 pixels.
+These attributes control how large the image appears on the webpage without changing the original file.
+Adding Titles to an Image
+The title attribute is displayed as a tooltip when a user hovers over the image. To add a title to an image, include the title attribute in the <img> tag, providing descriptive text for enhanced user interaction.
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" 
+          content="width=device-width, initial-scale=1.0">
+    <title>HTML</title>
+</head>
+<body>
+    <img src=
+"https://media.geeksforgeeks.org/wp-content/cdn-uploads/20190710102234/download3.png"
+        alt="GeeksforGeeks logo" 
+        width="200" 
+        height="200" 
+        title="Logo of GeeksforGeeks" />
+</body>
+</html>
+The title attribute shows a tooltip (“Logo of GeeksforGeeks”) when the user hovers over the image.
+It provides extra information about the image without affecting how it appears on the page.
+Setting Style of an Image
+In this example, we are using the border property to decorate the image. By default, every picture has a border around it. By using the border attribute, the thickness of the border can be changed. A thickness of "0" means that there will be no border around the picture.
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" 
+          content="width=device-width, initial-scale=1.0">
+    <title>HTML</title>
+</head>
+<body>
+    <img src=
+"https://media.geeksforgeeks.org/wp-content/cdn-uploads/20190710102234/download3.png"
+        alt="GeeksforGeeks logo" 
+        width="200" 
+        height="200" 
+        border="5" />
+</body>
+</html>
+The border attribute adds a visible outline, showing how an image’s style can be adjusted.
+This demonstrates basic styling, though modern styling is done using CSS.
+Set Image Alignment
+Aligning an image in HTML involves using the align attribute within the <img> tag to position it horizontally. Options include left, right, or center, enhancing page layout and visual appeal.
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" 
+          content="width=device-width, initial-scale=1.0">
+    <title>HTML</title>
+</head>
+<body>
+    <img 
+src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20190710102234/download3.png"
+        alt="GeeksforGeeks logo" 
+        align="right" />
+</body>
+</html>
+The align="right" attribute positions the image on the right side of the webpage.
+It shows how image alignment worked in older HTML, though CSS is now the recommended method.
+Adding Image as a Link
+To add an image as a link, enclose the <img> tag within an <a> tag, setting the image's source with the href attribute. This creates a clickable image linking to external content, such as images, videos, or other web pages.
+
+File paths are of two types:
+
+Absolute File Paths: It always contains the root element along with the complete directory list required to locate the file.
+Relative File Paths: It is the hierarchical path representation that locates the file or folder on a file system beginning from the current directory.
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" 
+          content="width=device-width, initial-scale=1.0">
+    <title>HTML</title>
+</head>
+<body>
+    <a href="https://www.geeksforgeeks.org/">
+        <img src=
+"https://media.geeksforgeeks.org/wp-content/cdn-uploads/20190710102234/download3.png"
+            alt="GeeksforGeeks logo" />
+    </a>
+</body>
+</html>
+Wrapping the <img> tag inside an <a> tag makes the image clickable and redirects users to the URL in href.
+This demonstrates how images can act as links, commonly used for logos or navigation.
+Adding Animated Image
+To add an animated image in HTML, use the <img> tag with the src attribute pointing to a GIF file, providing engaging motion to enhance webpage content.
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" 
+          content="width=device-width, initial-scale=1.0">
+    <title>HTML</title>
+</head>
+<body>
+    <img src="smiley.gif" 
+         alt="smiley" 
+         style="width: 200px; height: 200px" /> 
+</body>
+</html>
+The src attribute loads a GIF file, allowing the image to display animation on the webpage.
+The inline style sets the GIF’s width and height, controlling the displayed size of the animated image.
+Image Formats
+Here is the commonly used image file format that is supported by all the browsers.
+
+S.No.
+Abbreviation
+File Type
+Extension
+1. 	
+PNG
+
+Portable Network Graphics.	.png
+2.	
+JPEG.
+
+Joint Photographic Expert Group image.	.jpg, .jpeg, .jfif, .pjpeg, .pjp
+3. 	
+SVG
+
+Scalable Vector Graphics.	.svg.
+4.	
+GIF
+
+Graphics Interchange Format.	.gif
+5.	
+ICO
+
+Microsoft Icon.	.ico, .cur
+6.	
+APNG 
+
+Animated Portable Network Graphics.	.apng
