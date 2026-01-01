@@ -1,0 +1,70 @@
+CSS comments are used to add notes or explanations to your code, helping you and others understand it better.
+
+Comments can be added anywhere in the code, and they can span across multiple lines.
+It’s a good practice to add comments to clarify complex parts of your code for future reference or collaboration.
+Older methods like <!-- --> for hiding CSS in older browsers are outdated and not recommended.
+Comments are simply ignored by the browser, so they don't affect the output in any way.
+
+
+
+<!DOCTYPE html>
+<html>
+​
+<head>
+    <title>Single line comment</title>
+    <style>
+        h1 {
+            color: green;
+        }
+​
+        /* Single line comment */
+    </style>
+</head>
+​
+<body>
+    <h1>Study portal</h1>
+    <p> Study portal for CS students</p>
+</body>
+​
+</html>
+Syntax
+
+/* Code comments */
+Note: Comments are ignored by browsers, so they won’t affect how your webpage looks or works.
+
+This is a multiline comment:
+
+
+
+
+<!DOCTYPE html>
+<html>
+​
+<head>
+    <title>Multiline Comment</title>
+    <style>
+        h1 {
+            color: green;
+        }
+​
+        /* This is a multiline
+           comment */
+    </style>
+</head>
+​
+<body>
+    <h1>Study portal</h1>
+​
+    <p> A Computer Science portal </p>
+</body>
+​
+</html>
+CSS comments are universally supported across all modern browsers and platforms. Since they are ignored by the browser, they do not affect the visual layout or functionality of the web page. No special handling or cross-browser testing is required for comments.
+
+Comment
+R
+
+riyakalra59
+
+Follow
+
