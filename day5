@@ -1,0 +1,75 @@
+An HTML Editor is a software application designed to help users create and modify HTML code. It often includes features like syntax highlighting, tag completion, and error detection, which facilitate the coding process.
+
+There are two main types of HTML editors:
+
+Text-Based Editors - Allow direct coding with features like syntax highlighting and code completion for full control over the webpage structure. Example - Sublime Text, Visual Studio Code, etc.
+WYSIWYG (What You See Is What You Get) Editors - Offer a graphical interface to design web pages visually, automatically generating the corresponding HTML code. Example - Adobe Dreamweaver, etc.
+HTML Editors List
+There are various free and paid HTML editors available in the market, but in this article, we will be covering some renowned free HTML editors that you can use as a beginner or switch to if you are an experienced developer.
+
+1. Notepad
+Notepad is a simple text editor that is also used to write HTML code. It is an inbuilt desktop application available in Windows OS. 
+
+Steps to Write HTML Code in Text Editor:
+
+Step 1: Open any of the text editors of your choice. Here we are using the Notepad text editor.
+HTML editor - open Notepad
+
+Step 2: Create new file: File->New File or Ctrl+N.
+create new file
+
+Step 3:  Write HTML code in text editor.
+
+write html code
+Step 4: Save the file with a suitable name of your choice and a .html extension.
+save file
+
+Step 5: Open the saved HTML file in your favorite browser (double-click on the file, or right-click - and choose "Open with").
+open in browser
+
+2. Brackets
+Brackets is an open-source software primarily used for Web development. It provides live HTML, CSS, and JavaScript editing functionality. Similar to the Notepad editor, create a new file and save it with a .html extension to run the HTML file.
+
+brackets html editor
+
+3. Sublime Text Editor
+Sublime is a cross-platform code editor tool. It supports all markup languages and is used as an editor for HTML. Similar to the Notepad editor, create a new file and save it with a .html extension to run an HTML file.
+
+sublime html editor
+4. Atom
+Atom is an open-source code editor tool for MAC, Linux, and Windows. We can use Atom to write and edit HTML code. Similar to the Notepad editor, create a new file and save it with a .html extension to run an HTML file.
+
+atom html editor
+
+5. Visual Studio Code
+It is one of the most popular code editors of today's generation. Many companies and software developers prefer this online HTML code editor.
+
+Step 1: Open the VS code Editor and Install the Live Server. By clicking the extension button simply search live server on the search bar and download. Live server extension helps to run the code and display output.
+
+Step 1: Open the VS code Editor and Install the Live Server
+
+Step 2: Create a new File and save it with the .html extension and use the open live server button to click the right button.
+
+Create a new File and save it with the .html extension
+vs code
+HTML Editors Comparsion
+Editor	Platform	Key Features	Ideal For	Pros	Cons
+Notepad	Windows	Basic text editing, lightweight	Beginners	Pre-installed, simple to use	No advanced features like syntax highlighting or debugging
+VS Code	Cross-Platform	Live Server, Extensions, Debugging, Git Integration	Professionals	Highly extensible, supports multiple languages, great debugging tools	Can be resource-heavy for basic tasks
+Atom	Cross-Platform	Open-source, Collaborative Editing, Customizable UI	Advanced Learners	Flexible and extensible, integrates well with GitHub	Slower performance compared to other editors
+Brackets	Cross-Platform	Live Preview, Lightweight, Focused on Web Design	Frontend Developers	Real-time preview, supports web-centric workflows	Discontinued updates, limited community support
+Sublime Text	Cross-Platform	Fast, Multi-caret Editing, Syntax Highlighting	Developers looking for speed	Lightweight yet powerful, highly customizable	Paid license for full features
+Reasons to Use an HTML Editor
+Editors for HTML offer several advantages to writing and editing HTML codes. Some benefits of using HTML editors are:
+
+Syntax Highlighting: HTML editors use color-coding to distinguish tags, attributes, and content, making code more readable.
+Autocompletion: These editors suggest tags and correct common errors, improving coding speed.
+Code Validation: Built-in validators check for syntax issues and missing tags.
+Debugging Tools: Some editors offer debugging features to identify and fix errors.
+Customization Options: Customize the interface and settings to enhance your coding experience.
+How to Choose the Right HTML Editor?
+When selecting an HTML editor, consider the following factors:
+
+Skill level: Beginners might prefer WYSIWYG editors for ease of use, whereas advanced users may opt for text-based editors for better control.
+Project needs: Larger projects might benefit from a more robust editor with extensive features and integrations.
+Compatibility: Ensure the editor supports other technologies you plan to use like CSS, JavaScript, or various frameworks.
