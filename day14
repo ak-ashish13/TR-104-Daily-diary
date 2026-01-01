@@ -1,0 +1,399 @@
+HTML5 introduced a range of semantic elements that clearly describe their purpose in human and machine-readable language. Unlike non-semantic elements, which provide no information about their content, semantic elements clearly define their content.
+
+For instance, <form>, <table>, and <article> tags clearly define the content and purpose, to the browser.
+
+Semantic Elements
+Here are some of the fundamental HTML5 semantic elements that you should use to structure your web content:
+
+html-sementics-layout
+HTML 5 Semantic Based Page Structure
+1. The <article> Tag
+The <article> tag is used for content that stands alone and can be independently distributed or reused, such as a blog post or news article.
+
+
+
+
+<!DOCTYPE html>
+<html>
+​
+<head>
+    <title>Article Tag</title>
+    <style>
+        h1 {
+            color: #006400;
+            font-size: 50px;
+            text-align: left;
+        }
+        p {
+            font-size: 25px;
+            text-align: left;
+            margin-top: 0;
+        }
+    </style>
+</head>
+​
+<body>
+    <article>
+        <h1>GeeksforGeeks</h1>
+        <p>A Computer Science portal for geeks. It contains well written, well thought, and well explained computer science and programming articles, quizzes, and practice/competitive programming/company interview questions.</p>
+    </article>
+</body>
+​
+</html>
+2. The <aside> Tag
+The <aside> is used to place content in a sidebar i.e. aside from the existing content. It is related to surrounding content.
+
+
+
+
+<!DOCTYPE html>
+<html>
+​
+<head>
+    <title>Aside Tag</title>
+    <style>
+        h4 {
+        Color:#006400;
+        font-size:50px;
+        Text-align:none;
+        margin-bottom:0px;
+        }
+        p {
+        font-size:25px;
+        text-align:none;
+        margin-top:0px;
+        }
+    </style>
+</head>
+​
+<body>
+    <p>GeeksforGeeks is a Computer Science Portal</p>
+    <aside>
+        <h4>GeeksForGeeks</h4>
+        <p>GeeksforGeeks is a computer Science platform
+            where you can learn good programming.
+        </p>
+    </aside>
+</body>
+​
+</html>
+3. The Details and Summary Tag
+The "details" defines additional details that the user can hide or view. "summary" defines a visible heading for a "details" element.
+
+
+
+
+<!DOCTYPE html>
+<html>
+​
+<head>
+    <title>Detail and summary Tag</title>
+    <style>
+        .GFG {
+        Color:#006400;
+        font-size:50px;
+        Text-align:none;
+        margin-bottom:0px;
+        }
+        p {
+        font-size:25px;
+        text-align:none;
+        margin-top:0px;
+        }
+    </style>
+</head>
+​
+<body>
+    <details>
+        <summary class="GFG">
+            GeeksforGeeks
+        </summary>
+        <p>GeeksforGeeks is a Computer Science portal
+            where you can learn good programming.
+        </p>
+    </details>
+</body>
+​
+</html>
+4. The Figure and Figcaption Tag
+The <figure> and <figcaption> tags are used together in HTML to display an image (or illustration) with a descriptive caption
+
+
+
+
+<!DOCTYPE html>
+<html>
+​
+<head>
+    <title>Figcaption Tag</title>
+    <style>
+        h2 {
+        Color:#006400;
+        font-size:50px;
+        Text-align:none;
+        margin-bottom:0px;
+        }
+        p {
+        font-size:25px;
+        text-align:none;
+        margin-top:0px;
+        }
+    </style>
+</head>
+​
+<body>
+    <h2>GeeksforGeeks</h2>
+    <figure>
+        <img src="4.jpg" 
+             alt="gfg" 
+             style="width:20%">
+        <figcaption>
+          GeeksforGeeks Logo
+          </figcaption>
+    </figure>
+</body>
+​
+</html>
+Output:
+
+figcaption
+5. The Header Tag
+As the name suggests, it is for the header of a section introductory of a page. There can be multiple headers on a page.  
+
+
+
+
+<!DOCTYPE html>
+<html>
+​
+<head>
+    <title>Header Tag</title>
+    <style>
+        h1, h3 {
+        Color:#006400;
+        Text-align:left;
+        margin-bottom:0px;
+        }
+        p {
+        font-size:25px;
+        text-align:left;
+        margin-top:0px;
+        }
+    </style>
+</head>
+​
+<body>
+    <article>
+        <header>
+            <h1>GeeksforGeeks</h1>
+            <h3>GeeksforGeeks</h3>
+            <p>A computer Science portal</p>
+        </header>
+    </article>
+</body>
+​
+</html>
+6. The Footer Tag
+Footer located at the bottom of any article or document, they can contain contact details, copyright information etc. There can be multiple footers on a page. 
+
+
+
+
+<!DOCTYPE html>
+<html>
+​
+<head>
+    <title>footer Tag</title>
+    <style>
+        p {
+        font-size:25px;
+        text-align:left;
+        margin-top:0px;
+        }
+    </style>
+</head>
+​
+<body>
+    <footer>
+        <p>
+            Posted by: GeeksforGeeks
+        </p>
+​
+        <p>
+            Contact: 
+            <a href=
+"https://www.geeksforgeeks.org/">
+                geeksforgeeks.org
+            </a>.
+        </p>
+    </footer>
+</body>
+​
+</html>
+7. The Main Tag
+It defines the main content of the document. The content inside the main tag should be unique. 
+
+
+
+
+<!DOCTYPE html>
+<html>
+​
+<head>
+    <title>main Tag</title>
+    <style>
+        h1 {
+        color:#006400;
+        }
+        p {
+        font-size:25px;
+        text-align:none;
+        margin-top:0px;
+        }
+    </style>
+</head>
+​
+<body>
+    <main>
+        <h1>Important Residences</h1>
+        <p>
+            A few of them are 
+            Rashtrapati Bhavan, 
+            White House etc
+        </p>
+​
+        <article>
+            <h1>Rashtrapati Bhavan</h1>
+            <p>
+                It is the home of 
+                the President of India.
+            </p>
+        </article>
+        
+        <article>
+            <h1>The White House</h1>
+            <p>
+                It is the home of the 
+                President of United
+                States of America.
+            </p>
+        </article>
+    </main>
+</body>
+​
+</html>
+8. The Section Tag
+A page can be split into sections like Introduction, Contact Information, Details, etc and each of these sections can be in a different section tag.
+
+
+
+
+<!DOCTYPE html>
+<html>
+​
+<head>
+    <title>section Tag</title>
+    <style>
+        h1 {
+        color:#006400;
+        }
+        p {
+        font-size:25px;
+        text-align:none;
+        margin-top:0px;
+        }
+    </style>
+</head>
+​
+<body>
+    <section>
+        <h1>Data Structure</h1>
+        <p>
+            Data Structure is a data
+            organization and storage
+            format that enables efficient
+            access and modification.
+        </p>
+    </section>
+    <section>
+        <h1>Algorithm</h1>
+        <p>
+            A process or set of rules to
+            be followed in calculations
+            or other problem-solving
+            operations, especially by
+            a computer.
+        </p>
+    </section>
+</body>
+​
+</html>
+9. The nav Tag
+The nav tag is used to define a set of navigation links in the form of a navigation bar or nav menu
+
+
+
+
+<!DOCTYPE html>
+<html>
+​
+<head>
+    <title>nav Tag</title>
+    <style>
+        h1 {
+        color:#006400;
+        }
+    </style>
+</head>
+​
+<body>
+    <h1>Navigation Bar</h1>
+    <nav>
+        <a href="/home/">
+            Home
+        </a> |
+        <a href="/about-us/">
+            About Us
+        </a> |
+        <a href="/data-structure/">
+            Data Structure
+        </a> |
+        <a href="/operating-system/">
+            Operating System
+        </a>
+    </nav>
+</body>
+​
+</html>
+10. The Mark Tag
+Mark tag is used to highlight the text.
+
+
+
+
+<!DOCTYPE html>
+<html>
+​
+<head>
+    <title>mark Tag</title>
+    <style>
+        h1 {
+        color:#006400;
+        }
+    </style>
+</head>
+​
+<body>
+    <h1>mark tag</h1>
+    <p>
+        GeeksforGeeks is a
+        <mark>Computer Science</mark>
+        portal
+    </p>
+</body>
+​
+</html>
+Best Practices for Using HTML5 Semantic Elements
+Do not overuse <div>: Use semantic elements where appropriate instead of non-semantic <div> elements to provide more specific information about the content.
+Structure content logically: Organize the content within semantic elements to reflect the meaning and importance of the information.
+Validate your HTML: Use tools like the W3C HTML Validator to ensure that your use of semantic elements adheres to HTML5 standards.
