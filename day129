@@ -1,0 +1,110 @@
+Basic MongoDB Concepts
+
+Database → Collection → Document
+
+Database = like a folder
+
+Collection = like a table
+
+Document = JSON-like object
+
+Example document:
+
+{
+  "name": "Rahul",
+  "age": 21,
+  "course": "BCA"
+}
+
+2️⃣ CRUD Operations in MongoDB
+
+CRUD = Create, Read, Update, Delete
+
+🔹 CREATE (Insert Data)
+Insert One Document
+db.students.insertOne({
+  name: "Amit",
+  age: 22,
+  course: "BCA"
+})
+
+Insert Multiple Documents
+db.students.insertMany([
+  { name: "Riya", age: 21 },
+  { name: "Neha", age: 23 }
+])
+
+🔹 READ (Fetch Data)
+Find All Documents
+db.students.find()
+
+Find with Condition
+db.students.find({ age: 22 })
+
+Find One Document
+db.students.findOne({ name: "Amit" })
+
+Projection (Select Fields)
+db.students.find({}, { name: 1, _id: 0 })
+
+🔹 UPDATE (Modify Data)
+Update One
+db.students.updateOne(
+  { name: "Amit" },
+  { $set: { age: 23 } }
+)
+
+Update Many
+db.students.updateMany(
+  { course: "BCA" },
+  { $set: { status: "active" } }
+)
+
+Increment Value
+db.students.updateOne(
+  { name: "Amit" },
+  { $inc: { age: 1 } }
+)
+
+🔹 DELETE (Remove Data)
+Delete One
+db.students.deleteOne({ name: "Amit" })
+
+Delete Many
+db.students.deleteMany({ course: "BCA" })
+
+3️⃣ Query Operators (Important for Viva)
+Comparison Operators
+$eq   $ne   $gt   $lt   $gte   $lte
+
+
+Example:
+
+db.students.find({ age: { $gt: 20 } })
+
+Logical Operators
+$and   $or   $not
+
+
+Example:
+
+db.students.find({
+  $and: [{ age: { $gt: 20 } }, { course: "BCA" }]
+})
+
+4️⃣ Sorting, Limiting, Counting
+Sort
+db.students.find().sort({ age: 1 })   // Ascending
+
+Limit
+db.students.find().limit(5)
+
+Count
+db.students.countDocuments()
+
+5️⃣ MongoDB with MERN (Node.js Example)
+const mongoose = require("mongoose")
+
+mongoose.connect("mongodb://localhost:27017/collegeDB")
+.then(() => console.log("MongoDB Connected"))
+.catch(err => console.log(err))
