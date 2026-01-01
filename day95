@@ -1,0 +1,166 @@
+In MongoDB, data types define the kind of data a field can hold, such as text, numbers, dates, or binary data. Choosing the right data type is important because it determines how data is stored, retrieved, and used in queries. Understanding MongoDB data types helps you organize your data efficiently and work with it effectively.
+
+Below are the most commonly used MongoDB data types.
+
+1. String
+It is one of the most commonly used data types in MongoDB, as it stores the data in BSON string format. The MongoDB driver automatically handles the conversion between the programming language string type and BSON by encoding and decoding strings in UTF-8 during serialization and deserialization. All strings stores in MongoDB must be utf-8.
+
+Example: In the following example we are storing the name of the student in the student collection:
+
+
+
+Here, the name field is a string representing the student's name.
+
+Key Features:
+Stored in UTF-8 format.
+Ideal for storing text-based data.
+2. Integer
+In MongoDB, the integer data type is used to store an integer value. We can store integer data type in two forms 32-bit signed integer and 64-bit signed integer. These are used to store whole numbers, such as ages, counts, or any other numerical data that doesn't require decimal points.
+
+Example: In the following example we are storing the age of the student in the student collection:
+
+
+
+In this example, age is stored as an integer.
+
+Key Features:
+It Can be represented as either a 32-bit or 64-bit signed integer.
+It is Suitable for storing whole numbers.
+3. Double
+The double data type is used for storing floating-point numbers (decimal values). It's commonly used for storing data that requires decimal precision, such as prices, percentages, or scores.
+
+Example: In the following example we are storing the marks of the student in the student collection:
+
+
+
+In this example, marks is stored as a double to store the decimal value.
+
+Key Features:
+It is used to store floating-point numbers.
+It is Ideal for data requiring decimal precision.
+4. Boolean
+The boolean data type stores one of two values: true or false. It's used for representing binary states, such as "active/inactive" or "pass/fail."
+
+Example: In the following example we are storing the final result of the student as pass or fail in boolean values.
+
+
+
+In this example, the passed field is a boolean value indicating whether the student passed or failed.
+
+Key Features:
+It Stores true or false values.
+It is Commonly used for binary states.
+5. Null
+The null data type stores a null value. This is useful when you want to represent the absence of data, such as an optional field that may not be set.
+
+Example: In the following example,  the student does not have a mobile number so the number field contains the value null.
+
+
+
+Here, phone_number is set to null, indicating that the student has not provided a phone number.
+
+Key Features:
+It Represents the absence of data.
+It is used for missing or undefined values.
+6. Array
+The array data type allows us to store multiple values in a single field.MongoDB arrays can contain values of the same or different data types, providing flexibility in how you store collections of related data. In MongoDB, the array is created using square brackets([]). 
+
+Example: In the following example, we are storing the technical skills of the student as an array.
+
+
+
+In this example, the skills field stores an array of strings representing the student's technical skills.
+
+Key Features:
+It is used to Store multiple values in a single field.
+It can hold values of different data types.
+7. Object (Embedded Document)
+Object data type stores embedded documents. Embedded documents are also known as nested documents. Embedded document or nested documents are those types of documents which contain a document inside another document. Embedded documents allow us to structure our data hierarchically, which is useful for representing more complex data models.
+
+Example: In the following example, we are storing all the information about a book in an embedded document.
+
+Object
+
+Here, the book field stores an embedded document with properties like title, author, and published.
+
+Key Features:
+It is used to Store nested documents.
+It is useful for hierarchical data structures.
+8. Object Id
+Whenever we create a new document in the collection MongoDB automatically creates a unique object id for that document(if the document does not have it). There is an _id field in MongoDB for each document. The data which is stored in Id is of hexadecimal format and the length of the id is 12 bytes which consist:
+
+4-bytes for Timestamp value.
+5-bytes for Random values. i.e., 3-bytes for machine Id and 2-bytes for process Id.
+3- bytes for Counter
+We can also create your own id field, but make sure that the value of that id field must be unique.
+
+Example: In the following example, when we insert a new document it creates a new unique object id for it.
+
+Object Id
+
+In this example, MongoDB automatically generates a unique _id for each document.
+
+Key Features:
+Unique identifier for each document.
+Automatically generated by MongoDB.
+9. Undefined
+The undefined data type represents a value that is not defined. It is rarely used in modern MongoDB applications, as it has been replaced by the null value for most practical purposes.
+
+Example: In the following example the type of the duration of the project is undefined.
+
+
+
+In this example, the duration field is set to undefined.
+
+Key Features:
+It is used to represents an undefined value.
+It is typically replaced by null value.
+10. Binary Data
+The binary data data type stores binary information such as images, files, or encrypted data. Binary data is often used when working with non-textual data.
+
+Example: In the following example the value stored in the binaryValue field is of binary type.
+
+BinaryData
+
+Here, the image field stores binary data.
+
+Key Features:
+It is used for storing non-textual data (e.g., images, files).
+It is stored as binary data.
+11. Date
+Date data type stores date. It is a 64-bit integer which represents the number of milliseconds. BSON data type generally supports UTC datetime and it is signed. If the value of the date data type is negative then it represents the dates before 1970. There are various methods to return date, it can be returned either as a string or as a date object. Some method for the date:
+
+Date(): It returns the current date in string format.
+new Date(): It returns a date object. It uses the ISODate() wrapper. 
+new ISODate(): It also returns a date object. It uses the ISODate() wrapper.
+Example: In the following example we are using all the above method of the date:
+
+Date
+
+In this example, the created_at field stores the current date and time.
+
+Key Features:
+It is used to store dates and times as 64-bit integers.
+It is commonly used for timestamps.
+12. Min & Max key
+The MinKey and MaxKey data types are used for internal comparisons. MinKey represents the lowest BSON element, while MaxKey represents the highest.
+
+Example: 
+
+minandmaxkey
+
+Key Features:
+It is used for internal comparisons in queries.
+It is used to represent the lowest and highest BSON elements.
+13. Symbol
+This data type similar to the string data type. It is generally not supported by a mongo shell, but if the shell gets a symbol from the database, then it converts this type into a string type.
+
+Example: 
+
+Symbol
+
+14. Regular Expression
+The regular expression data type is used to store regex patterns. MongoDB supports regex queries for performing pattern matching on string fields.
+
+Example: In the following example we are storing the regular expression gfg:
+
