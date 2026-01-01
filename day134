@@ -1,0 +1,92 @@
+MongoDB is a popular NoSQL database known for its scalability and flexibility, but handling multiple operations across multiple documents and collections has always been a challenge for developers. With the introduction of multi-document ACID transactions in MongoDB 4.0, developers can now ensure data integrity across multiple operations in a database.
+
+In this article, we will explore MongoDB Transactions including what they are, how they work, advantages and disadvantages associated with their implementation, and other related concerns.
+
+What are ACID Transactions in MongoDB?
+ACID transactions ensure data integrity by adhering to four essential properties: Atomicity, Consistency, Isolation, and Durability. A transaction groups multiple operations into a single unit of work. If any operation in the transaction fails, the entire transaction is rolled back, ensuring that no partial changes are made to the database.
+
+ACID transactions in MongoDB are especially useful for maintaining consistency in systems that require guaranteed data correctness, such as banking applications or order management systems. MongoDB supports multi-document ACID transactions and distributed multi-document ACID transactions.
+
+For example, suppose we run an e-commerce store. if any of these steps fail, the entire transaction of order will fail and roll back. This MongoDB transaction example shows the working of transactions. An order process contains several steps:
+
+Reducing Stock Quantity
+Creating an order record
+Charging customer with the correct amount
+ACID Properties:
+
+Atomicity: The entire transaction is treated as a single unit of work. Either all operations are successful, or none of them are.
+Consistency: The database transitions from one valid state to another. Invalid data is never written.
+Isolation: The execution of one transaction is isolated from others, ensuring that no conflicting operations interfere with one another.
+Durability: Once committed, the changes are permanent and survive system failures.
+Features of Transactions in MongoDB
+Transactions in MongoDB allow developers in MongoDB to treat a set of operations as one atomic unit, where if none will fail only then transaction is successful.
+Data consistency can be achieved during synchronization among different documents/collections with this characteristic. It provides end-to-end support for multi-document transactions across multiple collections and databases.
+They are typically used in applications where values are exchanged between different parties, such as "System of Record" or "Line of Business" applications, and are particularly beneficial in systems that move funds around like banking applications or supply chain or shipping systems where ownership of a good is transferred or in e-commerce.
+MongoDB provides two APIs to use transactions: the core API and the callback API. The core API requires an explicit call to start and to commit the transaction, while the callback API starts a transaction, executes the specified operations, and commits (or aborts on error) automatically.
+To create a transaction session, you can use the MongoDB shell to start a transaction and perform operations within the transaction. If a transactions session runs for more than 60 seconds after the initial startTransaction() method, MongoDB will automatically abort the operation.
+Benefits of Transactions in MongoDB
+There are four properties of MongoDB database transaction, that ensures data validity despite interruptions and errors. They are atomicity, consistency, isolation and durability.
+
+1. Atomicity
+This ensures that a transaction is handled as a single, indivisible unit of work. It means either all of the operations of transactions succeed or none of them will execute. This prevents situations where just a few operations are completed, inconsistently leaving the machine.
+
+2. Consistency
+Transactions assist in maintaining the consistency of a database by way of ensuring that only genuine data is written into the database. If a transaction is completed that violates the database’s consistency guidelines, the whole transaction might be rolled returned and the database will continue to be unchanged.
+
+3. Isolation
+This property guarantees that the concurrent execution of transactions leaves the database inside the same state that would have been received if the transactions were done sequentially. It gives a mechanism to cover the intermediate states of a transaction from other simultaneously achieved transactions.
+
+4. Durability
+Once a transaction has been dedicated, its effects are permanent inside the database. This remains true even in case of system failure. This belonging ensures that after a transaction completes successfully, the modifications it has made to the database persist and aren't misplaced because of any failures.
+
+Disadvantages of MongoDB Transactions
+While MongoDB transactions offer significant advantages, there are also some challenges associated with their use:
+
+1. Performance Overhead
+Transactions introduce performance overhead, especially in write-intensive workloads. The need for coordination between operations and locking mechanisms can slow down the overall performance of the database.
+
+2. Complexity in Implementation
+Implementing transactions, especially for multi-document transactions, requires additional code and logic. For complex systems with many operations across different collections, managing these transactions can become difficult.
+
+3. Not Ideal for All Use Cases
+MongoDB transactions are not necessary for every application. For example, if your application performs only simple operations where atomicity is not a critical concern, transactions may add unnecessary overhead.
+
+Implementation of MongoDB Transactions
+After learning all the concepts of Transactions, let's see how to use transactions in MongoDB. We will look at the step by step guide, along with queries of Transaction implementation in MongoDB. Implementing transactions in MongoDB includes the usage of the startSession, withTransaction, and commitTransaction strategies. Below is a simple example in Python using the PyMongo driver.
+
+1. Set up MongoDB Client:
+from pymongo import MongoClient
+
+client = MongoClient("mongodb://localhost:27017")
+database = client["your_database"]
+2. Start a Transaction Session:
+with client.start_session() as session:
+    session.start_transaction()
+3. Perform Operations within the Transaction:
+try:
+        # Perform operations within the transaction
+        database.collection1.insert_one({"key": "value"}, session=session)
+        database.collection2.update_one({"key": "old_value"}, {"$set": {"key": "new_value"}}, session=session)
+
+        # Commit the transaction
+        session.commit_transaction()
+    except Exception as e:
+        # Abort the transaction in case of an error
+        print("An error occurred:", e)
+        session.abort_transaction()
+Output:
+
+This code starts a consultation and a transaction inside that session. It inserts a report into `collection1` and modifies a document in `collection2`. If any operation does not succeed, then it cancels the transaction, and if all operations are positive, then it finalizes the transaction.
+
+Explanation:
+
+This Python code uses PyMongo to perform a transaction in MongoDB, inserting a document into "collection1" and updating a document in "collection2." If any operation fails, the transaction is aborted.
+
+Start_session(): This is a technique in PyMongo that begins a brand new session for executing transactions. A session is a context wherein data is read and written. It may used to execute a couple of operations, both read or write, inside a single transaction.
+Start_transaction(): This is a technique that starts offevolved a brand new transaction inside a consultation. All the operations finished inside this transaction will follow the ACID Properties. If any operation fails, the transaction can be aborted, and all changes made in the transaction will be rolledback.
+Commit_transaction(): This technique is used for all modifications made within a transaction to the database. Once a transaction is dedicated, all adjustments are permanent and visible to different sessions.
+Abort_transaction(): If an error occurs throughout the execution of a transaction, this approach can be used to abort the transaction. Aborting a transaction will roll back all modifications made inside the transaction, leaving the database in its unique form before the transaction start.
+WithTransaction: This is a utility feature provided by using MongoDB drivers that starts a brand new consultation, executes a given feature (which contains the operations to be performed within the transaction), and automatically commits or aborts the transaction based totally on whether or not the performed efficiently or threw an exception. This simplifies transaction managing by means of abstracting the boilerplate code for starting, committing, and aborting transactions.
+Conclusion
+Transactions in MongoDB mark a considerable step towards information integrity in complicated programs. While their implementation may introduce a few complexities and performance considerations, the benefits of atomicity, consistency, isolation, and durability lead them to be integral for statistics accuracy. With transactions, MongoDB continues to reinforce its position as a versatile and scalable database solution for modern applications with the help of Transactions Concepts. In this article we have covered the basic concepts of ACID transactions and learnt how to use transactions in MongoDB.
+
