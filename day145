@@ -1,0 +1,67 @@
+Hashed sharding in MongoDB involves partitioning data across multiple shards based on the hashed value of a shard key field. This method enhances scalability and performance by evenly distributing data and query load across shards and it also prevents hotspots and ensures efficient data retrieval.
+
+In this article, we'll learn about the concept of hashed sharding in MongoDB by covering its principles, implementation and providing beginner-friendly examples.
+
+Hashed Sharding
+Sharding is the process of partitioning data across multiple servers (or shards) to improve scalability and performance.
+MongoDB supports sharding by dividing a collection into smaller chunks called shards where each shard is stored on a separate server.
+1. Sharding on a Single Field Hashed Index
+Sharding on a single field hashed index involves partitioning data across multiple database shards based on the hashed value of a single field, typically an index.
+This method evenly distributes data across shards, ensuring balanced workload distribution and improving scalability. It simplifies shard key selection and can enhance performance for write-heavy workloads.
+However, it may limit flexibility in query patterns that rely on range queries or specific ordering based on the shard key.
+2. Sharding on a Compound Hashed Index
+Sharding on a compound hashed index partitions data across shards using a combined hashed value derived from multiple fields.
+This approach offers more flexibility than single-field sharding by allowing complex queries involving multiple criteria. It ensures that related data is distributed evenly across shards while maintaining efficient data retrieval for queries spanning multiple fields.
+However, designing an effective compound hashed index requires careful consideration of query patterns and data distribution to avoid uneven shard loads.
+Hashed Sharding Shard Key
+Hashed sharding uses a hash function to determine the shard key, which dictates how data is distributed across shards in a distributed database system.
+The shard key's hashed value ensures even distribution of data and prevents hotspots by spreading the workload across multiple nodes or servers.
+Choosing an appropriate shard key is critical for balanced data distribution and optimal performance in hashed sharding.
+It requires evaluating access patterns, query types, and data characteristics to select a shard key that maximizes efficiency and scalability.
+Hashed vs Ranged Sharding
+Aspect	Hashed Sharding	Ranged Sharding
+Distribution Method	Uses a hash function on the shard key to evenly distribute data across shards.	Divides data into shards based on ranges of the shard key values.
+Data Distribution	Ensures even distribution of data across shards, minimizing hotspots.	Can lead to uneven distribution if ranges are not carefully chosen.
+Query Efficiency	Efficient for point queries and inserts, but less suitable for range queries that span shards.	Efficient for range queries that align with shard key ranges.
+Flexibility	Limited flexibility for range-based queries due to non-sequential data storage.	Provides flexibility for range-based queries as data within each shard is sequential.
+Implementation Complexity	Relatively straightforward implementation with simpler shard key management.	More complex to implement and manage shard ranges effectively.
+Use Cases	Ideal for workloads with unpredictable access patterns and write-heavy operations.	Suitable for applications requiring frequent range queries or ordered data retrieval.
+Advantages of Hashed Sharding
+Hashed sharding offers several benefits:
+
+Even Data Distribution: Hashed sharding evenly distributes data across shards based on hash values, which helps prevent hotspots and uneven shard distribution.
+Predictable Shard Distribution: The hash function provides a predictable way to determine which shard a document belongs to, simplifying data management and querying.
+Implementing Hashed Sharding
+Let's walk through an example of implementing hashed sharding in MongoDB.
+
+Step 1: Enable Sharding
+Before enabling sharding on a collection, ensure that the MongoDB deployment is configured for sharding.
+
+# Enable sharding on the database
+sh.enableSharding("mydatabase")
+# Enable sharding on the collection with a specified shard key
+sh.shardCollection("mydatabase.mycollection", { "myShardKeyField": "hashed" })
+Step 2: Insert Data
+Insert data into the sharded collection. MongoDB will automatically distribute documents across shards based on the hashed shard key.
+
+db.mycollection.insert({
+  "name": "John Doe",
+  "age": 30,
+  "myShardKeyField": "someValue"
+})
+Step 3: Query Sharded Data
+Query data from the sharded collection. MongoDB will route queries to the appropriate shards based on the hashed shard key.
+
+db.mycollection.find({ "myShardKeyField": "someValue" })
+Example: Hashed Sharding Output
+Assuming we have a sharded collection named "mycollection" with hashed sharding on the "myShardKeyField" field, querying the data will produce output similar to the following:
+
+{
+  "_id": ObjectId("60f9d7ac345b7c9df348a86e"),
+  "name": "John Doe",
+  "age": 30,
+  "myShardKeyField": "someValue"
+}
+Conclusion
+Overall, Hashed sharding provides MongoDB with a robust mechanism for distributing data across multiple servers which enhancing scalability and performance while maintaining balanced workload distribution. Proper shard key selection and understanding of query patterns are key to maximizing the benefits of hashed sharding in MongoDB.
+
