@@ -1,0 +1,79 @@
+MongoDB findOne() method in MongoDB is used to retrieve a single document from a collection that matches the specified query criteria. It is particularly useful when we need to fetch one specific document rather than multiple documents. This method returns the first document that matches the query criteria.
+
+Retrieves one document based on the specified query criteria.
+Returns null if no document matches the query.
+Allows you to filter and project specific fields using the projection parameter.
+Efficient for querying large collections when you only need one document.
+Syntax:
+db.collection.findOne(query, projection)
+
+In the above syntax:
+
+db.collection: Refers to the collection from which you want to retrieve the document.
+findOne(): The method used to retrieve a single document.
+query: A document that specifies the criteria to match the desired document.
+projection: Optional. A document that specifies the fields to include or exclude in the returned document.
+Examples of MongoDB FindOne()
+Let’s go through several practical examples using a students collection:
+
+
+[
+  { "_id": ObjectId("6011c71f781ba1a1c1ffc5b1"), "name": "Nikhil", "language": "C++" },
+  { "_id": ObjectId("6011c71f781ba1a1c1ffc5b2"), "name": "Avinash", "language": "python" },
+  { "_id": ObjectId("6011c71f781ba1a1c1ffc5b3"), "name": "Vishal", "language": "python" }
+]
+Example 1: MongoDB findOne with Empty Query
+Let's Retrieve the first document in the student collection:
+
+Query:
+
+db.student.findOne({})
+Output:
+
+{ "_id": ObjectId("6011c71f781ba1a1c1ffc5b1"), "name": "Nikhil", "language": "C++" }
+Explanation: In this case, the method returns the first document in the collection, which is the document with "_id": ObjectId("6011c71f781ba1a1c1ffc5b1").
+
+Example 2: MongoDB findOne with Query Specification
+Let's Retrieve a document where the name is "Avinash".
+
+Query:
+
+db.student.findOne({ name: "Avinash" })
+Output:
+
+{ "_id": ObjectId("6011c71f781ba1a1c1ffc5b2"), "name": "Avinash", "language": "python" }
+Explanation: In this case, the method returns the document where name is "Avinash".
+
+Example 3: MongoDB findOne with Projection – Include Specific Fields
+Projection specifies which fields to include or exclude in the returned document. By default, all fields are included. Let's Retrieve a document where the name is "Vishal" and return only the name and language fields:
+
+Query:
+
+db.student.findOne({ name: "Vishal" }, { _id: 0, name: 1, language: 1 })
+Output:
+
+{ "name": "Vishal", "language": "python" }
+Explanation: In this case, the method returns the document where name is "Vishal", but only the name and language fields are included in the result.
+
+Example 4: MongoDB findOne with Projection – Exclude a Field
+Let's Retrieve a document where the name is "Nikhil" and return all fields except the _id field:
+
+Query:
+
+db.student.findOne({ name: "Nikhil" }, { _id: 0 })
+Output:
+
+{ "name": "Nikhil", "language": "C++" }
+Explanation:In this case, the method returns the document where name is "Nikhil", but the _id field is excluded from the result.
+
+Example 5: MongoDB findOne with Query Matching Multiple Documents
+The result document is the document that matches the query criteria. If no document matches the criteria, findOne() returns null. Let's Retrieve a document where the language is "python":
+
+Query:
+
+var result = db.student.findOne({ language: "python" });
+print(result);
+Output:
+
+{ "_id": ObjectId("6011c71f781ba1a1c1ffc5b2"), "name": "Avinash", "language": "python" }
+Explanation: In this example, the method returns the first document that matches the query, which is the document with "_id": ObjectId("6011c71f781ba1a1c1ffc5b2")
