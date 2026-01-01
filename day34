@@ -1,0 +1,164 @@
+Functions in JavaScript are reusable blocks of code designed to perform specific tasks. They allow you to organize, reuse, and modularize code. It can take inputs, perform actions, and return outputs.
+
+use_of_function_in_javascript_12.webpuse_of_function_in_javascript_12.webp
+Understanding Functions
+In functions, parameters are placeholders defined in the function, while arguments are the actual values you pass when calling the function
+
+Example:
+
+function greet(name) {   // 'name' is a parameter
+  console.log("Hello " + name);
+}
+
+greet("Alice");  // "Alice" is the argument
+Parameter → name (placeholder inside the function).
+Argument → "Alice" (real value given at call time).
+Default Parameters
+Default parameters are used when no argument is provided during the function call.
+If no value is passed, the function automatically uses the default value.
+function greet(name = "Guest") {
+  console.log("Hello, " + name);
+}
+
+greet();        // Hello, Guest (default used)
+greet("Aman");  // Hello, Aman
+Return Statement
+The return statement is used to send a result back from a function.
+When return executes, the function stops running at that point.
+The returned value can be stored in a variable or used directly.
+function add(a, b) {
+  return a + b; // returns the sum
+}
+
+let result = add(5, 10);
+console.log(result); // 15
+Type of Functions
+Here are all the main types of functions in JavaScript:
+
+1. Named Function
+A function that has its own name when declared. It’s easy to reuse and debug because the name shows up in error messages or stack traces.
+
+function greet() {
+  return "Hello!";
+}
+console.log(greet()); // Hello!
+2. Anonymous Function
+A function that does not have a name. It is usually assigned to a variable or used as a callback. Since it has no name, it cannot be called directly.
+
+const greet = function() {
+  return "Hi there!";
+};
+console.log(greet()); // Hi there!
+3. Function Expression
+When you assign a function (can be named or anonymous) to a variable. The function can then be used by calling that variable.
+
+const add = function(a, b) {
+  return a + b;
+};
+console.log(add(2, 3)); // 5
+4. Arrow Function (ES6)
+A new way to write functions using the => syntax. They are shorter and do not have their own this binding, which makes them useful in some cases.
+
+const square = n => n * n;
+console.log(square(4)); // 16
+5. Immediately Invoked Function Expression (IIFE)
+IIFE functions are executed immediately after their definition. They are often used to create isolated scopes.
+
+(function () {
+    console.log("This runs immediately!");
+})();
+6. Callback Functions
+A callback function is passed as an argument to another function and is executed after the completion of that function.
+
+function num(n, callback) {
+    return callback(n);
+}
+
+const double = (n) => n * 2;
+
+console.log(num(5, double));
+7. Constructor Function
+A special type of function used to create multiple objects with the same structure. It’s called with the new keyword.
+
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+const user = new Person("Neha", 22);
+console.log(user.name); // Neha
+8. Async Function
+Functions that handle asynchronous tasks. Declared with async, they return a Promise, and you can use await inside them to pause until another Promise resolves.
+
+async function fetchData() {
+  return "Data fetched!";
+}
+fetchData().then(console.log); // Data fetched!
+9. Generator Function
+Declared with an asterisk *, these functions can pause execution using yield and resume later. Useful for lazy loading values or handling iterators.
+
+function* numbers() {
+  yield 1;
+  yield 2;
+  yield 3;
+}
+
+const gen = numbers();
+console.log(gen.next().value); // 1
+console.log(gen.next().value); // 2
+10. Recursive Function
+A function that calls itself until a condition is met. Very useful for problems like factorial, Fibonacci, or tree traversals.
+
+function factorial(n) {
+  if (n === 0) return 1;
+  return n * factorial(n - 1);
+}
+console.log(factorial(5)); // 120
+11. Higher-Order Function
+A function that either takes another function as a parameter or returns another function. These are common in JavaScript (e.g., map, filter, reduce).
+
+function multiplyBy(factor) {
+  return function(num) {
+    return num * factor;
+  };
+}
+
+const double = multiplyBy(2);
+console.log(double(5)); // 10
+12. Nested Functions
+Functions defined within other functions are called nested functions. They have access to the variables of their parent function.
+
+function outerFun(a) {
+    function innerFun(b) {
+        return a + b;
+    }
+    return innerFun;
+}
+
+const addTen = outerFun(10);
+console.log(addTen(5));
+13. Pure Functions
+Pure functions return the same output for the same inputs and do not produce side effects. They do not modify state outside their scope, such as modifying global variables, changing the state of objects passed as arguments, or performing I/O operations.
+
+function pureAdd(a, b) {
+    return a + b;
+}
+
+console.log(pureAdd(2, 3));
+14. Default Parameter Function
+A function where parameters have default values if no argument is passed. Helps avoid undefined issues.
+
+function greet(name = "Guest") {
+  return "Hello, " + name;
+}
+console.log(greet());      // Hello, Guest
+console.log(greet("Aman"));// Hello, Aman
+15. Rest Parameter Function
+Uses ... to collect all remaining arguments into an array. Very useful when you don’t know how many arguments will be passed.
+
+function sum(...nums) {
+  return nums.reduce((a, b) => a + b, 0);
+}
+console.log(sum(1, 2, 3, 4)); // 10
+JavaScript Examples:
+The following JavaScript section contains a wide collection of JavaScript examples, read here:
