@@ -1,0 +1,54 @@
+RDBMS and MongoDB both are widely used database management systems, but they differ significantly in how they store, manage and retrieve data. RDBMS (Relational Database Management System) is a traditional approach to database management, while MongoDB is a NoSQL (Non-relational) database known for its flexibility and scalability.
+
+Difference Between RDBMS and MongoDB
+Here is a detailed comparison of RDBMS and MongoDB based on various features:
+
+Feature	RDBMS	MongoDB
+Type of Database	Relational database	Non-relational, document-oriented database
+Data Storage	Stores data in tables with rows and columns	Stores data in flexible JSON-like documents (BSON)
+Schema	Fixed, predefined schema	Schema-less, dynamic schema
+Scalability	Vertically scalable (increase resources like CPU/RAM)	Horizontally scalable (add more servers to handle increased load)
+Transactions & ACID	Focuses on ACID properties (Atomicity, Consistency, Isolation, Durability)	Focuses on CAP theorem (Consistency, Availability, Partition tolerance)
+Joins	Supports complex joins	Does not support complex joins
+Data Format	Row-based storage	Document-based storage
+Performance	Slower compared to MongoDB for large datasets	Faster, particularly for handling large-scale data
+Security	High level of information security	Provides strong security features, but not as robust as RDBMS
+Query Language	Uses SQL for querying	Uses JSON-like query language with support for SQL
+Flexibility	Less flexible for changes in data structure	Highly flexible, suitable for agile development and evolving data models
+Support for Indexing	Limited indexing options	Supports extensive indexing on any field in the document
+Complexity	Suitable for structured data with well-defined relationships	Best for handling unstructured or semi-structured data
+Backup and Recovery	Backup and recovery options are manual	Automated backup and recovery options available
+Deployment	Can be deployed on-premises or cloud	Cloud-native and supports multi-cloud deployment
+Suitability	Best for applications with complex relationships and structured data	Ideal for handling large-scale, unstructured data and applications with high scalability needs
+What is MongoDB?
+MongoDB is an open-source document-oriented database used for high volume data storage in a distributed, scalable manner. It falls under the classification of a NoSQL category, which means it does not use the traditional relational model with tables and rows.
+
+Instead, MongoDB stores data in BSON (Binary JSON) format, which is flexible and allows for schema-less data storage. MongoDB’s ability to scale horizontally and handle high volumes of data makes it a popular choice for modern applications.
+
+Features of MongoDB
+Multiple Servers: MongoDB can be configured to run across multiple servers to ensure high availability and fault tolerance.
+Schema-less Database: It allows data to be stored without requiring a predefined schema, making it highly flexible.
+Indexing: Any field within a document can be indexed, improving query performance.
+Rich Object Model: MongoDB supports a rich object model with advanced features for handling complex data.
+High Scalability: MongoDB offers horizontal scaling, allowing for seamless growth as data and traffic increase.
+Distributed Database: It can be distributed across multiple machines to handle large datasets and provide data redundancy.
+What is RDBMS?
+RDBMS (Relational Database Management System) is a type of database management system that stores data in relational tables, which are structured with rows and columns. RDBMS systems enforce a strict schema, ensuring that all data conforms to the defined structure. Popular RDBMS systems include MySQL, PostgreSQL, and Oracle. These systems provide strong consistency, integrity, and security, making them ideal for applications that require structured data with complex relationships.
+
+Features of RDBMS
+Data Security: RDBMS provides a high level of data security and integrity.
+Data Integrity: It ensures that data is accurate and consistent through constraints and normalization.
+ACID Compliance: RDBMS systems ensure data integrity through ACID properties—Atomicity, Consistency, Isolation, and Durability.
+Fixed Schema: RDBMS systems require a fixed schema, meaning that the structure of the data must be defined upfront.
+Scalability: Typically, RDBMS is vertically scalable by upgrading server resources, but it may struggle with horizontal scalability.
+Query Language: RDBMS uses SQL (Structured Query Language) for querying, which is a powerful and widely-used standard for managing relational data.
+The Trade-Off Between RDBMS and MongoDB
+The trade-off between RDBMS and MongoDB lies in their strengths and limitations when it comes to performance and functionality.
+RDBMS excels in handling structured data with complex relationships, ensuring data integrity and supporting powerful SQL queries.
+MongoDB offers superior performance with unstructured data, greater scalability, and flexibility, making it ideal for modern applications that require quick iterations and large datasets.
+The following graph compares both systems on these parameters.
+
+Trade-off b/w RDBMS and MongoDB
+Conclusion
+RDBMS is the best option when data is structured and relationships between data entities are well-defined, especially for applications requiring strong consistency and complex queries.
+MongoDB is ideal for projects with unstructured or semi-structured data, large-scale applications requiring horizontal scalability and fast, flexible query processing
